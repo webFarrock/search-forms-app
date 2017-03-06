@@ -1,0 +1,13 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs>
+
+		<filter id="blackandwhite">
+			<feColorMatrix type="matrix" in="SourceGraphic"
+           values=".33 .33 .33 0 0 
+                   .33 .33 .33 0 0 
+                   .33 .33 .33 0 0 
+                   .33 .33 .33 1 0"/>
+		</filter>
+
+	</defs>
+</svg>

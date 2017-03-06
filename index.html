@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="ru" ng-app="IntouristApp">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>Intourist</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta property="og:title" content="">
+	<meta property="og:site_name" content="">
+	<meta property="og:url" content="">
+	<meta property="og:description" content="">
+	<meta property="og:image" content="">
+	<link rel="stylesheet" href="./static/css/general.css">
+	<script src="static/js/libs/modernizr.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<body id="body" class="page-index">
+
+<header class="header">
+	<div class="inner">
+		<div class="header__bar">
+			<div class="hamburger-wrapper">
+				<div class="hamburger hamburger--collapse" tabindex="0">
+					<div class="hamburger-box">
+						<div class="hamburger-inner"></div>
+					</div>
+				</div>
+				<span class="hamburger-title">меню</span>
+			</div>
+
+			<div class="header__bar__aside">
+				<a href="/" class="logotype">Intourist</a>
+				<div class="slogan">Традиции с 1929 года</div>
+			</div>
+			<div class="header__bar__content">
+				<ul class="list -inline -justify -invert tools">
+					<li class="list__item -search">
+						<form action="" class="search" ng-non-bindable>
+							<input type="search" name="" id="" class="search__field" placeholder="Поиск по сайту">
+							<input type="submit" name="" id="" class="search__submit">
+						</form>
+					</li>
+					<li class="list__item">
+						<a href="#region" class="js-region region"><span>Петропавловск-Камчатский</span></a>
+
+						<div id="region" class="popup">
+							<h2 class="regions-title">Ваш город</h2>
+
+							<div class="tabs">
+								<div class="tab__title">
+									<div class="tab__item -active">Россия</div>
+									<div class="tab__item">Белоруссия</div>
+									<div class="tab__item">Казахстан</div>
+								</div>
+
+								<div class="regions-search">
+									<input type="search" name="" id="" class="regions-search__field"
+									       placeholder="Начните вводить">
+									<input type="submit" name="" id="" class="regions-search__submit">
+								</div>
+
+								<div class="tab__content">
+									<div class="tab__item -active">
+										<div class="regions-wrap">
+											<ul class="list regions">
+												<li class="list__item"><a href="#" class="list__link">Ульяновск</a></li>
+												<li class="list__item"><a href="#" class="list__link">Москва</a></li>
+												<li class="list__item"><a href="#"
+												                          class="list__link">Санкт-Петербург</a></li>
+												<li class="list__item"><a href="#" class="list__link">Казань</a></li>
+												<li class="list__item"><a href="#" class="list__link">Самара</a></li>
+												<li class="list__item"><a href="#" class="list__link">Чебоксары</a></li>
+												<li class="list__item"><a href="#" class="list__link">Саратов</a></li>
+												<li class="list__item"><a href="#" class="list__link">Сызрань</a></li>
+											</ul>
+											<ul class="list regions">
+												<li class="list__item"><a href="#" class="list__link">Ярославль</a></li>
+												<li class="list__item"><a href="#" class="list__link">Тольяти</a></li>
+												<li class="list__item"><a href="#" class="list__link">Славянск</a></li>
+												<li class="list__item"><a href="#" class="list__link">Краматорск</a>
+												</li>
+												<li class="list__item"><a href="#" class="list__link">Челябинск</a></li>
+												<li class="list__item"><a href="#" class="list__link">Екатеринбург</a>
+												</li>
+												<li class="list__item"><a href="#" class="list__link">Хабаровск</a></li>
+												<li class="list__item"><a href="#" class="list__link">Владивосток</a>
+												</li>
+											</ul>
+											<ul class="list regions">
+												<li class="list__item -active"><a href="#"
+												                                  class="list__link">Ульяновск</a></li>
+												<li class="list__item"><a href="#" class="list__link">Москва</a></li>
+												<li class="list__item"><a href="#"
+												                          class="list__link">Санкт-Петербург</a></li>
+												<li class="list__item"><a href="#" class="list__link">Казань</a></li>
+												<li class="list__item"><a href="#" class="list__link">Самара</a></li>
+												<li class="list__item"><a href="#" class="list__link">Чебоксары</a></li>
+												<li class="list__item"><a href="#" class="list__link">Саратов</a></li>
+												<li class="list__item"><a href="#" class="list__link">Сызрань</a></li>
+											</ul>
+											<ul class="list regions">
+												<li class="list__item"><a href="#" class="list__link">Ярославль</a></li>
+												<li class="list__item"><a href="#" class="list__link">Тольяти</a></li>
+												<li class="list__item"><a href="#" class="list__link">Славянск</a></li>
+												<li class="list__item"><a href="#" class="list__link">Краматорск</a>
+												</li>
+												<li class="list__item"><a href="#" class="list__link">Челябинск</a></li>
+												<li class="list__item"><a href="#" class="list__link">Екатеринбург</a>
+												</li>
+												<li class="list__item"><a href="#" class="list__link">Хабаровск</a></li>
+												<li class="list__item"><a href="#" class="list__link">Владивосток</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div class="tab__item">Белоруссия</div>
+									<div class="tab__item">Казахстан</div>
+								</div>
+							</div>
+						</div>
+						<!-- /.popup -->
+					</li>
+					<li class="list__item">
+						<div class="phone"><a href="tel:88003334433">8 800 333-44-33</a></div>
+					</li>
+					<li class="list__item">
+						<a href="#login" class="js-popup login">Войти</a>
+
+						<div id="login" class="popup">
+							<h2>Авторизация</h2>
+							<p>Ваши личные данные защищены</p>
+
+							<form action="#" class="form form-inline form-popup-login -invert">
+								<div class="row form__row">
+									<div class="col__left form__item form__item__full-width">
+										<div class="form__label">
+											<label for="">Логин</label>
+										</div>
+										<div class="form__field">
+											<input type="text" name="" id="">
+										</div>
+									</div>
+								</div>
+
+								<div class="row form__row">
+									<div class="col__left form__item form__item__full-width">
+										<div class="form__label">
+											<label for="">Пароль</label>
+										</div>
+										<div class="form__field form__field__password">
+											<input type="password" name="" id="">
+											<a href="#recover" class="js-popup form__forgot">Забыли пароль?</a>
+										</div>
+									</div>
+								</div>
+
+								<div class="row form__row">
+									<div class="col__left form__item form__item__full-width">
+										<div class="form__checkbox">
+											<label for="check_1">Запомнить меня на этом компьютере</label>
+											<input type="checkbox" name="check_1" id="check_1" class="berry" checked>
+										</div>
+									</div>
+								</div>
+
+								<div class="row form__row">
+									<div class="col__left form__item form__item__free-width form__submit">
+										<input type="submit" value="Войти" class="button">
+									</div>
+									<div class="col__left form__item form__item__free-width form__registration">
+										<a href="#">Зарегистрироваться</a>
+									</div>
+								</div>
+							</form>
+						</div>
+
+						<div id="recover" class="popup">
+							<h2>Восстановление пароля</h2>
+							<p>Логин — процедура входа (идентификации и затем аутентификации) пользователя в
+								компьютерную систему, как правило, путём указания имени учётной записи и пароля.</p>
+							<form action="#" class="form form-inline form-popup-recover -invert">
+								<div class="row form__row">
+									<div class="col__left form__item form__item__full-width">
+										<div class="form__label">
+											<label for="">Ваша электронная почта:</label>
+										</div>
+										<div class="form__field">
+											<input type="email" name="" id="">
+										</div>
+									</div>
+								</div>
+
+								<div class="row form__row">
+									<div class="col__left form__item form__item__full-width form__submit">
+										<input type="submit" value="Отправить" class="button">
+									</div>
+								</div>
+							</form>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="header__bar">
+
+			<div class="header__bar__content">
+				<div class="dropdown-toggle"></div>
+
+				<div class="dropdown">
+					<div class="dropdown__holder">
+						<!-- <div class="dropdown__phone"><a href="tel:88003334433">8 800 <b>333-44-33</b></a></div> -->
+						<a href="#region" class="js-region dropdown__region"><span>Петропавловск-Камчатский</span></a>
+						<!-- <a href="#login" class="js-popup dropdown__login"><span>Вход</span></a> -->
+
+						<form action="" class="dropdown__auth">
+							<div class="row dropdown__auth__row">
+								<div class="col__right dropdown__auth__submit">
+									<input type="submit" value="" class="dropdown__auth__button">
+								</div>
+								<div class="col__middle dropdown__auth__fields">
+									<div class="row dropdown__auth__fields__row">
+										<div class="col__left dropdown__auth__login">
+											<input type="text" name="" id="" class="dropdown__auth__field"
+											       placeholder="Логин">
+										</div>
+										<div class="col__left dropdown__auth__password">
+											<input type="password" name="" id="" class="dropdown__auth__field"
+											       placeholder="Пароль">
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+
+						<form action="" class="dropdown__search">
+							<input type="search" name="" id="" class="dropdown__search__field"
+							       placeholder="Поиск по сайту">
+							<input type="submit" name="" id="" class="dropdown__search__submit">
+						</form>
+					</div>
+					<script>
+                        jQuery(document).ready(function ($) {
+                            $('.hamburger').click(function () {
+                                if (!$(this).hasClass('is-active')) {
+                                    $(this).addClass('is-active');
+                                    $('.header').addClass('open');
+                                    $('.navigation-main').slideDown();
+                                    $('.hamburger-title').hide();
+                                }
+                                else {
+                                    $(this).removeClass('is-active');
+                                    $('.header').removeClass('open');
+                                    $('.navigation-main').slideUp();
+                                    $('.hamburger-title').show();
+                                }
+                            });
+                            return false;
+                        });
+					</script>
+					<div class="dropdown__scroller">
+						<ul class="list -inline -invert navigation-main">
+							<li class="list__item -has-sub -active">
+								<a href="#" class="list__link">О компании</a>
+								<div class="sub">
+									<ul class="list sub__list">
+										<li class="list__item"><a href="#" class="list__link">Бренд "Интурист"</a></li>
+										<li class="list__item"><a href="#" class="list__link">История</a></li>
+										<li class="list__item"><a href="#" class="list__link">Вокруг света</a></li>
+										<li class="list__item"><a href="#" class="list__link">Компания в лицах</a></li>
+										<li class="list__item"><a href="#" class="list__link">Парнтеры</a></li>
+										<li class="list__item"><a href="#" class="list__link">Новости компании</a></li>
+										<li class="list__item"><a href="#" class="list__link">Видео семинары</a></li>
+										<li class="list__item"><a href="#" class="list__link">Пресс-офис</a></li>
+										<li class="list__item"><a href="#" class="list__link">Контакты</a></li>
+									</ul>
+								</div>
+							</li>
+							<li class="list__item"><a href="#" class="list__link">Let’s GO!</a></li>
+							<li class="list__item -has-sub">
+								<a href="#" class="list__link">Онлайн-сервисы</a>
+								<div class="sub">
+									<ul class="list sub__list">
+										<li class="list__item"><a href="#" class="list__link">Вход в личный кабинет</a>
+										</li>
+										<li class="list__item"><a href="#" class="list__link">Запрос на подбор тура</a>
+										</li>
+										<li class="list__item"><a href="#" class="list__link">История поиска</a></li>
+										<li class="list__item"><a href="#" class="list__link">Каталог отелей</a></li>
+										<li class="list__item"><a href="#" class="list__link">Проверка заказа (по
+											номеру)</a></li>
+										<li class="list__item"><a href="#" class="list__link">Интересные новости</a>
+										</li>
+										<li class="list__item"><a href="#" class="list__link">Акции и бонусы</a></li>
+										<li class="list__item"><a href="#" class="list__link">Видео семинары</a></li>
+										<li class="list__item"><a href="#" class="list__link">Архив опросов</a></li>
+										<li class="list__item"><a href="#" class="list__link">Архив курсов валют</a>
+										</li>
+										<li class="list__item"><a href="#" class="list__link">Карта полетов</a></li>
+									</ul>
+								</div>
+							</li>
+							<li class="list__item -has-sub">
+								<a href="#" class="list__link">Помощь</a>
+								<div class="sub">
+									<ul class="list sub__list">
+										<li class="list__item"><a href="#" class="list__link">Забронировать тур
+											онлайн</a></li>
+										<li class="list__item"><a href="#" class="list__link">Оплатить тур онлайн</a>
+										</li>
+										<li class="list__item"><a href="#" class="list__link">Внести изменения в тур</a>
+										</li>
+										<li class="list__item"><a href="#" class="list__link">Аннулировать тур</a></li>
+										<li class="list__item"><a href="#" class="list__link">Выписать документы</a>
+										</li>
+										<li class="list__item"><a href="#" class="list__link">Информация по визовым
+											странам</a></li>
+										<li class="list__item"><a href="#" class="list__link">Используемые
+											сокращения</a></li>
+										<li class="list__item"><a href="#" class="list__link">Полезное
+											путешественникам</a></li>
+										<li class="list__item"><a href="#" class="list__link">Видео семинары</a></li>
+										<li class="list__item"><a href="#" class="list__link">Доплаты и сборы</a></li>
+									</ul>
+								</div>
+							</li>
+							<li class="list__item -has-sub">
+								<a href="#" class="list__link">Доп. услуги</a>
+								<div class="sub">
+									<ul class="list sub__list">
+										<li class="list__item"><a href="#" class="list__link">Экскурсии по прилету</a>
+										</li>
+										<li class="list__item"><a href="#" class="list__link">СИП и ВИП проходы в
+											аэропортах</a></li>
+										<li class="list__item"><a href="#" class="list__link">Индивидуальные и ВИП
+											трансферы</a></li>
+									</ul>
+								</div>
+							</li>
+							<li class="list__item"><a href="#" class="list__link">Офисы продаж</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- /.dropdown -->
+			</div>
+		</div>
+	</div>
+</header>
+<!-- /.header -->
+
+
+<section class="information">
+	<div class="carousel carousel-main">
+		<div class="carousel__item" data-timeout="15000"
+		     style="background-image:url('./static/i/slide-front-test.png');" id="carousel__item_246305">
+			<div class="carousel__item__mobile" data-timeout="15000"
+			     style="background-image:url('./static/i/slide-front-test.png');">
+				<div class="inner ">
+					<div class="row column -col-2">
+						<div class="column__item col__left">
+							<div class="card card-promo">
+								<h2 class="card__title">Queenstown Resort & Spa</h2>
+								<div class="country">Новая Зеландия</div>
+
+								<p>Квинстаун — главный туристический центр Новой Зеландии. Здесь найдут, чем себя занять
+									любители экстрима и эко-туристы. Здесь найдут, чем себя занять. Квинстаун — главный
+									туристический центр Новой Зеландии. Здесь найдут, чем себя занять любители экстрима
+									и эко-туристы.</p>
+
+								<a href="#" class="button hidden">
+                                            <span class="button__row hidden js-get-top-banner-price"
+                                                  data-from="1970-01-01"
+                                                  data-to="1970-01-01"
+                                                  data-country=""
+                                                  data-city=""
+                                                  data-hotel="">
+                                                <span class="button__cell button__circle">
+                                                    <span class="button__price">от <b>215 000</b> <span
+		                                                    class="rub">Р</span> <div
+		                                                    class="price-line"> за туриста</div></span>
+                                                </span>
+                                            </span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+<main class="main">
+
+	<div class="left-sidebar">
+		<div class="main-filter">
+			<h3>Попробуй мир на вкус</h3>
+			<div id="react-search-form-main">
+
+
+
+			</div>
+		</div>
+
+
+		<script>
+            jQuery(document).ready(function ($) {
+                return;
+                $('.main-filter .form-item.with-autocomplete').click(function () {
+                    var choosen = $(this);
+                    var data_select = choosen.find('.autocomplete');
+                    var data_placeholder = choosen.find('.placeholder');
+
+                    if (!data_select.hasClass('autocomplete-open')) {
+                        $('.main-filter .form-item.with-autocomplete').removeClass('autocomplete-open');
+                        choosen.addClass('autocomplete-open');
+                    }
+                    else {
+                        choosen.removeClass('autocomplete-open');
+                    }
+
+                    $('li', data_select).click(function () {
+                        if (!$(this).hasClass('-active')) {
+                            $(this).addClass('-active');
+                            if ($(this).hasClass('select-all')) {
+                                $(this).parents('ul.list').find('li').addClass('-active');
+                            }
+                        }
+                        else {
+                            $(this).removeClass('-active');
+                            if ($(this).hasClass('select-all')) {
+                                $(this).parents('ul.list').find('li').removeClass('-active');
+                            }
+                        }
+                        if ($('li.-active', data_select).length > 0) {
+                            var selected = $('li.-active', data_select).length;
+                            // for example
+                            var selected_data = $('li.-active', data_select).text();
+                            choosen.addClass('filled');
+                            data_placeholder.text(selected_data);
+                        }
+                        else {
+                            choosen.removeClass('filled');
+                        }
+                        return false;
+                    });
+
+                    $(window).click(function (e) {
+                        var target = $(e.target);
+                        if (!target.is(data_select)) {
+                            choosen.removeClass('autocomplete-open');
+                        }
+                    });
+
+                    return false;
+                });
+            });
+		</script>
+
+	</div>
+	<br class="clear"/>
+</main>
+<!-- /.main -->
+
+
+<footer class="footer">
+	<div class="footer__inner">
+		<div class="inner">
+
+			<div class="row footer__row">
+				<div class="col__left footer__error">
+					<div class="error"><b>Нашли ошибку?</b> Выделите её и нажмите Ctrl+Enter</div>
+				</div>
+				<div class="col__right footer__social">
+					<ul class="list -float social">
+						<li class="list__item">Мы в социальных медиа — присоединяйтесь!</li>
+						<li class="list__item"><a href="#" class="list__link icon icon-vk">ВКонтакте</a></li>
+						<li class="list__item"><a href="#" class="list__link icon icon-fb">Facebook</a></li>
+						<li class="list__item"><a href="#" class="list__link icon icon-ok">Одноклассники</a></li>
+						<li class="list__item"><a href="#" class="list__link icon icon-tw">Twitter</a></li>
+						<li class="list__item"><a href="#" class="list__link icon icon-gp">Google+</a></li>
+						<li class="list__item"><a href="#" class="list__link icon icon-yt">YouTube</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<hr>
+
+			<div class="row footer__row">
+				<div class="col__left footer__brand">
+					<img src="static/i/brand.png" alt="">
+
+					<ul class="list -float language">
+						<li class="list__item">
+							<a href="#" class="list__link"><img src="static/i/language/1.png" alt=""></a>
+						</li>
+						<li class="list__item">
+							<a href="#" class="list__link"><img src="static/i/language/2.png" alt=""></a>
+						</li>
+						<li class="list__item">
+							<a href="#" class="list__link"><img src="static/i/language/3.png" alt=""></a>
+						</li>
+						<li class="list__item">
+							<a href="#" class="list__link"><img src="static/i/language/4.png" alt=""></a>
+						</li>
+						<li class="list__item">
+							<a href="#" class="list__link"><img src="static/i/language/5.png" alt=""></a>
+						</li>
+						<li class="list__item">
+							<a href="#" class="list__link"><img src="static/i/language/6.png" alt=""></a>
+						</li>
+					</ul>
+				</div>
+				<div class="col__middle footer__text">
+					<h6>О компании Thomas Cook Group</h6>
+					<p>Национальная туристическая компания «Интурист» входит в международную группу компаний Thomas Cook
+						Group. Томас Кук — первая в истории туристическая компания, развивающая групповой туризм с 1841
+						года</p>
+				</div>
+			</div>
+
+			<hr>
+
+			<div class="row -table footer__row">
+				<div class="col__left footer__copyright">
+					<p><b>© 2015 НТК «Интурист</b></p>
+					<p>Все права на материалы, находящиеся на сайте, охраняются в соответствии с законодательством РФ, в
+						том числе об авторском праве и смежных правах. Свидетельство о регистрации средства массовой
+						информации Эл № ФС 77-24388</p>
+				</div>
+				<div class="col__right footer__feedback">
+					<ul class="list -float navigation-feedback">
+						<li class="list__item"><a href="#" class="list__link">Пользовательское соглашение</a></li>
+						<li class="list__item -feedback"><a href="#" class="list__link">Обратная связь</a></li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</footer>
+<!-- /.footer -->
+
+
+<a href="#body" class="js-scroll top">Наверх</a>
+<a href="#filter" class="js-scroll anchor">Поиск тура</a>
+
+<!-- JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script src="static/js/libs.js"></script>
+
+
+<script src="static/js/moonkake.js"></script>
+<style type="text/css">
+
+	.st0 {
+		fill: #ffffff;
+	}
+
+	.st1 {
+		fill: url(#SVGID_1_);
+	}
+</style>
+<script src="./bundle/main.js"></script>
+
+</body>
+
+</html>

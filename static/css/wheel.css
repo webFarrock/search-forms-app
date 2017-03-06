@@ -1,0 +1,265 @@
+.momondo-wheel {
+    width: 90%;
+    height: 90%;
+    margin: 0 auto;
+    opacity: 1;
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -ms-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease
+}
+
+.momondo-wheel svg {
+    display: block;
+    width: inherit;
+    height: inherit;
+    vertical-align: middle;
+    margin: 0 auto;
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -ms-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease
+}
+
+.momondo-wheel--finished {
+    opacity: .5
+}
+
+.momondo-wheel--error {
+    opacity: .5
+}
+
+.momondo-wheel--error .petals path:nth-child(-n+4) {
+    fill: #bc372d
+}
+
+.momondo-wheel--error .petals path:nth-child(n+5):nth-child(-n+8) {
+    fill: #d65249
+}
+
+.momondo-wheel--error .petals path:nth-child(n+9):nth-child(-n+12) {
+    fill: #a32017
+}
+
+.momondo-wheel--error.momondo-wheel--spinning {
+    opacity: 1
+}
+
+.momondo-wheel--spinning .petals path {
+    opacity: .2;
+    -webkit-animation: momondo-wheel-petal .8s ease infinite;
+    -moz-animation: momondo-wheel-petal .8s ease infinite;
+    -o-animation: momondo-wheel-petal .8s ease infinite;
+    animation: momondo-wheel-petal .8s ease infinite
+}
+
+.momondo-wheel--spinning .petals path:nth-child(1) {
+    -webkit-animation-delay: 0s;
+    -moz-animation-delay: 0s;
+    -o-animation-delay: 0s;
+    animation-delay: 0s
+}
+
+.momondo-wheel--spinning .petals path:nth-child(2) {
+    -webkit-animation-delay: .067s;
+    -moz-animation-delay: .067s;
+    -o-animation-delay: .067s;
+    animation-delay: .067s
+}
+
+.momondo-wheel--spinning .petals path:nth-child(3) {
+    -webkit-animation-delay: .133s;
+    -moz-animation-delay: .133s;
+    -o-animation-delay: .133s;
+    animation-delay: .133s
+}
+
+.momondo-wheel--spinning .petals path:nth-child(4) {
+    -webkit-animation-delay: .2s;
+    -moz-animation-delay: .2s;
+    -o-animation-delay: .2s;
+    animation-delay: .2s
+}
+
+.momondo-wheel--spinning .petals path:nth-child(5) {
+    -webkit-animation-delay: .267s;
+    -moz-animation-delay: .267s;
+    -o-animation-delay: .267s;
+    animation-delay: .267s
+}
+
+.momondo-wheel--spinning .petals path:nth-child(6) {
+    -webkit-animation-delay: .333s;
+    -moz-animation-delay: .333s;
+    -o-animation-delay: .333s;
+    animation-delay: .333s
+}
+
+.momondo-wheel--spinning .petals path:nth-child(7) {
+    -webkit-animation-delay: .4s;
+    -moz-animation-delay: .4s;
+    -o-animation-delay: .4s;
+    animation-delay: .4s
+}
+
+.momondo-wheel--spinning .petals path:nth-child(8) {
+    -webkit-animation-delay: .467s;
+    -moz-animation-delay: .467s;
+    -o-animation-delay: .467s;
+    animation-delay: .467s
+}
+
+.momondo-wheel--spinning .petals path:nth-child(9) {
+    -webkit-animation-delay: .533s;
+    -moz-animation-delay: .533s;
+    -o-animation-delay: .533s;
+    animation-delay: .533s
+}
+
+.momondo-wheel--spinning .petals path:nth-child(10) {
+    -webkit-animation-delay: .6s;
+    -moz-animation-delay: .6s;
+    -o-animation-delay: .6s;
+    animation-delay: .6s
+}
+
+.momondo-wheel--spinning .petals path:nth-child(11) {
+    -webkit-animation-delay: .667s;
+    -moz-animation-delay: .667s;
+    -o-animation-delay: .667s;
+    animation-delay: .667s
+}
+
+.momondo-wheel--spinning .petals path:nth-child(12) {
+    -webkit-animation-delay: .733s;
+    -moz-animation-delay: .733s;
+    -o-animation-delay: .733s;
+    animation-delay: .733s
+}
+
+@-webkit-keyframes momondo-wheel-petal {
+    0% {
+        opacity: .2
+    }
+
+    25% {
+        opacity: .2
+    }
+
+    50% {
+        opacity: 1
+    }
+
+    90% {
+        opacity: .2
+    }
+
+    100% {
+        opacity: .2
+    }
+}
+
+@-moz-keyframes momondo-wheel-petal {
+    0% {
+        opacity: .2
+    }
+
+    25% {
+        opacity: .2
+    }
+
+    50% {
+        opacity: 1
+    }
+
+    90% {
+        opacity: .2
+    }
+
+    100% {
+        opacity: .2
+    }
+}
+
+@-ms-keyframes momondo-wheel-petal {
+    0% {
+        opacity: .2
+    }
+
+    25% {
+        opacity: .2
+    }
+
+    50% {
+        opacity: 1
+    }
+
+    90% {
+        opacity: .2
+    }
+
+    100% {
+        opacity: .2
+    }
+}
+
+@-o-keyframes momondo-wheel-petal {
+    0% {
+        opacity: .2
+    }
+
+    25% {
+        opacity: .2
+    }
+
+    50% {
+        opacity: 1
+    }
+
+    90% {
+        opacity: .2
+    }
+
+    100% {
+        opacity: .2
+    }
+}
+
+@keyframes momondo-wheel-petal {
+    0% {
+        opacity: .2
+    }
+
+    25% {
+        opacity: .2
+    }
+
+    50% {
+        opacity: 1
+    }
+
+    90% {
+        opacity: .2
+    }
+
+    100% {
+        opacity: .2
+    }
+}
+
+/****************/
+/** 11-08-2016 **/
+/****************/
+
+.wheel-big{width: 200px; height: 200px; margin:100px auto;}
+.wheel-small{width: 50px; height: 50px; display: inline-block; margin-bottom: -25px; }
+
+@media screen and (max-width: 767px) {
+
+	.page-index #wheel {
+		margin-top: -90px !important; 
+		float: right; 
+	}
+}

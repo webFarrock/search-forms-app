@@ -1,0 +1,314 @@
+[
+  {
+    "id": "72",
+    "value": "Абхазия",
+    "value_wr": "F,[fpbz",
+    "value_en": "Abkhazia",
+    "popular": 0,
+    "popular_weight": 0
+  },
+  {
+    "id": "47",
+    "value": "Австрия",
+    "value_wr": "Fdcnhbz",
+    "value_en": "Austria",
+    "popular": 0,
+    "popular_weight": 0
+  },
+  {
+    "id": "88",
+    "value": "Андорра",
+    "value_wr": "Fyljhhf",
+    "value_en": "Andorra",
+    "popular": 0,
+    "popular_weight": 0
+  },
+  {
+    "id": "134",
+    "value": "Армения",
+    "value_wr": "Fhvtybz",
+    "value_en": "Armenia",
+    "popular": 0,
+    "popular_weight": 0
+  },
+  {
+    "id": "45",
+    "value": "Болгария",
+    "value_wr": ",jkufhbz",
+    "value_en": "Bulgaria",
+    "popular": 1,
+    "popular_weight": 21
+  },
+  {
+    "id": "37",
+    "value": "Вьетнам",
+    "value_wr": "Dmtnyfv",
+    "value_en": "Viet Nam",
+    "popular": 1,
+    "popular_weight": 60
+  },
+  {
+    "id": "41",
+    "value": "Греция",
+    "value_wr": "Uhtwbz",
+    "value_en": "Greece",
+    "popular": 1,
+    "popular_weight": 30
+  },
+  {
+    "id": "141",
+    "value": "Грузия",
+    "value_wr": "Uhepbz",
+    "value_en": "Georgia",
+    "popular": 0,
+    "popular_weight": 0
+  },
+  {
+    "id": "54",
+    "value": "Доминикана",
+    "value_wr": "Ljvbybrfyf",
+    "value_en": "Dominican Republic",
+    "popular": 0,
+    "popular_weight": 0
+  },
+  {
+    "id": "66",
+    "value": "Израиль",
+    "value_wr": "Bphfbkm",
+    "value_en": "Israel",
+    "popular": 0,
+    "popular_weight": 0
+  },
+  {
+    "id": "93",
+    "value": "Индия",
+    "value_wr": "Bylbz",
+    "value_en": "India",
+    "popular": 0,
+    "popular_weight": 0
+  },
+  {
+    "id": "76",
+    "value": "Индонезия",
+    "value_wr": "Byljytpbz",
+    "value_en": "Indonesia",
+    "popular": 0,
+    "popular_weight": 0
+  },
+  {
+    "id": "92",
+    "value": "Иордания",
+    "value_wr": "Bjhlfybz",
+    "value_en": "Jordan",
+    "popular": 0,
+    "popular_weight": 0
+  },
+  {
+    "id": "70",
+    "value": "Испания",
+    "value_wr": "Bcgfybz",
+    "value_en": "Spain",
+    "popular": 0,
+    "popular_weight": 0
+  },
+  {
+    "id": "50",
+    "value": "Италия",
+    "value_wr": "Bnfkbz",
+    "value_en": "Italy",
+    "popular": 0,
+    "popular_weight": 0
+  },
+  {
+    "id": "40",
+    "value": "Кипр",
+    "value_wr": "Rbgh",
+    "value_en": "Cyprus",
+    "popular": 1,
+    "popular_weight": 40
+  },
+  {
+    "id": "53",
+    "value": "Китай",
+    "value_wr": "Rbnfq",
+    "value_en": "China",
+    "popular": 0,
+    "popular_weight": 0
+  },
+  {
+    "id": "96",
+    "value": "Куба",
+    "value_wr": "Re,f",
+    "value_en": "Cuba",
+    "popular": 0,
+    "popular_weight": 0
+  },
+  {
+    "id": "102",
+    "value": "Маврикий",
+    "value_wr": "Vfdhbrbq",
+    "value_en": "Mauritius",
+    "popular": 0,
+    "popular_weight": 0
+  },
+  {
+    "id": "97",
+    "value": "Малайзия",
+    "value_wr": "Vfkfqpbz",
+    "value_en": "Malaysia",
+    "popular": 0,
+    "popular_weight": 0
+  },
+  {
+    "id": "60",
+    "value": "Мальдивы",
+    "value_wr": "Vfkmlbds",
+    "value_en": "Maldives",
+    "popular": 0,
+    "popular_weight": 0
+  },
+  {
+    "id": "42",
+    "value": "Мальта",
+    "value_wr": "Vfkmnf",
+    "value_en": "Malta",
+    "popular": 0,
+    "popular_weight": 0
+  },
+  {
+    "id": "130",
+    "value": "Марокко",
+    "value_wr": "Vfhjrrj",
+    "value_en": "Morocco",
+    "popular": 0,
+    "popular_weight": 0
+  },
+  {
+    "id": "51",
+    "value": "Мексика",
+    "value_wr": "Vtrcbrf",
+    "value_en": "Mexico",
+    "popular": 0,
+    "popular_weight": 0
+  },
+  {
+    "id": "169",
+    "value": "Монако",
+    "value_wr": "",
+    "value_en": "",
+    "popular": 0,
+    "popular_weight": 0
+  },
+  {
+    "id": "38",
+    "value": "ОАЭ",
+    "value_wr": "JF'",
+    "value_en": "United Arab Emirates",
+    "popular": 1,
+    "popular_weight": 51
+  },
+  {
+    "id": "142",
+    "value": "Перу",
+    "value_wr": "Gthe",
+    "value_en": "Peru",
+    "popular": 0,
+    "popular_weight": 0
+  },
+  {
+    "id": "67",
+    "value": "Россия",
+    "value_wr": "Hjccbz",
+    "value_en": "Russia",
+    "popular": 1,
+    "popular_weight": 10
+  },
+  {
+    "id": "69",
+    "value": "Россия-Крым",
+    "value_wr": "Rhsv",
+    "value_en": "Russia-Crimea",
+    "popular": 1,
+    "popular_weight": 20
+  },
+  {
+    "id": "110",
+    "value": "Сейшелы",
+    "value_wr": "Ctqitks",
+    "value_en": "Seychelles",
+    "popular": 0,
+    "popular_weight": 0
+  },
+  {
+    "id": "39",
+    "value": "Тайланд",
+    "value_wr": "Nfbkfyl",
+    "value_en": "Thailand",
+    "popular": 1,
+    "popular_weight": 70
+  },
+  {
+    "id": "65",
+    "value": "Тунис",
+    "value_wr": "Neybc",
+    "value_en": "Tunisia",
+    "popular": 0,
+    "popular_weight": 0
+  },
+  {
+    "id": "48",
+    "value": "Турция",
+    "value_wr": "Nehwbz",
+    "value_en": "Turkey",
+    "popular": 1,
+    "popular_weight": 21
+  },
+  {
+    "id": "75",
+    "value": "Финляндия",
+    "value_wr": "Abykzylbz",
+    "value_en": "Finland",
+    "popular": 0,
+    "popular_weight": 0
+  },
+  {
+    "id": "44",
+    "value": "Франция",
+    "value_wr": "Ahfywbz",
+    "value_en": "France",
+    "popular": 0,
+    "popular_weight": 0
+  },
+  {
+    "id": "91",
+    "value": "Хорватия",
+    "value_wr": "[jhdfnbz",
+    "value_en": "Croatia",
+    "popular": 0,
+    "popular_weight": 0
+  },
+  {
+    "id": "64",
+    "value": "Черногория",
+    "value_wr": "Xthyjujhbz",
+    "value_en": "Montenegro",
+    "popular": 1,
+    "popular_weight": 50
+  },
+  {
+    "id": "35",
+    "value": "Чехия",
+    "value_wr": "Xt[bz",
+    "value_en": "Czech Republic",
+    "popular": 0,
+    "popular_weight": 0
+  },
+  {
+    "id": "94",
+    "value": "Шри-Ланка",
+    "value_wr": "Ihb-Kfyrf",
+    "value_en": "Sri Lanka",
+    "popular": 0,
+    "popular_weight": 0
+  }
+]
