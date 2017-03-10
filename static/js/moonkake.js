@@ -261,7 +261,11 @@ if ($('.anchor').length) {
         var $anchor = $('.anchor');
         var $filter = $('.filter');
         var anchorOffset = $anchor.offset().top;
-        var filterOffsetTop = $filter.offset().top;
+        if ($filter.offset()) {
+		  var filterOffsetTop = $filter.offset().top;
+		} else {
+		  var filterOffsetTop = 0;	
+		}
         var filterOffsetBottom = filterOffsetTop + $filter.outerHeight();
 
         if (anchorOffset >= filterOffsetTop && anchorOffset <= filterOffsetBottom) {
@@ -308,7 +312,7 @@ $b.on('touchstart touchend', '.widget__drag', function (event) {
 
 var widgetIndex = 0;
 var widgetFrom = '';
-var widgetEmptyTpl = '<div class="widget-add"><a href="#widget" class="widget-add__link js-widget"><span><span>Добавить виджет</span></span></a></div>';
+var widgetEmptyTpl = '<div class="widget-add"><a href="#widget" class="widget-add__link js-widget"><span><i class="icon-add-widget"></i><span>Добавить виджет</span></span></a></div>';
 
 function checkWidgetStatus() {
     var $checkbox = $('.widget-list input');
@@ -1622,26 +1626,26 @@ var manualTourFilterOpen = false;
 $tour = {
     filterOpen: function () {
         //$('.tour-filter').addClass('-active');
-        $b.addClass('tour-filter-active');
-        $('.page-tour-search').find('.main').css({
-            paddingTop: $('.header').outerHeight(true) + $('.tour-filter').outerHeight(true) + 'px'
-        });
-        $('.tour-filter-toggle').find('span').text('свернуть поиск');
-        if ($b.width() <= 760) scrollPageTo($('#body'), 0);
+        // $b.addClass('tour-filter-active');
+       // $('.page-tour-search').find('.maain').css({
+            // paddingTop: $('.header').outerHeight(true) + $('.tour-filter').outerHeight(true) + 'px'
+        // });
+        // $('.tour-filter-toggle').find('span').text('свернуть поиск');
+      //  if ($b.width() <= 760) scrollPageTo($('#body'), 0);
     },
 
     filterClose: function () {
         //$('.tour-filter').removeClass('-active');
-        $b.removeClass('tour-filter-active');
-        $('.page-tour-search').find('.main').css({
-            paddingTop: $('.header').outerHeight(true) + 30 + 'px'
-        });
-        $('.tour-filter-toggle').find('span').text('развернуть поиск');
+        // $b.removeClass('tour-filter-active');
+        // $('.page-tour-search').find('.main').css({
+            // paddingTop: $('.header').outerHeight(true) + 30 + 'px'
+        // });
+        // $('.tour-filter-toggle').find('span').text('развернуть поиск');
     },
 
     recalcSticky: function () {
         //$('.tour-filter').trigger('sticky_kit:recalc');
-        $('.tour-search__map__wrap').trigger('sticky_kit:recalc');
+        //$('.tour-search__map__wrap').trigger('sticky_kit:recalc');
         $('.hotel-info__aside__wrap').trigger('sticky_kit:recalc');
     },
 
@@ -1657,11 +1661,11 @@ $tour = {
         }
         ;
 
-        $('.tour-search__map__wrap').trigger('sticky_kit:detach');
-        $('.tour-search__map__wrap').stick_in_parent({
-            offset_top: offset,
-            parent: '.tour-search'
-        });
+        //$('.tour-search__map__wrap').trigger('sticky_kit:detach');
+       // $('.tour-search__map__wrap').stick_in_parent({
+           // offset_top: offset,
+           // parent: '.tour-search'
+        //});
     },
 
     hotelUpdate: function (manualTourFilterOpen) {
@@ -1692,11 +1696,11 @@ $tour = {
         //   //recalc_every: 100
         // });
 
-        $('.tour-search__map__wrap').stick_in_parent({
-            offset_top: offsetTourFilter + 30,
-            parent: '.tour-search'
+        //$('.tour-search__map__wrap').stick_in_parent({
+            //offset_top: offsetTourFilter + 30,
+            //parent: '.tour-search'
             //recalc_every: 100
-        });
+        //});
 
         $('.hotel-info__aside__wrap').stick_in_parent({
             offset_top: offsetTourFilter + 30,
@@ -1708,7 +1712,7 @@ $tour = {
 
     detachSticky: function () {
         //$('.tour-filter').trigger('sticky_kit:detach');
-        $('.tour-search__map__wrap').trigger('sticky_kit:detach');
+        //$('.tour-search__map__wrap').trigger('sticky_kit:detach');
         $('.hotel-info__aside__wrap').trigger('sticky_kit:detach');
     },
 
@@ -1740,7 +1744,7 @@ $('.tour-filter-toggle').on('click', function () {
     }
     ;
 
-    if ($('.tour-search__map__wrap').length && $b.width() > 760) $tour.mapUpdate(manualTourFilterOpen);
+    //if ($('.tour-search__map__wrap').length && $b.width() > 760) $tour.mapUpdate(manualTourFilterOpen);
     if ($('.hotel-info__aside__wrap').length && $b.width() > 760) $tour.hotelUpdate(manualTourFilterOpen);
 });
 

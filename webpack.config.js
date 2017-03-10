@@ -1,7 +1,4 @@
-
 const NODE_ENV = process.env.NODE_ENV || 'development';
-
-console.log('NODE_ENV: ', NODE_ENV);
 
 module.exports = {
     entry: {
@@ -11,12 +8,16 @@ module.exports = {
     output: {
         path: __dirname + '/bundle',
         filename: '[name].js',
+        publicPath: "/bundle/",
     },
     watch: NODE_ENV == 'development',
     module: {
         loaders: [{
             exclude: /node_modules/,
-            loader: 'babel'
+            loader: 'babel',
+            query: {
+                presets: ["react", "es2015", "stage-1"]
+            }
         },{
             test: /\.svg$/,
             loader: 'svg-inline'

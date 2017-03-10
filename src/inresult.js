@@ -12,5 +12,5 @@ const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 ReactDOM.render(
     <Provider store={createStoreWithMiddleware(reducers)}>
         <SearchFormInResult />
-    </Provider>
+    </Provider>  
     , document.querySelector('#search-form-inresult'));

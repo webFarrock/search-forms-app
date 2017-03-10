@@ -16,6 +16,12 @@ import SetKidsReducer from './reducer_kids';
 import SetDurationReducer from './reducer_duration';
 import SetTourTypeReducer from './reducer_tour_type';
 
+console.log('!!!!!!!');
+console.log('!!!!!!!');
+console.log('!!!!!we!!');
+console.log('!!!!!we!!wwww');
+
+
 const rootReducer = combineReducers({
 
     //startPointsList: StartPointsReducer,
