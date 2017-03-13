@@ -16,7 +16,25 @@ export const SET_ADULTS = 'SET_ADULTS';
 export const SET_KIDS = 'SET_KIDS';
 export const SET_DURATION = 'SET_DURATION';
 export const SET_TOUR_TYPE = 'SET_TOUR_TYPE';
+export const SET_TOUR_DATE = 'SET_TOUR_DATE';
 
+export const SET_FORM_ERRORS = 'SET_FORM_ERRORS';
+
+
+export function setFormErrors(errors){
+    
+    return {
+        type: SET_FORM_ERRORS,
+        payload: errors,
+    }
+}
+
+export function setTourDate(tourDate){
+    return {
+        type: SET_TOUR_DATE,
+        payload: tourDate,
+    }
+}
 
 export function setTourType(tourType){
     return {
@@ -25,7 +43,7 @@ export function setTourType(tourType){
     }
 }
 
-export function setKids(kids){
+export function setKids(kids){ 
     return {
         type: SET_KIDS,
         payload: kids,

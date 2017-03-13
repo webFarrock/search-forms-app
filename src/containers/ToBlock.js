@@ -34,6 +34,7 @@ class ToBlock extends Component{
         this.onKeyUpInput = this.onKeyUpInput.bind(this);
         this.onFocusInput = this.onFocusInput.bind(this);
         this.onChangeInput = this.onChangeInput.bind(this);
+        this.onFieldIconClick = this.onFieldIconClick.bind(this);
 
     }
 
@@ -59,6 +60,13 @@ class ToBlock extends Component{
 
         this.setState({term: ''});
         this.props.setRegion(region);
+
+    }
+
+    setHotel(hotel){
+
+        this.setState({term: ''});
+        this.props.setHotel(hotel);
 
     }
 
@@ -149,7 +157,7 @@ class ToBlock extends Component{
 
         let selectAllCls = "list__item select-all";
 
-        if(!this.props.selectedRegion.id){
+        if(!Object.keys(this.props.selectedRegions).length){
             selectAllCls += ' -active';
         }
 
@@ -165,7 +173,7 @@ class ToBlock extends Component{
                     {cities.map(city => {
 
                         let cls = 'list__item';
-                        if(+this.props.selectedRegion.id == +city.id){
+                        if(this.props.selectedRegions[city.id]){
                             cls += '  -active';
                         }
 
@@ -183,27 +191,49 @@ class ToBlock extends Component{
         );
     }
 
+
+    clearField(){
+        this.setState({term: ''});
+        this.props.setCountry({});
+        this.props.setRegion({});
+        this.props.setHotel({});
+    }
+
+    onFieldIconClick(){
+        if(this.props.selectedCountry.id){
+            this.clearField();
+        }else{
+            this.refs.input.focus();
+        }
+    }
+
     renderHotels(){
+        
+        console.log('this.props.selectedHotels: ', this.props.selectedHotels);
 
         let hotels = fakeHotelsList;
-        //console.log('__ pre hotels', hotels);
         
         hotels = hotels.filter(hotel => +hotel.countryId === +this.props.selectedCountry.id);
 
-        if(this.props.selectedRegion.id){
-            const rid = +this.props.selectedRegion.id;
+        if(this.props.selectedRegions.id){
+            const rid = +this.props.selectedRegions.id;
             hotels = hotels.filter(hotel => +hotel.parent === rid || +hotel.parent2 === rid);
         }
-        
-        console.log('hotels: ', hotels.length);
 
-        /*
+
         if(this.state.term && this.state.userInputStarted){
             hotels = hotels.filter(hotel => isMatchUserInput(this.state.term, hotel));
-        }*/
+        }
 
         const obCountriesById = _.mapKeys(fakeCountriesList, 'id');
         const obRegionsById = _.mapKeys(fakeRegionsList, 'id');
+
+
+        let selectAllCls = ['list__item', 'select-all'];
+
+        if(!Object.keys(this.props.selectedHotels).length){
+            selectAllCls.push('-active');
+        }
 
 
         return (
@@ -211,7 +241,9 @@ class ToBlock extends Component{
                 <div className="header-dropdown">Отели</div>
 
                 <ul className="list quick-dropdown__list">
-                    <li className="list__item select-all">все</li>
+                    <li className={selectAllCls.join(' ')}
+                        onClick={() => this.setHotel({})}
+                    >все <i></i></li>
 
                     {hotels.map(hotel => {
                         let hotelLocation = [];
@@ -223,15 +255,22 @@ class ToBlock extends Component{
 
                         hotelLocation = hotelLocation.join('/');
 
+
+                        let hotelCls = ['list__item'];
+
+                        if(this.props.selectedHotels[hotel.id]){
+                            hotelCls.push('-active');
+                        }
+
                         return (
                             <li key={hotel.id}
-                                className="list__item"
+                                onClick={() => this.setHotel(hotel)}
+                                className={hotelCls.join(' ')}
                             >
                                 <span className="col__left">{hotel.value}</span>
                                 <span className="col__right">{hotelLocation}</span>
                                 <i></i>
                             </li>
-
                         );
                     })}
 
@@ -243,8 +282,19 @@ class ToBlock extends Component{
     render(){
 
         let arFormItemClass = ['form-item', 'form-type-to', 'with-autocomplete'];
-        if(this.state.acShow)
-            arFormItemClass.push('autocomplete-open')
+
+        if(this.state.acShow){
+            arFormItemClass.push('autocomplete-open');
+        }
+
+        if(this.props.selectedCountry.id){
+            arFormItemClass.push('filled');
+        }
+
+        if(this.props.formErrors.notSelectedCountry){
+            arFormItemClass.push('error');
+        }
+
 
 
         let arPlaceHolderDestination = [];
@@ -252,51 +302,58 @@ class ToBlock extends Component{
         if(this.props.selectedCountry.value){
             arPlaceHolderDestination.push(this.props.selectedCountry.value);
         }
-
-        if(this.props.selectedRegion.value){
-            arPlaceHolderDestination.push(this.props.selectedRegion.value);
+        
+        if(Object.keys(this.props.selectedRegions).length){
+            arPlaceHolderDestination.push(_.values(this.props.selectedRegions).map(i => i.value).join(', '));
+        }
+        
+        if(Object.keys(this.props.selectedHotels).length){
+            arPlaceHolderDestination.push(_.values(this.props.selectedHotels).map(i => i.value).join(', '));
         }
 
-        if(this.props.selectedHotel.value){
-            arPlaceHolderDestination.push(this.props.selectedHotel.value);
-        }
+        let placeholder = '(страна/город/курорт или отель)';
+        let placeholderFake = null;
+        let title = null;
 
-        let placeholder;
 
         if(arPlaceHolderDestination.length){
-            placeholder = arPlaceHolderDestination.join(' / ');
-        }else if(this.state.acShow){
-            placeholder = '';
-        }else if(this.state.term){
-            placeholder = this.state.term;
+            placeholderFake = arPlaceHolderDestination.join(' / ');
         }else{
-            placeholder =  <span className="placeholder">(страна/город/курорт или отель)</span>;
+           placeholderFake = placeholder;
         }
 
-        /*
-        const selectCountryStyle = {
-            visibility: this.props.selectedCountry.id ? 'hidden' : 'visible',
+        if(placeholderFake){
+            title = placeholderFake;
+            placeholderFake = <span className="placeholder" onClick={() => this.refs.input.focus()}>{placeholderFake}</span>;
         }
 
-        const selectCityStyle = {
-            visibility: this.props.selectedCountry.id ? 'visible' : 'hidden',
-        }*/
+        let value = this.state.term;
+
+        if(!this.state.acShow){
+            value = placeholderFake;
+        }
 
         return(
-            <div className={arFormItemClass.join(' ')}>
-                <span className="icon-font icon-arrow-right"></span>
+            <div className={arFormItemClass.join(' ')} title={title}>
+                <span
+                    onClick={this.onFieldIconClick}
+                    className="icon-font icon-arrow-right"
+                ></span>
                 <label>
                     <div className="wrapper">
                         <span className="title">Куда:</span>
-                        {placeholder}
+                        {this.state.acShow ? '' : placeholderFake}
                     </div>
                 </label>
+
                 <input type="text"
+                       ref="input"
                        value={this.state.term}
                        onChange={(e) => this.onChangeInput(e)}
                        onFocus={this.onFocusInput}
                        onKeyUp={this.onKeyUpInput}
-                       className="form-text hidden"
+                       placeholder={this.state.acShow ? title : ''}
+                       className="form-text"
                 />
 
                 {this.props.selectedCountry.id ? '' :
@@ -341,9 +398,10 @@ function mapStateToProps(state) {
     return {
         destinationsList: state.destinationsList,
         selectedCountry: state.selectedCountry,
-        selectedRegion: state.selectedRegion,
-        selectedHotel: state.selectedHotel,
+        selectedRegions: state.selectedRegions,
+        selectedHotels: state.selectedHotels,
         selectedStartPoint: state.selectedStartPoint,
+        formErrors: state.formErrors,
     }
 }
 

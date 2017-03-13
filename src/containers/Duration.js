@@ -60,11 +60,11 @@ class Duration extends Component {
 
         return (
             <div className="form-item form-type-duration">
-                <div className="input__min icon-font" onClick={this.dec}><span>-</span></div>
-                <div className="input__max icon-font" onClick={this.inc}><span>+</span></div>
+                <div className="input__min icon-font" onClick={this.dec}><span className="icon-reduce"></span></div>
+                <div className="input__max icon-font" onClick={this.inc}><span className="icon-add"></span></div>
                 <div className="input__field">
                     <input type="text" ref="duration" value={value} readOnly/>
-                    <input type="hidden" name="duration" value={duration}/>
+                    {/*<input type="hidden" name="duration" value={duration}/>*/}
                 </div>
             </div>
         );

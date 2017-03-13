@@ -18,9 +18,11 @@ class Kids extends Component {
         this.kidMaxAge = 16;
         this.kidMinAge = 0;
 
+        //this.onClickRemoveKid = this.onClickRemoveKid.bind(this);
         this.onClickAddKid = this.onClickAddKid.bind(this);
         this.onClickInputKids = this.onClickInputKids.bind(this);
     }
+
 
     onClickInputKids() {
         this.setState({
@@ -43,11 +45,13 @@ class Kids extends Component {
 
         return (
             <div className="wrapper-kid">
-                <div className="input__label"><span className="icon-remove"></span>Ребенок&nbsp;{num + 1 }
+                <div className="input__label">
+                    <span className="icon-remove" onClick={() => {this.onClickRemoveKid(num)}}></span>
+                    Ребенок&nbsp;{num + 1 }
                 </div>
                 <div className="input__wrapper">
-                    <div className="input__min" onClick={() => this.dec(age, num)}><span>-</span></div>
-                    <div className="input__max" onClick={() => this.inc(age, num)}><span>+</span></div>
+                    <div className="input__min" onClick={() => this.dec(age, num)}><span className="icon-reduce"></span></div>
+                    <div className="input__max" onClick={() => this.inc(age, num)}><span className="icon-add"></span></div>
                     <div className="input__field">
                         <input type="text" name="Childs" value={age} min={this.kidMinAge} max={this.kidMaxAge}/>
                     </div>
@@ -87,13 +91,22 @@ class Kids extends Component {
         if (this.props.kids.length < this.maxKids) {
             this.props.setKids([...this.props.kids, 0]);
         }
-
     }
+
+    onClickRemoveKid(num){
+        this.props.setKids([
+            ...this.props.kids.slice(0, num),
+            ...this.props.kids.slice(num + 1, this.props.kids.length)
+        ]);
+    }
+
+
 
     render() {
 
         const kidsNum = this.props.kidsLengthInit || this.props.kids.length;
-        let arInputKidsClass = ['col__left', ' row input', 'input-count', 'input-kids'];
+        
+        let arInputKidsClass = ['col__left', 'row', 'input',  'input-count', 'input-kids'];
 
         if (this.state.acShow) {
             arInputKidsClass.push('autocomplete-open');
@@ -106,8 +119,9 @@ class Kids extends Component {
                 <div className="form-item form-type-kids with-autocomplete">
                     <span className="icon-font icon-arrow-right"></span>
                     <label><span>Дети <span className="icon-font icon-children"></span></span></label>
-                    <input type="text" placeholder="2" value={kidsNum} className="form-text"/>
-
+                    <div className="input__field">
+                        <input type="text" placeholder="2" value={kidsNum} className="form-text"/>
+                    </div>
                     <div className="autocomplete">
                         <div className="quick-dropdown">
                             <div className="wrapper-data col__left filter__row__100">
@@ -139,7 +153,6 @@ class Kids extends Component {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({setKids}, dispatch);
 }
-
 
 function mapStateToProps(state) {
     return {

@@ -42,10 +42,8 @@ class Adults extends Component {
             <div className="col__left row input input-count input-adults">
                 <div className="form-item form-type-adults">
 
-                    <div className="input__min"
-                         onClick={this.dec}
-                    >
-                        <span>-</span>
+                    <div className="input__min" onClick={this.dec}>
+                        <span className="icon-reduce"></span>
                     </div>
 
                     <div className="input__label">
@@ -56,10 +54,8 @@ class Adults extends Component {
                         <input ref="adults" type="text" name="Adults" value={this.props.adults} min="1" max="4" readOnly/>
                     </div>
 
-                    <div className="input__max"
-                        onClick={this.inc}
-                    >
-                        <span>+</span>
+                    <div className="input__max" onClick={this.inc}>
+                        <span className="icon-add"></span>
                     </div>
                 </div>
             </div>

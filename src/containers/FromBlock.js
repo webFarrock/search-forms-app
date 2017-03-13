@@ -18,18 +18,23 @@ class FromBlock extends Component{
             userInputStarted: false,
         }
 
+        this.placeholder = 'Укажите город отправления';
+
         this.startPoints = fakeStartPointsList;
 
         this.onFocusInput = this.onFocusInput.bind(this);
         this.onKeyUpInput = this.onKeyUpInput.bind(this);
         this.onStartPointItemClick = this.onStartPointItemClick.bind(this);
         this.onChangeInput = this.onChangeInput.bind(this);
+        this.onFieldIconClick = this.onFieldIconClick.bind(this);
     }
+
 
     componentDidMount(){
 
         $('body').on('click', (e) => {
             if(!$(e.target).parents('.form-type-from').length){
+
                 this.setState({
                     acShow: false,
                     userInputStarted: false,
@@ -43,6 +48,7 @@ class FromBlock extends Component{
 
             }
         });
+
     }
 
     onFocusInput(){
@@ -56,6 +62,7 @@ class FromBlock extends Component{
 
         this.setState({
             term: startPoint.value,
+            userInputStarted: false,
             acShow: false,
         });
 
@@ -90,6 +97,19 @@ class FromBlock extends Component{
 
     }
 
+    clearField(){
+        this.setState({term: ''});
+        this.props.setStartPoint({});
+    }
+
+    onFieldIconClick(){
+        if(this.props.selectedStartPoint.id){
+            this.clearField();
+        }else{
+            this.refs.input.focus();
+        }
+    }
+
     render(){
 
         let arFormItemClass = ['form-item', 'form-type-from', 'with-autocomplete'];
@@ -97,6 +117,15 @@ class FromBlock extends Component{
         if(this.state.acShow){
             arFormItemClass.push('autocomplete-open')
         }
+
+        if(this.props.selectedStartPoint.id){
+            arFormItemClass.push('filled');
+        }
+
+        if(this.props.formErrors.notSelectedStartPoint){
+            arFormItemClass.push('error');
+        }
+
 
         let startPoints = this.startPoints;
 
@@ -106,30 +135,37 @@ class FromBlock extends Component{
 
         startPoints = _.sortBy(startPoints, (city) => [city.popular_weight, city.value ]);
 
-        const placeholder = this.state.term || this.state.acShow ? '' : <span className="placeholder">(Укажите город отправления)</span>;
+        let inputValue = this.state.term;
+
+        if(!inputValue && !this.state.acShow){
+            inputValue = this.placeholder
+        }
 
         return (
-            <div className={arFormItemClass.join(' ')}>
+            <div className={arFormItemClass.join(' ')} title={inputValue || this.placeholder}>
 
-                <input type="hidden" name="selected-city" value="" />
+                {/*<input type="hidden" name="selected-city" value="" />*/}
 
-                <span className="icon-font icon-arrow-right"></span>
+                <span
+                    className="icon-font icon-arrow-right"
+                    onClick={this.onFieldIconClick}
+                ></span>
 
                 <label>
                     <div className="wrapper">
                         <span className="title">Откуда:</span>
-                        {placeholder}
                     </div>
                 </label>
                 <input
                     type="text"
-                    placeholder=""
+                    ref="input"
+                    placeholder={this.placeholder}
                     id="autocomplete-city"
-                    value={this.state.term}
+                    value={inputValue}
                     onFocus={this.onFocusInput}
                     onKeyUp={this.onKeyUpInput}
                     onChange={(e) => {this.onChangeInput(e)}}
-                    className="form-text hidden"
+                    className="form-text"
                 />
 
                 <div className="autocomplete">
@@ -151,7 +187,6 @@ class FromBlock extends Component{
                                             onClick={() => this.onStartPointItemClick(item)}
                                         >
                                             {item.value}
-                                            <i></i>
                                         </li>
                                     );
                                 })}
@@ -174,6 +209,7 @@ function mapDispatchToProps(dispatch){
 function mapStateToProps(state) {
     return {
         selectedStartPoint: state.selectedStartPoint,
+        formErrors: state.formErrors,
     };
 }
 

@@ -40,20 +40,28 @@ class TourType extends Component{
             arFormItemClass.push('autocomplete-open')
         }
 
+        let selectAllCls = ['list__item', 'select-all'];
+
+        if(!Object.keys(this.props.tourTypes).length){
+            selectAllCls.push('-active');
+        }
+
+
         return(
             <div className={arFormItemClass.join(' ')}>
 
                 <span className="icon-font icon-arrow-right"></span>
-
                 <label>
                     <div className="wrapper">
-                        <span className="title">Тип тура:</span> <span className="placeholder">{this.props.tourType.value}</span>
+                        <span className="title">Тип тура:</span>
                     </div>
                 </label>
-
                 <input type="text"
+                       placeholder="все"
+                       value={this.props.tourTypes.value || 'все'}
                        onFocus={this.onFocusInput}
-                       className="form-text hidden"/>
+                       className="form-text"
+                />
 
                 <div className="autocomplete">
                     <div className="quick-dropdown">
@@ -61,11 +69,14 @@ class TourType extends Component{
                             <div className="header-dropdown">Выберите тип тура</div>
 
                             <ul className="list quick-dropdown__list">
+                                <li key="all"
+                                    onClick={() => this.props.setTourType({})}
+                                    className={selectAllCls.join(' ')}>все <i></i></li>
                                 {tourTypesList.map(tourType => {
 
                                     let cls = 'list__item';
 
-                                    if(tourType.id === this.props.tourType.id){
+                                    if(this.props.tourTypes[tourType.id]){
                                         cls += ' -active';
                                     }
                                     
@@ -97,7 +108,7 @@ function mapDispatchToProps(dispatch){
 
 function mapStateToProps(state){
     return {
-        tourType: state.tourType,
+        tourTypes: state.tourTypes,
     }
 }
 

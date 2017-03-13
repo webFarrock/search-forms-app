@@ -15,12 +15,9 @@ import SetAdultsReducer from './reducer_adults';
 import SetKidsReducer from './reducer_kids';
 import SetDurationReducer from './reducer_duration';
 import SetTourTypeReducer from './reducer_tour_type';
+import SetTourDateReducer from './reducer_tour_date';
 
-console.log('!!!!!!!');
-console.log('!!!!!!!');
-console.log('!!!!!we!!');
-console.log('!!!!!we!!wwww');
-
+import SetFormErrorsReducer from './reducer_form_errors';
 
 const rootReducer = combineReducers({
 
@@ -32,13 +29,16 @@ const rootReducer = combineReducers({
     hotelsList: HotelsReducer,
 
     selectedCountry: SetCountryReducer,
-    selectedRegion: SetRegionReducer,
-    selectedHotel: SetHotelReducer,
+    selectedRegions: SetRegionReducer,
+    selectedHotels: SetHotelReducer,
 
     adults: SetAdultsReducer,
     kids: SetKidsReducer,
     duration: SetDurationReducer,
-    tourType: SetTourTypeReducer,
+    tourTypes: SetTourTypeReducer,
+    tourDate: SetTourDateReducer,
+
+    formErrors: SetFormErrorsReducer,
 
 });
 

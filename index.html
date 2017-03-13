@@ -18,9 +18,9 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
 
-<body id="body" class="page-index">
+<body id="body" class="page-index" ng-controller="IntouristMainCtrl">
 
-<header class="header">
+<header class="header ha-header ha-header-large">
 	<div class="inner">
 		<div class="header__bar">
 			<div class="hamburger-wrapper">
@@ -34,7 +34,6 @@
 
 			<div class="header__bar__aside">
 				<a href="/" class="logotype">Intourist</a>
-				<div class="slogan">Традиции с 1929 года</div>
 			</div>
 			<div class="header__bar__content">
 				<ul class="list -inline -justify -invert tools">
@@ -58,8 +57,7 @@
 								</div>
 
 								<div class="regions-search">
-									<input type="search" name="" id="" class="regions-search__field"
-									       placeholder="Начните вводить">
+									<input type="search" name="" id="" class="regions-search__field" placeholder="Начните вводить">
 									<input type="submit" name="" id="" class="regions-search__submit">
 								</div>
 
@@ -69,8 +67,7 @@
 											<ul class="list regions">
 												<li class="list__item"><a href="#" class="list__link">Ульяновск</a></li>
 												<li class="list__item"><a href="#" class="list__link">Москва</a></li>
-												<li class="list__item"><a href="#"
-												                          class="list__link">Санкт-Петербург</a></li>
+												<li class="list__item"><a href="#" class="list__link">Санкт-Петербург</a></li>
 												<li class="list__item"><a href="#" class="list__link">Казань</a></li>
 												<li class="list__item"><a href="#" class="list__link">Самара</a></li>
 												<li class="list__item"><a href="#" class="list__link">Чебоксары</a></li>
@@ -81,21 +78,16 @@
 												<li class="list__item"><a href="#" class="list__link">Ярославль</a></li>
 												<li class="list__item"><a href="#" class="list__link">Тольяти</a></li>
 												<li class="list__item"><a href="#" class="list__link">Славянск</a></li>
-												<li class="list__item"><a href="#" class="list__link">Краматорск</a>
-												</li>
+												<li class="list__item"><a href="#" class="list__link">Краматорск</a></li>
 												<li class="list__item"><a href="#" class="list__link">Челябинск</a></li>
-												<li class="list__item"><a href="#" class="list__link">Екатеринбург</a>
-												</li>
+												<li class="list__item"><a href="#" class="list__link">Екатеринбург</a></li>
 												<li class="list__item"><a href="#" class="list__link">Хабаровск</a></li>
-												<li class="list__item"><a href="#" class="list__link">Владивосток</a>
-												</li>
+												<li class="list__item"><a href="#" class="list__link">Владивосток</a></li>
 											</ul>
 											<ul class="list regions">
-												<li class="list__item -active"><a href="#"
-												                                  class="list__link">Ульяновск</a></li>
+												<li class="list__item -active"><a href="#" class="list__link">Ульяновск</a></li>
 												<li class="list__item"><a href="#" class="list__link">Москва</a></li>
-												<li class="list__item"><a href="#"
-												                          class="list__link">Санкт-Петербург</a></li>
+												<li class="list__item"><a href="#" class="list__link">Санкт-Петербург</a></li>
 												<li class="list__item"><a href="#" class="list__link">Казань</a></li>
 												<li class="list__item"><a href="#" class="list__link">Самара</a></li>
 												<li class="list__item"><a href="#" class="list__link">Чебоксары</a></li>
@@ -106,14 +98,11 @@
 												<li class="list__item"><a href="#" class="list__link">Ярославль</a></li>
 												<li class="list__item"><a href="#" class="list__link">Тольяти</a></li>
 												<li class="list__item"><a href="#" class="list__link">Славянск</a></li>
-												<li class="list__item"><a href="#" class="list__link">Краматорск</a>
-												</li>
+												<li class="list__item"><a href="#" class="list__link">Краматорск</a></li>
 												<li class="list__item"><a href="#" class="list__link">Челябинск</a></li>
-												<li class="list__item"><a href="#" class="list__link">Екатеринбург</a>
-												</li>
+												<li class="list__item"><a href="#" class="list__link">Екатеринбург</a></li>
 												<li class="list__item"><a href="#" class="list__link">Хабаровск</a></li>
-												<li class="list__item"><a href="#" class="list__link">Владивосток</a>
-												</li>
+												<li class="list__item"><a href="#" class="list__link">Владивосток</a></li>
 											</ul>
 										</div>
 									</div>
@@ -180,8 +169,7 @@
 
 						<div id="recover" class="popup">
 							<h2>Восстановление пароля</h2>
-							<p>Логин — процедура входа (идентификации и затем аутентификации) пользователя в
-								компьютерную систему, как правило, путём указания имени учётной записи и пароля.</p>
+							<p>Логин — процедура входа (идентификации и затем аутентификации) пользователя в компьютерную систему, как правило, путём указания имени учётной записи и пароля.</p>
 							<form action="#" class="form form-inline form-popup-recover -invert">
 								<div class="row form__row">
 									<div class="col__left form__item form__item__full-width">
@@ -225,12 +213,10 @@
 								<div class="col__middle dropdown__auth__fields">
 									<div class="row dropdown__auth__fields__row">
 										<div class="col__left dropdown__auth__login">
-											<input type="text" name="" id="" class="dropdown__auth__field"
-											       placeholder="Логин">
+											<input type="text" name="" id="" class="dropdown__auth__field" placeholder="Логин">
 										</div>
 										<div class="col__left dropdown__auth__password">
-											<input type="password" name="" id="" class="dropdown__auth__field"
-											       placeholder="Пароль">
+											<input type="password" name="" id="" class="dropdown__auth__field" placeholder="Пароль">
 										</div>
 									</div>
 								</div>
@@ -238,15 +224,14 @@
 						</form>
 
 						<form action="" class="dropdown__search">
-							<input type="search" name="" id="" class="dropdown__search__field"
-							       placeholder="Поиск по сайту">
+							<input type="search" name="" id="" class="dropdown__search__field" placeholder="Поиск по сайту">
 							<input type="submit" name="" id="" class="dropdown__search__submit">
 						</form>
 					</div>
 					<script>
-                        jQuery(document).ready(function ($) {
-                            $('.hamburger').click(function () {
-                                if (!$(this).hasClass('is-active')) {
+                        jQuery(document).ready(function($){
+                            $('.hamburger').click(function(){
+                                if(!$(this).hasClass('is-active')){
                                     $(this).addClass('is-active');
                                     $('.header').addClass('open');
                                     $('.navigation-main').slideDown();
@@ -254,9 +239,9 @@
                                 }
                                 else {
                                     $(this).removeClass('is-active');
-                                    $('.header').removeClass('open');
                                     $('.navigation-main').slideUp();
                                     $('.hamburger-title').show();
+                                    $('.header').removeClass('open');
                                 }
                             });
                             return false;
@@ -285,21 +270,16 @@
 								<a href="#" class="list__link">Онлайн-сервисы</a>
 								<div class="sub">
 									<ul class="list sub__list">
-										<li class="list__item"><a href="#" class="list__link">Вход в личный кабинет</a>
-										</li>
-										<li class="list__item"><a href="#" class="list__link">Запрос на подбор тура</a>
-										</li>
+										<li class="list__item"><a href="#" class="list__link">Вход в личный кабинет</a></li>
+										<li class="list__item"><a href="#" class="list__link">Запрос на подбор тура</a></li>
 										<li class="list__item"><a href="#" class="list__link">История поиска</a></li>
 										<li class="list__item"><a href="#" class="list__link">Каталог отелей</a></li>
-										<li class="list__item"><a href="#" class="list__link">Проверка заказа (по
-											номеру)</a></li>
-										<li class="list__item"><a href="#" class="list__link">Интересные новости</a>
-										</li>
+										<li class="list__item"><a href="#" class="list__link">Проверка заказа (по номеру)</a></li>
+										<li class="list__item"><a href="#" class="list__link">Интересные новости</a></li>
 										<li class="list__item"><a href="#" class="list__link">Акции и бонусы</a></li>
 										<li class="list__item"><a href="#" class="list__link">Видео семинары</a></li>
 										<li class="list__item"><a href="#" class="list__link">Архив опросов</a></li>
-										<li class="list__item"><a href="#" class="list__link">Архив курсов валют</a>
-										</li>
+										<li class="list__item"><a href="#" class="list__link">Архив курсов валют</a></li>
 										<li class="list__item"><a href="#" class="list__link">Карта полетов</a></li>
 									</ul>
 								</div>
@@ -308,21 +288,14 @@
 								<a href="#" class="list__link">Помощь</a>
 								<div class="sub">
 									<ul class="list sub__list">
-										<li class="list__item"><a href="#" class="list__link">Забронировать тур
-											онлайн</a></li>
-										<li class="list__item"><a href="#" class="list__link">Оплатить тур онлайн</a>
-										</li>
-										<li class="list__item"><a href="#" class="list__link">Внести изменения в тур</a>
-										</li>
+										<li class="list__item"><a href="#" class="list__link">Забронировать тур онлайн</a></li>
+										<li class="list__item"><a href="#" class="list__link">Оплатить тур онлайн</a></li>
+										<li class="list__item"><a href="#" class="list__link">Внести изменения в тур</a></li>
 										<li class="list__item"><a href="#" class="list__link">Аннулировать тур</a></li>
-										<li class="list__item"><a href="#" class="list__link">Выписать документы</a>
-										</li>
-										<li class="list__item"><a href="#" class="list__link">Информация по визовым
-											странам</a></li>
-										<li class="list__item"><a href="#" class="list__link">Используемые
-											сокращения</a></li>
-										<li class="list__item"><a href="#" class="list__link">Полезное
-											путешественникам</a></li>
+										<li class="list__item"><a href="#" class="list__link">Выписать документы</a></li>
+										<li class="list__item"><a href="#" class="list__link">Информация по визовым странам</a></li>
+										<li class="list__item"><a href="#" class="list__link">Используемые сокращения</a></li>
+										<li class="list__item"><a href="#" class="list__link">Полезное путешественникам</a></li>
 										<li class="list__item"><a href="#" class="list__link">Видео семинары</a></li>
 										<li class="list__item"><a href="#" class="list__link">Доплаты и сборы</a></li>
 									</ul>
@@ -332,12 +305,9 @@
 								<a href="#" class="list__link">Доп. услуги</a>
 								<div class="sub">
 									<ul class="list sub__list">
-										<li class="list__item"><a href="#" class="list__link">Экскурсии по прилету</a>
-										</li>
-										<li class="list__item"><a href="#" class="list__link">СИП и ВИП проходы в
-											аэропортах</a></li>
-										<li class="list__item"><a href="#" class="list__link">Индивидуальные и ВИП
-											трансферы</a></li>
+										<li class="list__item"><a href="#" class="list__link">Экскурсии по прилету</a></li>
+										<li class="list__item"><a href="#" class="list__link">СИП и ВИП проходы в аэропортах</a></li>
+										<li class="list__item"><a href="#" class="list__link">Индивидуальные и ВИП трансферы</a></li>
 									</ul>
 								</div>
 							</li>
@@ -353,35 +323,24 @@
 <!-- /.header -->
 
 
+
+
 <section class="information">
 	<div class="carousel carousel-main">
-		<div class="carousel__item" data-timeout="15000"
-		     style="background-image:url('./static/i/slide-front-test.png');" id="carousel__item_246305">
-			<div class="carousel__item__mobile" data-timeout="15000"
-			     style="background-image:url('./static/i/slide-front-test.png');">
-				<div class="inner ">
+		<div class="carousel__item" data-timeout="15000" style="background-image:url('./static/i/slide-front-test.png');" id="carousel__item_246305">
+			<div class="carousel__item__mobile" data-timeout="15000" style="background-image:url('./static/i/slide-front-test.png');">
+				<div class="inner " >
 					<div class="row column -col-2">
 						<div class="column__item col__left">
 							<div class="card card-promo">
 								<h2 class="card__title">Queenstown Resort & Spa</h2>
 								<div class="country">Новая Зеландия</div>
 
-								<p>Квинстаун — главный туристический центр Новой Зеландии. Здесь найдут, чем себя занять
-									любители экстрима и эко-туристы. Здесь найдут, чем себя занять. Квинстаун — главный
-									туристический центр Новой Зеландии. Здесь найдут, чем себя занять любители экстрима
-									и эко-туристы.</p>
-
+								<p>Квинстаун — главный туристический центр Новой Зеландии.  Здесь найдут, чем себя занять любители экстрима и эко-туристы. Квинстаун — главный туристический центр Новой Зеландии.  Здесь найдут, чем себя занять любители экстрима и эко-туристы.</p>
 								<a href="#" class="button hidden">
-                                            <span class="button__row hidden js-get-top-banner-price"
-                                                  data-from="1970-01-01"
-                                                  data-to="1970-01-01"
-                                                  data-country=""
-                                                  data-city=""
-                                                  data-hotel="">
+                                            <span class="button__row hidden js-get-top-banner-price">
                                                 <span class="button__cell button__circle">
-                                                    <span class="button__price">от <b>215 000</b> <span
-		                                                    class="rub">Р</span> <div
-		                                                    class="price-line"> за туриста</div></span>
+                                                    <span class="button__price">от <b>215 000</b> <span class="rub">Р</span> <div class="price-line"> за туриста</div></span>
                                                 </span>
                                             </span>
 								</a>
@@ -391,81 +350,781 @@
 				</div>
 			</div>
 		</div>
+		<div class="carousel__item" data-timeout="15000" style="background-image:url('./static/i/slide-front-test-2.jpg');" id="carousel__item_246306">
+			<div class="carousel__item__mobile" data-timeout="15000" style="background-image:url('./static/i/slide-front-test-2.jpg');">
+				<div class="inner " >
+					<div class="row column -col-2">
+						<div class="column__item col__left">
+							<div class="card card-promo">
+								<h2 class="card__title">Test Hotel Resort & Spa</h2>
+								<div class="country">Новая Зеландия</div>
 
+								<p>Lorem ipsum sed nollem Lorem ipsum sed nollem Lorem ipsum sed nollem Lorem ipsum sed nollem Lorem ipsum sed nollem Lorem ipsum sed nollem Lorem ipsum sed nollem </p>
+								<a href="#" class="button hidden">
+                                            <span class="button__row hidden js-get-top-banner-price">
+                                                <span class="button__cell button__circle">
+                                                    <span class="button__price">от <b>5 000</b> <span class="rub">Р</span> <div class="price-line"> за туриста</div></span>
+                                                </span>
+                                            </span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tcon-row__items">
+		<a href="#main">
+                    <span class="tcon-indicator">
+                        <i class="icon-icon-show-more more-1"></i>
+                        <i class="icon-icon-show-more more-2"></i>
+                        <i class="icon-icon-show-more more-3"></i>
+                    </span>
+		</a>
 	</div>
 </section>
 
-<main class="main">
+<main class="main" id="main" data-animate-down="ha-header-small" data-animate-up="ha-header-large">
+	<div class="content-section">
 
-	<div class="left-sidebar">
-		<div class="main-filter">
-			<h3>Попробуй мир на вкус</h3>
-			<div id="react-search-form-main">
+		<section class="section">
+			<div class="inner">
 
+				<div class="row column -col-2-2">
+					<div class="column__item col__left">
+						<header class="row heading">
+							<div class="col__left">
+								<h3 class="heading__title">Акции Интурист</h3>
+								<a class="heading__link" href="#">все акции</a>
+							</div>
+						</header>
+
+
+						<div class="card card-event">
+							<span class="card__image" style="background-image:url('static/i/event-1.png');"></span>
+							<span class="card__gradient"></span>
+							<h3 class="card__title">Заполняем анкету - продлеваем лето!</h3>
+							<div class="card__text"><p>Результаты акции «Время странствий», благодаря которой вы смогли стать обладателями замечательных призов от компании «Интурист», а мы узнали, как сделать ваши будущие путешествия еще лучше и интереснее! Для тех, кому Фортуна в этот раз не улыбнулась - в следующем году акция продолжится!</p></div>
+							<a href="#" class="button fill_form">
+								<span class="button__price">Заполнить анкету</span>
+							</a>
+						</div>
+
+						<!-- /.card -->
+					</div>
+
+					<div class="column__item__wide col__left">
+						<header class="row heading">
+							<div class="col__left">
+								<h3 class="heading__title">Лучшие предложения</h3>
+								<a class="heading__link" href="#">показать все</a>
+							</div>
+						</header>
+
+						<div class="carousel-wrap">
+							<div class="carousel carousel-events-desktop">
+								<div class="carousel__item">
+									<div class="card card-event card-event-small">
+										<a class="card-link" href="#">
+											<span class="card__image" style="background-image:url('static/i/event-2.png');"></span>
+											<span class="card__gradient"></span>
+											<h5 class="card__title">Galeon Residence & Spa</h5>
+											<div class="card__subtitle">Турция, Кемер</div>
+											<div class="rating -star-4">
+												<span class="icon-star star-1"></span>
+												<span class="icon-star star-2"></span>
+												<span class="icon-star star-3"></span>
+												<span class="icon-star star-4"></span>
+												<span class="icon-star star-5"></span>
+											</div>
+											<div class="button">
+												<div class="card__date">
+                                                            <span class="icon-calendar">
+                                                                <span class="path1"></span>
+                                                                <span class="path2"></span>
+                                                            </span>
+													12.02.17
+												</div>
+												<span class="button__price">225 000 <span class="rub">₽</span> / чел</span>
+											</div>
+										</a>
+
+									</div>
+
+									<!-- /.card -->
+									<div class="card card-event card-event-small">
+										<a class="card-link" href="#">
+											<span class="card__image" style="background-image:url('static/i/event-2.png');"></span>
+											<span class="card__gradient"></span>
+											<h5 class="card__title">Galeon Residence & Spa</h5>
+											<div class="card__subtitle">Турция, Кемер</div>
+											<div class="rating -star-3">
+												<span class="icon-star star-1"></span>
+												<span class="icon-star star-2"></span>
+												<span class="icon-star star-3"></span>
+												<span class="icon-star star-4"></span>
+												<span class="icon-star star-5"></span>
+											</div>
+											<div class="button">
+												<div class="card__date">
+                                                            <span class="icon-calendar">
+                                                                <span class="path1"></span>
+                                                                <span class="path2"></span>
+                                                            </span>
+													12.02.17
+												</div>
+												<span class="button__price">225 000 <span class="rub">₽</span> / чел</span>
+											</div>
+										</a>
+									</div>
+
+									<!-- /.card -->
+									<div class="card card-event card-event-small">
+										<a class="card-link" href="#">
+											<span class="card__image" style="background-image:url('static/i/event-2.png');"></span>
+											<span class="card__gradient"></span>
+											<h5 class="card__title">Galeon Residence & Spa</h5>
+											<div class="card__subtitle">Турция, Кемер</div>
+											<div class="rating -star-2">
+												<span class="icon-star star-1"></span>
+												<span class="icon-star star-2"></span>
+												<span class="icon-star star-3"></span>
+												<span class="icon-star star-4"></span>
+												<span class="icon-star star-5"></span>
+											</div>
+											<div class="button">
+												<div class="card__date">
+                                                            <span class="icon-calendar">
+                                                                <span class="path1"></span>
+                                                                <span class="path2"></span>
+                                                            </span>
+													12.02.17
+												</div>
+												<span class="button__price">225 000 <span class="rub">₽</span> / чел</span>
+											</div>
+										</a>
+									</div>
+
+									<!-- /.card -->
+									<div class="card card-event card-event-small">
+										<a class="card-link" href="#">
+											<span class="card__image" style="background-image:url('static/i/event-2.png');"></span>
+											<span class="card__gradient"></span>
+											<h5 class="card__title">Galeon Residence & Spa</h5>
+											<div class="card__subtitle">Турция, Кемер</div>
+											<div class="rating -star-5">
+												<span class="icon-star star-1"></span>
+												<span class="icon-star star-2"></span>
+												<span class="icon-star star-3"></span>
+												<span class="icon-star star-4"></span>
+												<span class="icon-star star-5"></span>
+											</div>
+											<div class="button">
+												<div class="card__date">
+                                                            <span class="icon-calendar">
+                                                                <span class="path1"></span>
+                                                                <span class="path2"></span>
+                                                            </span>
+													12.02.17
+												</div>
+												<span class="button__price">225 000 <span class="rub">₽</span> / чел</span>
+											</div>
+										</a>
+									</div>
+
+									<!-- /.card -->
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+
+
+		<section class="section">
+			<div class="inner">
+				<header class="row heading">
+					<div class="col__left">
+						<h3 class="heading__title">Актульная информация</h3></div>
+					<div class="col__right"><a class="js-widget heading__link heading__link__widget" href="#widget">Настроить виджеты <i class="icon-settings"></i></a></div>
+				</header>
+
+				<div class="row column -col-4 widgets">
+
+					<div class="column__item widgets__item col__left">
+						<div class="widget-card">
+							<div class="widget" id="widget-news">
+								<div class="widget__header">
+									<div class="widget__title">Новости туризма</div>
+									<span class="widget__drag icon-move" title="Нажмите, удерживайте и пертащите на удобное Вам место">+</span>
+								</div>
+								<div class="widget__content">
+									<div class="widget__link"><a href="#">Архив новостей</a></div>
+									<div class="carousel carousel-widget">
+										<div class="carousel__item">
+											<div class="widget__news">
+												<img class="widget__news__image" src="static/i/widget-news.png">
+												<span class="widget__news__date">28.02</span>
+												<span class="widget__news__title">Шведский суд вынес решение по делу ЮКОСа в пользу России</span>
+												<a href="#" class="widget__news__link"><span class="widget__news__link__circle"></span><span class="widget__news__link__text">Подробнее</span></a>
+											</div>
+										</div>
+										<div class="carousel__item">
+											<div class="widget__news">
+												<img class="widget__news__image" src="static/i/widget-news.png">
+												<span class="widget__news__date">18.02</span>
+												<span class="widget__news__title">Шведский суд вынес решение по делу ЮКОСа в пользу России</span>
+												<a href="#" class="widget__news__link"><span class="widget__news__link__circle"></span><span class="widget__news__link__text">Подробнее</span></a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="widget__footer">
+									<span class="widget__opts icon-settings">*</span>
+									<div class="widget__close icon-close" title="Можете заменить виджет на другой">x</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="column__item widgets__item col__left">
+						<div class="widget-card">
+							<div class="widget" id="widget-polls">
+								<div class="widget__header">
+									<div class="widget__title">Опросы</div>
+									<span class="widget__drag icon-move" title="Нажмите, удерживайте и пертащите на удобное Вам место">+</span>
+								</div>
+								<div class="widget__content">
+									<div class="widget__poll">
+										<div class="widget__poll__title">На сколько вы удовлетворены работой нового сайта?</div>
+										<form action="#" class="widget__poll__form">
+											<div class="widget__poll__form__item">
+												<input type="radio" name="poll" id="poll0" class="stylized">
+												<label for="poll0">Полностью удовлетворен</label>
+											</div>
+											<div class="widget__poll__form__item">
+												<input type="radio" name="poll" id="poll1" class="stylized" checked>
+												<label for="poll1">Частично удовлетворен</label>
+											</div>
+											<div class="widget__poll__form__item">
+												<input type="radio" name="poll" id="poll2" class="stylized">
+												<label for="poll2">Не удовлетворен</label>
+											</div>
+											<div class="widget__poll__form__submit">
+												<span class="widget__poll__form__submit__circle"></span>
+												<input type="submit" value="Голосовать">
+											</div>
+										</form>
+									</div>
+								</div>
+								<div class="widget__footer">
+									<span class="widget__opts icon-settings">*</span>
+									<div class="widget__close icon-close" title="Можете заменить виджет на другой">x</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="column__item widgets__item col__left">
+						<div class="widget-card">
+							<div class="widget" id="widget-converter">
+								<div class="widget__header">
+									<div class="widget__title">Конвертер валют</div>
+									<span class="widget__drag icon-move" title="Нажмите, удерживайте и пертащите на удобное Вам место">+</span>
+								</div>
+								<div class="widget__content">
+									<div class="widget__converter">
+										<div class="widget__converter__from">
+
+											<div class="row widget__converter__row">
+												<div class="col__left">
+													<div class="widget__converter__label">Валюта</div>
+												</div>
+												<div class="col__right">
+													<div class="select select-blue">
+														<select name="" id="converter-from-currency">
+															<option value="0" selected>USD</option>
+															<option value="1">RUB</option>
+															<option value="2">EUR</option>
+														</select>
+													</div>
+												</div>
+
+											</div>
+										</div>
+										<div class="widget__converter__to">
+											<div class="row widget__converter__row">
+												<div class="col__left">
+													<div class="widget__converter__label">На какую валюту</div>
+												</div>
+												<div class="col__right">
+													<div class="select select-blue">
+														<select name="" id="converter-to-currency">
+															<option value="0">USD</option>
+															<option value="1" selected>RUB</option>
+															<option value="2">EUR</option>
+														</select>
+													</div>
+												</div>
+
+											</div>
+										</div>
+										<div class="widget__converter__total">
+											<div class="row widget__converter__row">
+												<div class="col__left">
+													<div class="widget__converter__total__sum">Сумма</div>
+												</div>
+												<div class="col__right">
+													<input type="text" name="" id="converter-from-value" value="100">
+												</div>
+											</div>
+										</div>
+										<div class="widget__converter__result">
+											<input type="text" name="" id="converter-to-value" value="3000" disabled>
+										</div>
+										<div class="widget__converter__rate">1 USD = 30.00 RUB</div>
+									</div>
+								</div>
+								<div class="widget__footer">
+									<span class="widget__opts icon-settings">*</span>
+									<div class="widget__close icon-close" title="Можете заменить виджет на другой">x</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="column__item widgets__item col__left">
+						<div class="widget-card">
+							<div class="widget-add">
+								<a href="#widget" class="widget-add__link js-widget">
+									<span><i class="icon-add-widget"></i><span>Добавить виджет</span></span>
+								</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!-- /.widgets -->
+
+				<div id="widget" class="popup">
+					<h3>Добавить виджет</h3>
+
+					<ul class="list widget-list">
+						<li class="list__item">
+							<input type="checkbox" name="checkbox-news" id="checkbox-news" class="tick">
+							<label for="checkbox-news">Новости туризма</label>
+						</li>
+						<li class="list__item">
+							<input type="checkbox" name="checkbox-polls" id="checkbox-polls" class="tick">
+							<label for="checkbox-polls">Опросы</label>
+						</li>
+						<li class="list__item">
+							<input type="checkbox" name="checkbox-converter" id="checkbox-converter" class="tick">
+							<label for="checkbox-converter">Конвертер валют</label>
+						</li>
+					</ul>
+				</div>
+
+				<div class="widget-store">
+
+
+					<div class="widget-add-list">
+						<div class="widget__header">
+							<div class="widget__title">Добавить виджет</div>
+							<span class="widget__drag icon-move" title="Нажмите, удерживайте и пертащите на удобное Вам место">+</span>
+						</div>
+						<div class="widget__content">
+							<ul class="list widget-list">
+								<li class="list__item">
+									<input type="checkbox" name="checkbox-news" id="checkbox-news" class="tick">
+									<label for="checkbox-news">Новости туризма</label>
+								</li>
+								<li class="list__item">
+									<input type="checkbox" name="checkbox-polls" id="checkbox-polls" class="tick">
+									<label for="checkbox-polls">Опросы</label>
+								</li>
+								<li class="list__item">
+									<input type="checkbox" name="checkbox-converter" id="checkbox-converter" class="tick">
+									<label for="checkbox-converter">Конвертер валют</label>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!-- /.widget-add-list -->
+
+
+					<div class="widget" id="widget-polls">
+						<div class="widget__header">
+							<div class="widget__title">Опросы</div>
+							<span class="widget__drag icon-move" title="Нажмите, удерживайте и пертащите на удобное Вам место">+</span>
+						</div>
+						<div class="widget__content">
+							<div class="widget__poll">
+								<div class="widget__poll__title">На сколько вы удовлетворены работой нового сайта?</div>
+								<form action="#" class="widget__poll__form">
+									<div class="widget__poll__form__item">
+										<input type="radio" name="poll" id="poll0" class="stylized">
+										<label for="poll0">Полностью удовлетворен</label>
+									</div>
+									<div class="widget__poll__form__item">
+										<input type="radio" name="poll" id="poll1" class="stylized" checked>
+										<label for="poll1">Частично удовлетворен</label>
+									</div>
+									<div class="widget__poll__form__item">
+										<input type="radio" name="poll" id="poll2" class="stylized">
+										<label for="poll2">Не удовлетворен</label>
+									</div>
+									<div class="widget__poll__form__submit">
+										<span class="widget__poll__form__submit__circle"></span>
+										<input type="submit" value="Голосовать">
+									</div>
+								</form>
+							</div>
+						</div>
+						<div class="widget__footer">
+							<span class="widget__opts icon-settings">*</span>
+							<div class="widget__close icon-close" title="Можете заменить виджет на другой">x</div>
+						</div>
+					</div>
+
+
+					<!-- /.widget -->
+
+					<div class="widget" id="widget-converter">
+						<div class="widget__header">
+							<div class="widget__title">Конвертер валют</div>
+							<span class="widget__drag icon-move" title="Нажмите, удерживайте и пертащите на удобное Вам место">+</span>
+						</div>
+						<div class="widget__content">
+							<div class="widget__converter">
+								<div class="widget__converter__from">
+
+									<div class="row widget__converter__row">
+										<div class="col__left">
+											<div class="widget__converter__label">Валюта</div>
+										</div>
+										<div class="col__right">
+											<div class="select select-blue">
+												<select name="" id="converter-from-currency">
+													<option value="0" selected>USD</option>
+													<option value="1">RUB</option>
+													<option value="2">EUR</option>
+												</select>
+											</div>
+										</div>
+
+									</div>
+								</div>
+								<div class="widget__converter__to">
+									<div class="row widget__converter__row">
+										<div class="col__left">
+											<div class="widget__converter__label">На какую валюту</div>
+										</div>
+										<div class="col__right">
+											<div class="select select-blue">
+												<select name="" id="converter-to-currency">
+													<option value="0">USD</option>
+													<option value="1" selected>RUB</option>
+													<option value="2">EUR</option>
+												</select>
+											</div>
+										</div>
+
+									</div>
+								</div>
+								<div class="widget__converter__total">
+									<div class="row widget__converter__row">
+										<div class="col__left">
+											<div class="widget__converter__total__sum">Сумма</div>
+										</div>
+										<div class="col__right">
+											<input type="text" name="" id="converter-from-value" value="100">
+										</div>
+									</div>
+								</div>
+								<div class="widget__converter__result">
+									<input type="text" name="" id="converter-to-value" value="3000" disabled>
+								</div>
+								<div class="widget__converter__rate">1 USD = 30.00 RUB</div>
+							</div>
+						</div>
+						<div class="widget__footer">
+							<span class="widget__opts icon-settings">*</span>
+							<div class="widget__close icon-close" title="Можете заменить виджет на другой">x</div>
+						</div>
+					</div>
+					<!-- /.widget -->
+
+					<div class="widget" id="widget-news">
+						<div class="widget__header">
+							<div class="widget__title">Новости туризма</div>
+							<span class="widget__drag icon-move" title="Нажмите, удерживайте и пертащите на удобное Вам место">+</span>
+						</div>
+						<div class="widget__content">
+							<div class="widget__link"><a href="#">Архив новостей</a></div>
+							<div class="carousel carousel-widget">
+								<div class="carousel__item">
+									<div class="widget__news">
+										<img class="widget__news__image" src="static/i/widget-news.png">
+										<span class="widget__news__date">28.02</span>
+										<span class="widget__news__title">Шведский суд вынес решение по делу ЮКОСа в пользу России</span>
+										<a href="#" class="widget__news__link"><span class="widget__news__link__circle"></span><span class="widget__news__link__text">Подробнее</span></a>
+									</div>
+								</div>
+								<div class="carousel__item">
+									<div class="widget__news">
+										<img class="widget__news__image" src="static/i/widget-news.png">
+										<span class="widget__news__date">18.02</span>
+										<span class="widget__news__title">Шведский суд вынес решение по делу ЮКОСа в пользу России</span>
+										<a href="#" class="widget__news__link"><span class="widget__news__link__circle"></span><span class="widget__news__link__text">Подробнее</span></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="widget__footer">
+							<span class="widget__opts icon-settings">*</span>
+							<div class="widget__close icon-close" title="Можете заменить виджет на другой">x</div>
+						</div>
+					</div>
+					<!-- /.widget -->
+
+				</div>
+				<!-- /.widget-store -->
+
+			</div>
+		</section>
+
+
+		<section class="promo">
+			<div class="inner">
+				<div class="carousel carousel-main promo">
+					<div class="carousel__item" data-timeout="15000" style="background-image:url('./static/i/slide-front-test.png');" id="carousel__item_246305">
+						<div class="carousel__item__mobile" data-timeout="15000" style="background-image:url('./static/i/slide-front-test.png');">
+							<div class="inner " >
+								<div class="row column -col-2">
+									<div class="column__item col__left">
+										<div class="card card-promo">
+											<h2 class="card__title">Queenstown Resort & Spa</h2>
+											<div class="country">Новая Зеландия</div>
+											<p>Квинстаун — главный туристический центр Новой Зеландии.  Здесь найдут, чем себя занять любители экстрима и эко-туристы. Квинстаун — главный туристический центр Новой Зеландии.  Здесь найдут, чем себя занять любители экстрима и эко-туристы.</p>
+											<a href="#" class="button hidden">
+                                                        <span class="button__row hidden js-get-top-banner-price"
+                                                              data-from="1970-01-01"
+                                                              data-to="1970-01-01"
+                                                              data-country=""
+                                                              data-city=""
+                                                              data-hotel="">
+                                                            <span class="button__cell button__circle">
+                                                                <span class="button__price">от <b>215 000</b> <span class="rub">Р</span> <div class="price-line"> за туриста</div></span>
+                                                            </span>
+                                                        </span>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="carousel__item" data-timeout="15000" style="background-image:url('./static/i/slide-front-test-2.jpg');" id="carousel__item_246306">
+						<div class="carousel__item__mobile" data-timeout="15000" style="background-image:url('./static/i/slide-front-test-2.jpg');">
+							<div class="inner">
+								<div class="row column -col-2">
+									<div class="column__item col__left">
+										<div class="card card-promo">
+											<h2 class="card__title">Test Hotel Resort & Spa</h2>
+											<div class="country">Новая Зеландия</div>
+
+											<p>Lorem ipsum sed nollem Lorem ipsum sed nollem Lorem ipsum sed nollem Lorem ipsum sed nollem Lorem ipsum sed nollem Lorem ipsum sed nollem Lorem ipsum sed nollem </p>
+
+											<a href="#" class="button hidden">
+                                                        <span class="button__row hidden js-get-top-banner-price"
+                                                              data-from="1970-01-01"
+                                                              data-to="1970-01-01"
+                                                              data-country=""
+                                                              data-city=""
+                                                              data-hotel="">
+                                                            <span class="button__cell button__circle">
+                                                                <span class="button__price">от <b>5 000</b> <span class="rub">Р</span><div class="price-line"> за туриста</div></span>
+                                                            </span>
+                                                        </span>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- /.promo -->
+
+
+	</div>
+
+
+</main>
+<!-- /.main -->
+
+
+<aside class="left-sidebar">
+	<div class="main-filter header-position" id="react-search-form-main">
+
+		<h3>___ Попробуй мир на вкус</h3>
+		<form action="/tour-search/" class="" id="search-form-top">
+			<div class="form-wrapper">
+
+
+				<!-- Type -->
+				<div class="form-item form-type-type with-autocomplete error">
+					<span class="icon-font icon-arrow-right"></span>
+					<label>
+						<div class="wrapper">
+							<span class="title">Тип тура:</span>
+						</div>
+					</label>
+
+					<input type="text" placeholder="все" name="" id="" value="" class="form-text hidden" />
+
+					<div class="autocomplete">
+						<div class="quick-dropdown">
+							<div class="wrapper-data col__left filter__row__100">
+								<div class="header-dropdown">Выберите тип тура</div>
+
+								<ul class="list quick-dropdown__list">
+									<li class="list__item select-all">все <i></i></li>
+									<li class="list__item">пакеты <i></i></li>
+									<li class="list__item">только проживание <i></i></li>
+									<li class="list__item">железнодорожные туры <i></i></li>
+									<li class="list__item">экскурсионные туры <i></i></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+				<!-- Duration -->
+				<div class="form-item form-type-duration">
+					<div class="input__min icon-font"><span class="icon-reduce"></span></div>
+					<div class="input__max icon-font"><span class="icon-add"></span></div>
+					<div class="input__field">
+						<input type="text" name="duration" value="7 ночей / 8 дней" readonly>
+					</div>
+				</div>
+
+				<div class="col__2-wrapper">
+					<!-- Adults -->
+					<div class="col__left row input input-count input-adults">
+						<div class="form-item form-type-adults">
+							<div class="input__min"><span class="icon-reduce"></span></div>
+							<div class="input__label">Взрослые <span class="icon-font icon-adult"></span></div>
+							<div class="input__field">
+								<input type="text" name="Adults" value="2" min="1" max="4">
+							</div>
+							<div class="input__max"><span class="icon-add"></span></div>
+						</div>
+					</div>
+
+					<!-- Childs -->
+					<div class="col__left row input input-count input-kids">
+						<div class="form-item form-type-kids with-autocomplete">
+							<span class="icon-font icon-arrow-right"></span>
+							<label><span>Дети <span class="icon-font icon-children"></span></span></label>
+							<div class="input__field">
+								<input type="text" name="Adults" value="2" min="1" max="4">
+							</div>
+							<div class="autocomplete">
+								<div class="quick-dropdown">
+									<div class="wrapper-data col__left filter__row__100">
+										<div class="header-dropdown">Укажите количество и возраст детей</div>
+
+										<div class="form-add-children">
+
+											<div class="wrapper-kid">
+												<div class="input__label"><span class="icon-remove"></span>Ребенок 1</div>
+												<div class="input__wrapper">
+													<div class="input__min"><span class="icon-reduce"></span></div>
+													<div class="input__max"><span class="icon-add"></span></div>
+													<div class="input__field">
+														<input type="text" name="Childs" value="4" min="0" max="4">
+													</div>
+												</div>
+											</div>
+											<div class="wrapper-kid">
+												<div class="input__label"><span class="icon-remove"></span>Ребенок 2</div>
+												<div class="input__wrapper">
+													<div class="input__min"><span class="icon-reduce"></span></div>
+													<div class="input__max"><span class="icon-add"></span></div>
+													<div class="input__field">
+														<input type="text" name="Childs" value="10" min="0" max="4">
+													</div>
+												</div>
+											</div>
+
+											<div class="add-child"><a href="">Добавить ребенка</a></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
 
 
 			</div>
-		</div>
+			<div class="form-actions">
+				<div class="filter__circle circle__container">
+					<div class="circle--spinning">
+
+						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+
+                                     style="enable-background:new 0 0 190 190;" xml:space="preserve">
+                                    <style type="text/css">
+                                        .st0{fill:#ffffff;}
+                                        .st1{fill:url(#SVGID_1_);}
+                                        svg { -webkit-background-clip: text; }
+                                    </style>
+                                    <g id="submit">
+                                        <g id="Ellipse_1">
+                                            <path class="st0" d="M1.7,95C1.7,43.5,43.5,1.7,95,1.7V0C42.5,0,0,42.5,0,95c0,52.5,42.5,95,95,95v-1.7C43.5,188.3,1.7,146.5,1.7,95z"/>
+                                            <defs>
+                                                <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="142.499" y1="0" x2="142.499" y2="190">
+                                                    <stop offset="5.000000e-02" style="stop-color:#ffffff; stop-opacity:0"/>
+                                                    <stop offset="0.95" style="stop-color:#ffffff"/>
+                                                </linearGradient>
+                                            </defs>
+                                            <path class="st1" d="M95,0C95,0,95,0,95,0l0,1.7c0,0,0,0,0,0c51.5,0,93.3,41.9,93.3,93.3c0,51.5-41.9,93.3-93.3,93.3c0,0,0,0,0,0
+                                                                 v1.7c0,0,0,0,0,0c52.5,0,95-42.5,95-95C190,42.5,147.5,0,95,0z"/>
+                                            <defs>
+                                                <linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="142.499" y1="0" x2="142.499" y2="190">
+                                                    <stop offset="5.000000e-02" style="stop-color:#007bc4; stop-opacity:0"/>
+                                                    <stop offset="0.95" style="stop-color:#007bc4"/>
+                                                </linearGradient>
+                                            </defs>
 
 
-		<script>
-            jQuery(document).ready(function ($) {
-                return;
-                $('.main-filter .form-item.with-autocomplete').click(function () {
-                    var choosen = $(this);
-                    var data_select = choosen.find('.autocomplete');
-                    var data_placeholder = choosen.find('.placeholder');
+                                        </g>
+                                    </g>
+                                </svg>
+					</div>
 
-                    if (!data_select.hasClass('autocomplete-open')) {
-                        $('.main-filter .form-item.with-autocomplete').removeClass('autocomplete-open');
-                        choosen.addClass('autocomplete-open');
-                    }
-                    else {
-                        choosen.removeClass('autocomplete-open');
-                    }
-
-                    $('li', data_select).click(function () {
-                        if (!$(this).hasClass('-active')) {
-                            $(this).addClass('-active');
-                            if ($(this).hasClass('select-all')) {
-                                $(this).parents('ul.list').find('li').addClass('-active');
-                            }
-                        }
-                        else {
-                            $(this).removeClass('-active');
-                            if ($(this).hasClass('select-all')) {
-                                $(this).parents('ul.list').find('li').removeClass('-active');
-                            }
-                        }
-                        if ($('li.-active', data_select).length > 0) {
-                            var selected = $('li.-active', data_select).length;
-                            // for example
-                            var selected_data = $('li.-active', data_select).text();
-                            choosen.addClass('filled');
-                            data_placeholder.text(selected_data);
-                        }
-                        else {
-                            choosen.removeClass('filled');
-                        }
-                        return false;
-                    });
-
-                    $(window).click(function (e) {
-                        var target = $(e.target);
-                        if (!target.is(data_select)) {
-                            choosen.removeClass('autocomplete-open');
-                        }
-                    });
-
-                    return false;
-                });
-            });
-		</script>
-
+					<button type="submit" class="filter__submit">
+						<span class="filter__submit__search blink_search_btn">ИСКАТЬ</span>
+					</button>
+				</div>
+			</div>
+		</form>
 	</div>
-	<br class="clear"/>
-</main>
-<!-- /.main -->
+</aside>
+<br class="clear" />
 
 
 <footer class="footer">
@@ -518,9 +1177,7 @@
 				</div>
 				<div class="col__middle footer__text">
 					<h6>О компании Thomas Cook Group</h6>
-					<p>Национальная туристическая компания «Интурист» входит в международную группу компаний Thomas Cook
-						Group. Томас Кук — первая в истории туристическая компания, развивающая групповой туризм с 1841
-						года</p>
+					<p>Национальная туристическая компания «Интурист» входит в международную группу компаний Thomas Cook Group. Томас Кук — первая в истории туристическая компания, развивающая групповой туризм с 1841 года</p>
 				</div>
 			</div>
 
@@ -529,9 +1186,7 @@
 			<div class="row -table footer__row">
 				<div class="col__left footer__copyright">
 					<p><b>© 2015 НТК «Интурист</b></p>
-					<p>Все права на материалы, находящиеся на сайте, охраняются в соответствии с законодательством РФ, в
-						том числе об авторском праве и смежных правах. Свидетельство о регистрации средства массовой
-						информации Эл № ФС 77-24388</p>
+					<p>Все права на материалы, находящиеся на сайте, охраняются в соответствии с законодательством РФ, в том числе об авторском праве и смежных правах. Свидетельство о регистрации средства массовой информации Эл № ФС 77-24388</p>
 				</div>
 				<div class="col__right footer__feedback">
 					<ul class="list -float navigation-feedback">
@@ -544,8 +1199,6 @@
 		</div>
 	</div>
 </footer>
-<!-- /.footer -->
-
 
 <a href="#body" class="js-scroll top">Наверх</a>
 <a href="#filter" class="js-scroll anchor">Поиск тура</a>
@@ -554,19 +1207,192 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <script src="static/js/libs.js"></script>
 
+<script src="static/js/libs/chart.js"></script>
+<script>
+    data = {
+        labels: ["23 мая", "24 мая", "25 мая"],
 
+        datasets: [
+            {
+                label: "USD",
+                strokeColor: "#828282",
+                pointColor: "#828282",
+                pointStrokeColor: "#828282",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "#828282",
+                data: [56, 55, 40]
+            },
+            {
+                label: "EUR",
+                strokeColor: "#5783a7",
+                pointColor: "#5783a7",
+                pointStrokeColor: "#5783a7",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "#5783a7",
+                data: [86, 27, 90]
+            }
+        ]
+    };
+
+    options = {
+        animation: false,
+        scaleShowGridLines: true,
+        scaleGridLineColor: "#e0e0e0",
+        scaleGridLineWidth: 1,
+        scaleShowHorizontalLines: true,
+        scaleShowVerticalLines: true,
+        bezierCurve: false,
+        bezierCurveTension: 0.4,
+        pointDot: true,
+        pointDotRadius: 4,
+        pointDotStrokeWidth: 2,
+        pointHitDetectionRadius: 20,
+        datasetStroke: true,
+        datasetStrokeWidth: 2,
+        datasetFill: false,
+        responsive: false,
+        maintainAspectRatio: false,
+        showTooltips: true,
+        tooltipFillColor: "#a7bccd",
+        tooltipFontSize: 12,
+        tooltipFontStyle: "normal",
+        tooltipFontColor: "#fff",
+        tooltipTitleFontSize: 12,
+        tooltipTitleFontStyle: "bold",
+        tooltipTitleFontColor: "#fff",
+        tooltipYPadding: 10,
+        tooltipXPadding: 10,
+        tooltipCornerRadius: 4,
+        multiTooltipTemplate: function (chartData) {
+            return chartData.datasetLabel + ": " + chartData.value;
+        }
+    };
+    if (typeof document.getElementById('chart') !== "undefined" && document.getElementById('chart')) {
+        ctx = document.getElementById('chart').getContext('2d');
+        myLineChart = new Chart(ctx).Line(data, options);
+    }
+
+    function resetCanvas() {
+        $('#chart').remove();
+        $('#chart-container').append('<canvas id="chart"><canvas>');
+        canvas = document.querySelector('#chart');
+        ctx = canvas.getContext('2d');
+        ctx.canvas.width = $('#chart-container').width();
+        ctx.canvas.height = $('#chart-container').height();
+        myLineChart = new Chart(ctx).Line(data, options);
+    };
+</script>
+<script src="static/js/waypoints.min.js"></script>
+<script>
+    var $head = $( 'header.ha-header' );
+    $( 'main.main' ).each( function(i) {
+        var $el = $( this ),
+            animClassDown = $el.data( 'animateDown' ),
+            animClassUp = $el.data( 'animateUp' );
+
+        $el.waypoint( function( direction ) {
+            if( direction === 'down' && animClassDown ) {
+                $('.main-filter').attr('class', 'main-filter hidden');
+            }
+            else if( direction === 'up' && animClassUp ){
+                $('.main-filter').attr('class', 'main-filter header-position');
+            }
+        }, { offset: '19%' } );
+        $el.waypoint( function( direction ) {
+            if( direction === 'down' && animClassDown ) {
+                $('.main-filter').attr('class', 'main-filter content-position');
+            }
+            else if( direction === 'up' && animClassUp ){
+                $('.main-filter').attr('class', 'main-filter hidden');
+            }
+        }, { offset: '18%' } );
+        $el.waypoint( function( direction ) {
+            var openclass = '';
+            if ($head.hasClass('open')) openclass = ' open';
+            if( direction === 'down' && animClassDown ) {
+                $head.attr('class', 'header ha-header ' + animClassDown + openclass);
+            }
+            else if( direction === 'up' && animClassUp ){
+                $head.attr('class', 'header ha-header ' + animClassUp + openclass);
+            }
+        }, { offset: '5%' } );
+    } );
+    $('.footer').waypoint( function( direction ) {
+        var doc_height = get_document_height();
+        if( direction === 'down') {
+            $('.left-sidebar').height(doc_height + $(window).height());
+            $('.main-filter').css("bottom", "440px");
+            $('.main-filter').css("position", "absolute");
+            $('.main-filter').css("top", "auto");
+        } else{
+            $('.left-sidebar').height('auto');
+            $('.main-filter').css("bottom", "");
+            $('.main-filter').css("top", "");
+            $('.main-filter').css("position", "");
+        }
+    }, { offset: '905px' } );
+
+    function get_document_height() {
+        var B = document.body,
+            H = document.documentElement,
+            height
+
+        if (typeof document.height !== 'undefined') {
+            height = document.height // For webkit browsers
+        } else {
+            height = Math.max( B.scrollHeight, B.offsetHeight,H.clientHeight, H.scrollHeight, H.offsetHeight );
+        }
+        return height;
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('a[href^="#main"]').click(function () {
+            elementClick = $(this).attr("href");
+            destination = $(elementClick).offset().top;
+            if($.browser.safari){
+                $('body').animate( { scrollTop: destination }, 1000 );
+            }else{
+                $('html').animate( { scrollTop: destination }, 1000 );
+            }
+            return false;
+        });
+
+        $('.form-type-to, .form-type-from').click(function () {
+
+            $('.quick-dropdown').each( function(i) {
+                if ($(this).height() > 0) {
+                    var max_height = 0;
+                    $(this).find('.quick-dropdown__list').each( function(i) {
+                        if ($(this).height() > 0 && $(this).height() > max_height) {
+                            max_height = $(this).height();
+                        }
+                    });
+
+                    $(this).find('.quick-dropdown__list').each( function(i) {
+                        $(this).height(max_height);
+                    });
+                }
+            });
+
+        });
+
+        $("#search-form-top").click(function() {
+            $(this).focus();
+        });
+        $("#search-form-top").blur(function(){
+            $(this).hide();
+        });
+    });
+</script>
+
+<script src="static/js/datepick.js"></script>
 <script src="static/js/moonkake.js"></script>
-<style type="text/css">
+<script src="static/js/libs/jhints.js"></script>
+<script type="text/javascript"></script>
 
-	.st0 {
-		fill: #ffffff;
-	}
-
-	.st1 {
-		fill: url(#SVGID_1_);
-	}
-</style>
 <script src="./bundle/main.js"></script>
+
 
 </body>
 
