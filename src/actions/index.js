@@ -7,6 +7,7 @@ export const FETCH_REGIONS = 'FETCH_REGIONS';
 export const FETCH_HOTELS = 'FETCH_HOTELS';
 export const FETCH_HOTELS_BY_REGION = 'FETCH_HOTELS_BY_REGION';
 export const FETCH_HOTELS_BY_COUNTRY = 'FETCH_HOTELS_BY_COUNTRY';
+export const FETCH_ALLOWED_DATES = 'FETCH_ALLOWED_DATES';
 
 export const SET_COUNTRY = 'SET_COUNTRY';
 export const SET_REGION = 'SET_REGION';
@@ -20,9 +21,40 @@ export const SET_TOUR_DATE = 'SET_TOUR_DATE';
 
 export const SET_FORM_ERRORS = 'SET_FORM_ERRORS';
 
+export function fetchAllowedDates(opt){
+
+    console.log('fetchAllowedDates in');
+
+    // todo - подготовить pack type
+    if(0 && opt.selectedCity && opt.inputCountry && Object.keys(packType).length){
+        const request = axios({
+            method: 'post',
+            url: '/local/ajax/get-allowed-dates.php',
+            responseType: 'json',
+            data: {
+                selectedCity: opt.selectedCity,
+                inputCountry: opt.inputCountry,
+                packType: [], // todo!!!
+                WhatGet: 'getAllowedDates',
+            }
+        });
+
+        return {
+            type: FETCH_ALLOWED_DATES,
+            payload: request
+        }
+
+    }else{
+        return {
+            type: FETCH_ALLOWED_DATES,
+            payload: ["2017-03-15","2017-03-16","2017-03-17","2017-03-22"],
+        }
+    }
+
+}
 
 export function setFormErrors(errors){
-    
+
     return {
         type: SET_FORM_ERRORS,
         payload: errors,
@@ -39,7 +71,7 @@ export function setTourDate(tourDate){
 export function setTourType(tourType){
     return {
         type: SET_TOUR_TYPE,
-        payload: tourType,
+        payload: tourType, 
     }
 }
 

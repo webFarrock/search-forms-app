@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import {naturalSort} from '../tools/index';
 import {isMatchUserInput} from '../tools/index';
 import {
+    fetchAllowedDates,
     fetchCountries,
     fetchRegions,
     setCountry,
@@ -12,14 +13,9 @@ import {
 } from '../actions/index';
 import _ from 'lodash';
 
-
-import fakeCountriesList from '../../fakedata/destination_country_list.json';
-import fakeRegionsList from '../../fakedata/destination_region_list.json';
-import fakeHotelsList from '../../fakedata/ru_hotels.json';
-//fakeHotelsList  = JSON.parse(fakeHotelsList);
-
-
 class ToBlock extends Component{
+    
+
 
     constructor(props){
         super(props);
@@ -29,6 +25,13 @@ class ToBlock extends Component{
             term: '',
             userInputStarted: false,
         }
+
+        let RuInturistStore = window.RuInturistStore || {}
+        RuInturistStore.destination = RuInturistStore.destination || {};
+
+        this.countryList = RuInturistStore.destination.COUNTRY || [];
+        this.regionList = RuInturistStore.destination.REGION || [];
+        this.hotelList = RuInturistStore.destination.HOTEL || [];
 
 
         this.onKeyUpInput = this.onKeyUpInput.bind(this);
@@ -54,6 +57,12 @@ class ToBlock extends Component{
     setCountry(country){
         this.setState({term: ''});
         this.props.setCountry(country);
+
+        this.props.fetchAllowedDates({
+            selectedCity: this.props.selectedStartPoint.id,
+            selectedCountry: country.id,
+            packType: this.props.tourTypes,
+        });
     }
 
     setRegion(region){
@@ -90,7 +99,7 @@ class ToBlock extends Component{
 
     renderPopular(){
 
-        let popularCountries = fakeCountriesList.filter(i => i.popular);
+        let popularCountries = this.countryList.filter(i => i.popular);
 
         if(this.state.term && this.state.userInputStarted){
             popularCountries = popularCountries.filter(country => isMatchUserInput(this.state.term, country));
@@ -120,7 +129,7 @@ class ToBlock extends Component{
     }
 
     renderCountries(){
-        let countries  = _.sortBy(fakeCountriesList, (o) => o.value);
+        let countries  = _.sortBy(this.countryList, (o) => o.value);
 
         if(this.state.term && this.state.userInputStarted){
             countries = countries.filter(country => isMatchUserInput(this.state.term, country));
@@ -147,7 +156,7 @@ class ToBlock extends Component{
     }
 
     renderCities(){
-        let cities = fakeRegionsList.filter(city => +city.parent === +this.props.selectedCountry.id)
+        let cities = this.regionList.filter(city => +city.parent === +this.props.selectedCountry.id)
 
         if(this.state.term && this.state.userInputStarted){
             cities = cities.filter(city => isMatchUserInput(this.state.term, city));
@@ -208,10 +217,8 @@ class ToBlock extends Component{
     }
 
     renderHotels(){
-        
-        console.log('this.props.selectedHotels: ', this.props.selectedHotels);
 
-        let hotels = fakeHotelsList;
+        let hotels = this.hotelList;
         
         hotels = hotels.filter(hotel => +hotel.countryId === +this.props.selectedCountry.id);
 
@@ -225,8 +232,8 @@ class ToBlock extends Component{
             hotels = hotels.filter(hotel => isMatchUserInput(this.state.term, hotel));
         }
 
-        const obCountriesById = _.mapKeys(fakeCountriesList, 'id');
-        const obRegionsById = _.mapKeys(fakeRegionsList, 'id');
+        const obCountriesById = _.mapKeys(this.countryList, 'id');
+        const obRegionsById = _.mapKeys(this.regionList, 'id');
 
 
         let selectAllCls = ['list__item', 'select-all'];
@@ -386,6 +393,7 @@ class ToBlock extends Component{
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
+        fetchAllowedDates,
         fetchCountries,
         fetchRegions,
         setCountry,
@@ -401,6 +409,7 @@ function mapStateToProps(state) {
         selectedRegions: state.selectedRegions,
         selectedHotels: state.selectedHotels,
         selectedStartPoint: state.selectedStartPoint,
+        tourTypes: state.tourTypes,
         formErrors: state.formErrors,
     }
 }

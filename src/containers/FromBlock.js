@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 //import StartPointsListAutocomplete from '../components/StartPointsListAutocomplete';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchStartPoints, setStartPoint } from '../actions/index';
+import { fetchAllowedDates, setStartPoint } from '../actions/index';
 import {isMatchUserInput} from '../tools/index';
-import fakeStartPointsList from '../../fakedata/start_points_list.json';
+
 
 
 class FromBlock extends Component{
@@ -19,8 +19,9 @@ class FromBlock extends Component{
         }
 
         this.placeholder = 'Укажите город отправления';
+        let RuInturistStore = window.RuInturistStore || {}
 
-        this.startPoints = fakeStartPointsList;
+        this.startPoints = RuInturistStore.startPoint || [];
 
         this.onFocusInput = this.onFocusInput.bind(this);
         this.onKeyUpInput = this.onKeyUpInput.bind(this);
@@ -70,6 +71,16 @@ class FromBlock extends Component{
             this.props.setStartPoint(startPoint)
         }
 
+    }
+
+    setStartPoint(startPoint){
+        this.props.setStartPoint(startPoint);
+
+        this.props.fetchAllowedDates({
+            selectedCity: startPoint.id,
+            selectedCountry: this.props.selectedCountry.id,
+            packType: this.props.tourTypes,
+        });
     }
 
     onKeyUpInput(){
@@ -203,13 +214,14 @@ class FromBlock extends Component{
 
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({setStartPoint}, dispatch);
+    return bindActionCreators({fetchAllowedDates, setStartPoint}, dispatch);
 }
 
 function mapStateToProps(state) {
     return {
         selectedStartPoint: state.selectedStartPoint,
         formErrors: state.formErrors,
+        tourTypes: state.tourTypes,
     };
 }
 

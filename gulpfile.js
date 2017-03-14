@@ -6,15 +6,23 @@ var ftp = require('gulp-ftp');
 var privateFtp = require('./private/ftp');
 
 gulp.task('watch', function () {
-    gulp.watch('./bundle/**', ['ftp']);
+    gulp.watch('bundle/**', ['ftp']);
 });
 
 gulp.task('ftp', function () {
    // console.log('privateFtp: ', privateFtp);
-    privateFtp.remotePath += 'bundle/';
 
-    return gulp.src('./bundle/**')
-        .pipe(ftp(privateFtp))
+
+    var ftpParams = Object.assign({}, privateFtp);
+
+
+    ftpParams.remotePath += 'bundle/';
+
+    console.log('privateFtp: ', privateFtp);
+    console.log('ftpParams: ', ftpParams);
+
+    return gulp.src('bundle/**')
+        .pipe(ftp(ftpParams))
         // you need to have some kind of stream after gulp-ftp to make sure it's flushed
         // this can be a gulp plugin, gulp.dest, or any kind of stream
         // here we use a passthrough stream

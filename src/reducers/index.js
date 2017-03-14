@@ -19,6 +19,8 @@ import SetTourDateReducer from './reducer_tour_date';
 
 import SetFormErrorsReducer from './reducer_form_errors';
 
+import AllowedDatesReducer from './reducer_allowed_dates';
+
 const rootReducer = combineReducers({
 
     //startPointsList: StartPointsReducer,
@@ -37,6 +39,8 @@ const rootReducer = combineReducers({
     duration: SetDurationReducer,
     tourTypes: SetTourTypeReducer,
     tourDate: SetTourDateReducer,
+
+    allowedDates: AllowedDatesReducer,
 
     formErrors: SetFormErrorsReducer,
 

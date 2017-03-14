@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {setTourType} from '../actions/index';
+import {fetchAllowedDates, setTourType} from '../actions/index';
 import tourTypesList from '../data/tourTypesList.json';
 
 class TourType extends Component{
@@ -29,6 +29,16 @@ class TourType extends Component{
     onFocusInput(){
         this.setState({
             acShow: true,
+        });
+    }
+
+    setTourType(tourType){
+        this.props.setTourType(tourType);
+
+        this.props.fetchAllowedDates({
+            selectedCity: this.props.selectedStartPoint.id,
+            selectedCountry: this.props.selectedCountry.id,
+            packType: this.props.tourTypes,
         });
     }
 
@@ -70,7 +80,7 @@ class TourType extends Component{
 
                             <ul className="list quick-dropdown__list">
                                 <li key="all"
-                                    onClick={() => this.props.setTourType({})}
+                                    onClick={() => this.setTourType({})}
                                     className={selectAllCls.join(' ')}>все <i></i></li>
                                 {tourTypesList.map(tourType => {
 
@@ -84,7 +94,7 @@ class TourType extends Component{
                                         <li
                                             key={tourType.id}
                                             className={cls}
-                                            onClick={() => this.props.setTourType(tourType)}
+                                            onClick={() => this.setTourType(tourType)}
                                             >{tourType.value}<i></i>
                                         </li>
                                     );
@@ -103,11 +113,13 @@ class TourType extends Component{
 
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({setTourType}, dispatch);
+    return bindActionCreators({fetchAllowedDates, setTourType}, dispatch);
 }
 
 function mapStateToProps(state){
     return {
+        selectedStartPoint: state.selectedStartPoint,
+        selectedCountry: state.selectedCountry,
         tourTypes: state.tourTypes,
     }
 }
