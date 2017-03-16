@@ -19,11 +19,30 @@ class TourType extends Component{
 
         $('body').on('click', (e) => {
             if(!$(e.target).parents('.form-type-type').length){
-                this.setState({
-                    acShow: false,
-                });
+                if(this.state.acShow){
+                    this.setState({
+                        acShow: false,
+                    });
+                }
             }
         });
+
+        this.initData();
+
+    }
+
+    initData(){
+        if(RuInturistStore && RuInturistStore.initForm && RuInturistStore.initForm.pack_type){
+
+            let pack_type = RuInturistStore.initForm.pack_type
+
+            if(pack_type instanceof Array){
+
+                pack_type.forEach((pack_id) => {
+                    this.props.setTourType(tourTypesList.filter((i) => i.id == pack_id)[0]);
+                });
+            }
+        }
     }
 
     onFocusInput(){
@@ -44,10 +63,16 @@ class TourType extends Component{
 
     render(){
         
+        console.log('render TourType.js');
+        
         let arFormItemClass = ['form-item', 'form-type-type', 'with-autocomplete'];
 
         if(this.state.acShow){
             arFormItemClass.push('autocomplete-open')
+        }
+
+        if(this.props.wpCls){
+            arFormItemClass.push(this.props.wpCls)
         }
 
         let selectAllCls = ['list__item', 'select-all'];
@@ -55,10 +80,25 @@ class TourType extends Component{
         if(!Object.keys(this.props.tourTypes).length){
             selectAllCls.push('-active');
         }
+        
+        let placeholder = null;
 
 
+        if(Object.keys(this.props.tourTypes).length == Object.keys(tourTypesList).length){
+            placeholder = 'все';
+        }else{
+
+            placeholder = [];
+
+            for(let key in this.props.tourTypes){
+                placeholder.push(this.props.tourTypes[key].value);
+            }
+
+            placeholder = placeholder.join(', ') || 'все';
+        }
+        
         return(
-            <div className={arFormItemClass.join(' ')}>
+            <div className={arFormItemClass.join(' ')} title={placeholder}>
 
                 <span className="icon-font icon-arrow-right"></span>
                 <label>
@@ -67,10 +107,11 @@ class TourType extends Component{
                     </div>
                 </label>
                 <input type="text"
-                       placeholder="все"
-                       value={this.props.tourTypes.value || 'все'}
+                       placeholder={placeholder}
+                       value={placeholder}
                        onFocus={this.onFocusInput}
                        className="form-text"
+                       readOnly
                 />
 
                 <div className="autocomplete">

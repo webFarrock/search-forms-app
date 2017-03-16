@@ -10,16 +10,9 @@ gulp.task('watch', function () {
 });
 
 gulp.task('ftp', function () {
-   // console.log('privateFtp: ', privateFtp);
-
 
     var ftpParams = Object.assign({}, privateFtp);
-
-
     ftpParams.remotePath += 'bundle/';
-
-    console.log('privateFtp: ', privateFtp);
-    console.log('ftpParams: ', ftpParams);
 
     return gulp.src('bundle/**')
         .pipe(ftp(ftpParams))

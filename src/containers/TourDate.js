@@ -18,21 +18,17 @@ class TourDate extends Component{
             allowedDates: [],
         }
 
+        if(RuInturistStore && RuInturistStore.initForm && RuInturistStore.initForm.dateFrom){
+            this.state.tourDate = RuInturistStore.initForm.dateFrom;
+        }else{
+            this.state.tourDate = this.tomorrow;
+        }
 
         this.onFocusInput = this.onFocusInput.bind(this);
     }
 
     componentDidMount(){
         this.dp = $('.js-datepicker-from'); 
-        /*
-        
-        $('body').on('click', (e) => {
-            if(!$(e.target).parents('.form-type-type').length){
-                this.setState({
-                    acShow: false,
-                });
-            }
-        });*/
 
         this.dp.datepick({
             showAnim: 'fade',
@@ -49,6 +45,7 @@ class TourDate extends Component{
             },
 
         });
+
 
     }
 
@@ -67,8 +64,14 @@ class TourDate extends Component{
 
     render(){
 
+        let arDateClass = ['form-item', 'form-type-out'];
+
+        if(this.props.wpCls){
+            arDateClass.push(this.props.wpCls);
+        }
+
         return(
-            <div className="form-item form-type-out loading">
+            <div className={arDateClass.join(' ')}>
                 <span className="icon-font icon-calendar">
                     <span className="path1"></span><span className="path2"></span>
                 </span>

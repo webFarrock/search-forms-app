@@ -1,9 +1,12 @@
+//var webpackUglifyJsPlugin = require('webpack-uglify-js-plugin');
+var webpack = require("webpack");
 const NODE_ENV = process.env.NODE_ENV || 'development';
+
 
 module.exports = {
     entry: {
         main: './src/main.js',
-        //inresult: './src/inresult.js',
+        inresult: './src/inresult.js',
     },
     output: {
         path: __dirname + '/bundle',
@@ -11,6 +14,16 @@ module.exports = {
         publicPath: "/bundle/",
     },
     watch: NODE_ENV == 'development',
+    plugins: [
+        /*
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            },
+            sourceMap: false,
+        })
+        */
+    ],
     module: {
         loaders: [{
             exclude: /node_modules/,
@@ -26,7 +39,8 @@ module.exports = {
             loader: 'json'
         },]
     },
-    devtool: NODE_ENV == 'development' ? "cheap-inline-module-source-map" : null,
+    //devtool: NODE_ENV == 'development' ? "cheap-inline-module-source-map" : null,
+    devtool: null,
     resolve: {
         extensions: ['', '.js']
     },

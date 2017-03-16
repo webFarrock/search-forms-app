@@ -58,13 +58,18 @@ class Duration extends Component {
 
         const value = `${day } ${this.getDayWord(day)} / ${night} ${this.getNightWord(night)}`;
 
+        let arDurationClass = ['form-item', 'form-type-duration'];
+
+        if(this.props.wpCls){
+            arDurationClass.push(this.props.wpCls);
+        }
+
         return (
-            <div className="form-item form-type-duration">
+            <div className={arDurationClass.join(' ')}>
                 <div className="input__min icon-font" onClick={this.dec}><span className="icon-reduce"></span></div>
                 <div className="input__max icon-font" onClick={this.inc}><span className="icon-add"></span></div>
                 <div className="input__field">
                     <input type="text" ref="duration" value={value} readOnly/>
-                    {/*<input type="hidden" name="duration" value={duration}/>*/}
                 </div>
             </div>
         );

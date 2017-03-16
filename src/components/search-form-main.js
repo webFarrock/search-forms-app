@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {setFormErrors} from '../actions/index';
+import {prepareUrl} from '../tools/index';
 
 
-import CircleSpinning from './CircleSpinning';
+import FormSubmitBtn from './FormSubmitBtn';
 import FromBlock from '../containers/FromBlock';
 import ToBlock from '../containers/ToBlock';
 import Adults from '../containers/Adults';
@@ -12,7 +13,6 @@ import Kids from '../containers/Kids';
 import Duration from '../containers/Duration';
 import TourType from '../containers/TourType';
 import TourDate from '../containers/TourDate';
-
 
 
 class SearchFormMain extends Component {
@@ -38,25 +38,36 @@ class SearchFormMain extends Component {
     onFormSubmit(e){
         e.preventDefault();
 
-        console.log('this.props: ', this.props);
+        console.log(' onFormSubmit ');
 
-        this.chkForm();
-    }
+        if(this.chkForm()){
 
-    prepareUrl(){
+            console.log('YES chkForm');
+            prepareUrl(this.props);
+            document.location.href = `/tour-search/?${prepareUrl(this.props)}`;
+
+        }else{
+            console.log('NO chkForm');
+        }
 
     }
 
     chkForm(){
+
         let errors = {};
+
         if(!this.props.selectedStartPoint.id){
             errors['notSelectedStartPoint'] = true;
         }
+
         if(!this.props.selectedCountry.id){
             errors['notSelectedCountry'] = true;
         }
         
         this.props.setFormErrors(errors);
+
+        return !Object.keys(errors).length;
+
     }
 
     render() {
@@ -77,16 +88,8 @@ class SearchFormMain extends Component {
                     </div>
 
                 </div>
-                <div className="form-actions">
-                    <div className="filter__circle circle__container">
 
-                        <CircleSpinning />
-
-                        <button type="submit" className="filter__submit">
-                            <span className="filter__submit__search blink_search_btn">ИСКАТЬ</span>
-                        </button>
-                    </div>
-                </div>
+                <FormSubmitBtn />
             </form>
         );
     }

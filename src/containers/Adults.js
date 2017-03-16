@@ -10,11 +10,30 @@ class Adults extends Component {
 
         this.inc = this.inc.bind(this);
         this.dec = this.dec.bind(this);
+
     }
 
+    componentDidMount(){
+        this.initData();
+    }
+
+    initData(){
+        if(RuInturistStore.initForm && RuInturistStore.initForm.adults){
+            const initValue = RuInturistStore.initForm.adults;
+
+            const max = +this.refs.adults.getAttribute('max');
+            const min = +this.refs.adults.getAttribute('min');
+
+            if(initValue <= max && initValue >= min){
+                this.props.setAdults(initValue);
+            }
+        }
+    }
+
+
     inc(){
-        let max = +this.refs.adults.getAttribute('max');
-        let value = this.refs.adults.value;
+        const max = +this.refs.adults.getAttribute('max');
+        const value = this.refs.adults.value;
 
         if(value < max){
             this.props.setAdults(this.props.adults + 1);
@@ -25,8 +44,8 @@ class Adults extends Component {
     }
 
     dec(){
-        let min = +this.refs.adults.getAttribute('min');
-        let value = this.refs.adults.value;
+        const min = +this.refs.adults.getAttribute('min');
+        const value = this.refs.adults.value;
 
         if(value > min){
             this.props.setAdults(this.props.adults - 1);
@@ -38,8 +57,14 @@ class Adults extends Component {
 
     render() {
 
+        let arAdultClass = ['col__left row input input-count input-adults'];
+        if(this.props.wpCls){
+            arAdultClass.push(this.props.wpCls);
+        }
+
         return (
-            <div className="col__left row input input-count input-adults">
+
+            <div className={arAdultClass.join(' ')}>
                 <div className="form-item form-type-adults">
 
                     <div className="input__min" onClick={this.dec}>
@@ -47,7 +72,8 @@ class Adults extends Component {
                     </div>
 
                     <div className="input__label">
-                        Взрослые <span className="icon-font icon-adult"></span>
+                        {!this.props.hideLabel ? 'Взрослые' : ''}
+                        <span className="icon-font icon-adult"></span>
                     </div>
 
                     <div className="input__field">

@@ -1,15 +1,13 @@
 import React, {Component} from 'react';
-//import StartPointsListAutocomplete from '../components/StartPointsListAutocomplete';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchAllowedDates, setStartPoint } from '../actions/index';
 import {isMatchUserInput} from '../tools/index';
 
-
-
 class FromBlock extends Component{
 
     constructor(props){
+
         super(props);
 
         this.state = {
@@ -28,6 +26,7 @@ class FromBlock extends Component{
         this.onStartPointItemClick = this.onStartPointItemClick.bind(this);
         this.onChangeInput = this.onChangeInput.bind(this);
         this.onFieldIconClick = this.onFieldIconClick.bind(this);
+
     }
 
 
@@ -36,20 +35,38 @@ class FromBlock extends Component{
         $('body').on('click', (e) => {
             if(!$(e.target).parents('.form-type-from').length){
 
-                this.setState({
-                    acShow: false,
-                    userInputStarted: false,
-                });
+                if(this.state.acShow){
+                    this.setState({
+                        acShow: false,
+                        userInputStarted: false,
+                    });
 
-                if(this.props.selectedStartPoint.value){
-                   this.setState({
-                       term: this.props.selectedStartPoint.value,
-                   });
+                    if(this.props.selectedStartPoint.value){
+                       this.setState({
+                           term: this.props.selectedStartPoint.value,
+                       });
+                    }
                 }
 
             }
         });
 
+        this.initData();
+
+    }
+
+    initData(){
+        if(RuInturistStore && RuInturistStore.initForm && RuInturistStore.initForm.city){
+
+            let cityId = +RuInturistStore.initForm.city
+
+            if(cityId){
+                let obCity = this.startPoints.filter(i => i.id == cityId)[0] || {};
+                this.props.setStartPoint(obCity);
+                this.setState({term: obCity.value});
+            }
+
+        }
     }
 
     onFocusInput(){
@@ -122,6 +139,8 @@ class FromBlock extends Component{
     }
 
     render(){
+        
+        console.log('render FromBlock.js');
 
         let arFormItemClass = ['form-item', 'form-type-from', 'with-autocomplete'];
 
@@ -131,6 +150,10 @@ class FromBlock extends Component{
 
         if(this.props.selectedStartPoint.id){
             arFormItemClass.push('filled');
+        }
+
+        if(this.props.wpCls){
+            arFormItemClass.push(this.props.wpCls);
         }
 
         if(this.props.formErrors.notSelectedStartPoint){
@@ -147,7 +170,7 @@ class FromBlock extends Component{
         startPoints = _.sortBy(startPoints, (city) => [city.popular_weight, city.value ]);
 
         let inputValue = this.state.term;
-
+        
         if(!inputValue && !this.state.acShow){
             inputValue = this.placeholder
         }

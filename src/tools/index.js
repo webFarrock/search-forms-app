@@ -1,3 +1,5 @@
+import queryString from 'query-string';
+
 export function isMatchUserInput(term = '', obj){
     term = term.toLowerCase();
 
@@ -125,4 +127,34 @@ export function naturalSort(array, extractor) {
             return ch.charCodeAt(0);
         };
     };
+}
+
+export function prepareUrl(opt){
+    console.log('in prepareUrl');
+    console.log('opt: ', opt);
+
+    let obUrl = {
+        'city': opt.selectedStartPoint.id,
+        'country': opt.selectedCountry.id,
+        'region': Object.keys(opt.selectedRegions).join(','),
+        'hotel': Object.keys(opt.selectedHotels).join(','),
+        'dateFrom': opt.tourDate,
+        'duration': opt.duration,
+        'adults': opt.adults,
+        'childs': opt.kids.join(','),
+        //'childAges': '',
+        'date_range': '',// todo
+        'pack_type': Object.keys(opt.tourTypes).join(','),
+    }
+
+    for(let key  in obUrl ){
+        if(!obUrl[key]) delete obUrl[key];
+    }
+
+    console.log('obUrl: ', obUrl);
+    console.log('Url: ', queryString.stringify(obUrl, {encode: false}));
+    console.log('===================================');
+
+
+    return queryString.stringify(obUrl);
 }

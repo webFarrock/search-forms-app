@@ -18,9 +18,9 @@ class Kids extends Component {
         this.kidMaxAge = 16;
         this.kidMinAge = 0;
 
-        //this.onClickRemoveKid = this.onClickRemoveKid.bind(this);
         this.onClickAddKid = this.onClickAddKid.bind(this);
         this.onClickInputKids = this.onClickInputKids.bind(this);
+
     }
 
 
@@ -34,17 +34,32 @@ class Kids extends Component {
         $('body').on('click', (e) => {
             const $target = $(e.target);
             if (!$target.parents('.input-kids').length && !$target.hasClass('.input-kids')) {
-                this.setState({
-                    acShow: false,
-                });
+                if(this.state.acShow){
+                    this.setState({
+                        acShow: false,
+                    });
+                }
             }
         });
+
+        this.initData();
+
+    }
+
+    initData(){
+        if(RuInturistStore && RuInturistStore.initForm && RuInturistStore.initForm.childs){
+
+            let childs = RuInturistStore.initForm.childs
+            if(childs instanceof Array){
+                this.props.setKids(childs);
+            }
+        }
     }
 
     renderKid(age, num) {
 
         return (
-            <div className="wrapper-kid">
+            <div className="wrapper-kid" key={num}>
                 <div className="input__label">
                     <span className="icon-remove" onClick={() => {this.onClickRemoveKid(num)}}></span>
                     Ребенок&nbsp;{num + 1 }
@@ -53,7 +68,7 @@ class Kids extends Component {
                     <div className="input__min" onClick={() => this.dec(age, num)}><span className="icon-reduce"></span></div>
                     <div className="input__max" onClick={() => this.inc(age, num)}><span className="icon-add"></span></div>
                     <div className="input__field">
-                        <input type="text" name="Childs" value={age} min={this.kidMinAge} max={this.kidMaxAge}/>
+                        <input type="text" name="Childs" value={age} min={this.kidMinAge} max={this.kidMaxAge} readOnly/>
                     </div>
                 </div>
             </div>
@@ -103,10 +118,16 @@ class Kids extends Component {
 
 
     render() {
+        
+        console.log('render Kids.js');
 
         const kidsNum = this.props.kidsLengthInit || this.props.kids.length;
         
         let arInputKidsClass = ['col__left', 'row', 'input',  'input-count', 'input-kids'];
+
+        if(this.props.wpCls){
+            arInputKidsClass.push(this.props.wpCls);
+        }
 
         if (this.state.acShow) {
             arInputKidsClass.push('autocomplete-open');
@@ -118,9 +139,11 @@ class Kids extends Component {
             >
                 <div className="form-item form-type-kids with-autocomplete">
                     <span className="icon-font icon-arrow-right"></span>
-                    <label><span>Дети <span className="icon-font icon-children"></span></span></label>
+                    <label><span>
+                        {!this.props.hideLabel ? 'Дети' : ''}
+                        <span className="icon-font icon-children"></span></span></label>
                     <div className="input__field">
-                        <input type="text" placeholder="2" value={kidsNum} className="form-text"/>
+                        <input type="text" placeholder="2" value={kidsNum} className="form-text" readOnly/>
                     </div>
                     <div className="autocomplete">
                         <div className="quick-dropdown">
