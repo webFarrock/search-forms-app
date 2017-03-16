@@ -41,17 +41,60 @@ class ToBlock extends Component{
 
     }
 
+    initData(){
+        if(RuInturistStore && RuInturistStore.initForm){
+
+            const countryId = +RuInturistStore.initForm.country;
+            const arRegion = RuInturistStore.initForm.region;
+            const arHotel = RuInturistStore.initForm.hotel;
+
+            if(countryId){
+                const obCountry = this.countryList.filter(i => i.id == countryId)[0] || {}
+                this.setCountry(obCountry);
+            }
+
+            if (arRegion instanceof Array && arRegion.length){
+                const obRegionsById = _.mapKeys(this.regionList, 'id');
+
+                arRegion.forEach(regionId => {
+                    const obRegion = obRegionsById[regionId];
+                    if(obRegion){
+                        this.setRegion(obRegion);
+                    }
+                });
+
+            }
+
+            if (arHotel instanceof Array && arHotel.length){
+                const obHotelsById = _.mapKeys(this.hotelList, 'id');
+
+                arHotel.forEach(hotelId => {
+                    const obHotel = obHotelsById[hotelId];
+                    if(obHotel){
+                        this.setHotel(obHotel);
+                    }
+                })
+
+            }
+
+        }
+    }
+
     componentDidMount(){
 
         $('body').on('click', (e) => {
             if(!$(e.target).parents('.form-type-to').length){
-                this.setState({
-                    acShow: false,
-                    term: '',
-                    userInputStarted: false,
-                });
+                if(this.state.acShow){
+                    this.setState({
+                        acShow: false,
+                        term: '',
+                        userInputStarted: false,
+                    });
+                }
             }
         });
+
+        this.initData();
     }
 
     setCountry(country){
@@ -222,11 +265,15 @@ class ToBlock extends Component{
         
         hotels = hotels.filter(hotel => +hotel.countryId === +this.props.selectedCountry.id);
 
-        if(this.props.selectedRegions.id){
-            const rid = +this.props.selectedRegions.id;
-            hotels = hotels.filter(hotel => +hotel.parent === rid || +hotel.parent2 === rid);
-        }
+        if(Object.keys(this.props.selectedRegions).length){
+            let rIDs = {};
+            for(let key in this.props.selectedRegions){
+                rIDs[this.props.selectedRegions[key].id] = true;
+            }
 
+            hotels = hotels.filter(hotel => rIDs[hotel.parent]|| rIDs[hotel.parent2]);
+
+        }
 
         if(this.state.term && this.state.userInputStarted){
             hotels = hotels.filter(hotel => isMatchUserInput(this.state.term, hotel));
@@ -287,11 +334,17 @@ class ToBlock extends Component{
     }
 
     render(){
+        
+        console.log('render ToBlock.js');
 
         let arFormItemClass = ['form-item', 'form-type-to', 'with-autocomplete'];
 
         if(this.state.acShow){
             arFormItemClass.push('autocomplete-open');
+        }
+
+        if(this.props.wpCls){
+            arFormItemClass.push(this.props.wpCls);
         }
 
         if(this.props.selectedCountry.id){
@@ -349,13 +402,13 @@ class ToBlock extends Component{
                 <label>
                     <div className="wrapper">
                         <span className="title">Куда:</span>
-                        {this.state.acShow ? '' : placeholderFake}
+                        {/*this.state.acShow ? '' : placeholderFake*/}
                     </div>
                 </label>
 
                 <input type="text"
                        ref="input"
-                       value={this.state.term}
+                       value={this.state.acShow ? this.state.term : title}
                        onChange={(e) => this.onChangeInput(e)}
                        onFocus={this.onFocusInput}
                        onKeyUp={this.onKeyUpInput}
