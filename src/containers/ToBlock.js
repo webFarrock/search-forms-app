@@ -115,29 +115,19 @@ class ToBlock extends Component{
 
         if(region.id && this.state.acShow){
 
-
-            console.log('selectedRegions: ', this.props.selectedRegions);
-
             let deletedRegion = Object.values(this.props.selectedRegions).find(i => +i.id === +region.id);
 
             if(deletedRegion && deletedRegion.id){
                 // region in this.props.selectedRegion -> it will be deleted
                 // so we also need to delete it hotels from this.props.selectedHotels
 
-                console.log('this.props.selectedHotels: ', this.props.selectedHotels);
-
                 for(let key in this.props.selectedHotels){
                     if(+this.props.selectedHotels[key].parent === +region.id){
                         this.setHotel(this.props.selectedHotels[key]);
                     }
                 }
-
             }
-
         }
-
-        
-        // todo - срезать отели не относящиеся к выбранным регионам
 
     }
 

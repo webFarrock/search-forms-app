@@ -28,6 +28,9 @@ class TourDate extends Component{
     }
 
     componentDidMount(){
+
+        this.props.setTourDate(this.state.tourDate);
+
         this.dp = $('.js-datepicker-from'); 
 
         this.dp.datepick({
@@ -39,9 +42,7 @@ class TourDate extends Component{
             minDate: this.state.minDate,
 
             onSelect:  (date) => {
-                this.setState({
-                    tourDate: moment(date.toString()).format('DD.MM.YYYY'),
-                });
+                this.props.setTourDate(moment(date.toString()).format('DD.MM.YYYY'));
             },
 
         });
@@ -52,7 +53,6 @@ class TourDate extends Component{
     onFocusInput(){
         this.setState({
             acShow: true,
-            //date:
         });
     }
 
@@ -83,7 +83,7 @@ class TourDate extends Component{
                 <input type="text"
                        name="dateFrom"
                        placeholder="17 декабря 2017"
-                       value={this.state.tourDate}
+                       value={this.props.tourDate}
                        className="js-datepicker-from input__date form-text hidden" readOnly
                 />
             </div>

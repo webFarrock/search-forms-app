@@ -130,8 +130,6 @@ export function naturalSort(array, extractor) {
 }
 
 export function prepareUrl(opt){
-    console.log('in prepareUrl');
-    console.log('opt: ', opt);
 
     let obUrl = {
         'city': opt.selectedStartPoint.id,
@@ -142,19 +140,14 @@ export function prepareUrl(opt){
         'duration': opt.duration,
         'adults': opt.adults,
         'childs': opt.kids.join(','),
-        //'childAges': '',
         'date_range': '',// todo
         'pack_type': Object.keys(opt.tourTypes).join(','),
     }
 
     for(let key  in obUrl ){
         if(!obUrl[key]) delete obUrl[key];
-    }
-
-    console.log('obUrl: ', obUrl);
-    console.log('Url: ', queryString.stringify(obUrl, {encode: false}));
-    console.log('===================================');
+    } 
 
 
-    return queryString.stringify(obUrl);
+    return queryString.stringify(obUrl, {encode: false});
 }
