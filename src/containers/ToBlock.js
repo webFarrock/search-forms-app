@@ -371,26 +371,12 @@ class ToBlock extends Component{
             arPlaceHolderDestination.push(_.values(this.props.selectedHotels).map(i => i.value).join(', '));
         }
 
-        let placeholder = '(страна/город/курорт или отель)';
-        let placeholderFake = null;
         let title = null;
 
-
         if(arPlaceHolderDestination.length){
-            placeholderFake = arPlaceHolderDestination.join(' / ');
+            title = arPlaceHolderDestination.join(' / ');
         }else{
-           placeholderFake = placeholder;
-        }
-
-        if(placeholderFake){
-            title = placeholderFake;
-            placeholderFake = <span className="placeholder" onClick={() => this.refs.input.focus()}>{placeholderFake}</span>;
-        }
-
-        let value = this.state.term;
-
-        if(!this.state.acShow){
-            value = placeholderFake;
+            title = '(страна/город/курорт или отель)';
         }
 
         return(
@@ -402,7 +388,7 @@ class ToBlock extends Component{
                 <label>
                     <div className="wrapper">
                         <span className="title">Куда:</span>
-                        {/*this.state.acShow ? '' : placeholderFake*/}
+
                     </div>
                 </label>
 
