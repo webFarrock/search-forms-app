@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {setFormErrors} from '../actions/index';
-
+import {prepareUrl} from '../tools/index';
 
 import FormSubmitBtn from './FormSubmitBtn';
 import FromBlock from '../containers/FromBlock';
@@ -18,6 +18,7 @@ class SearchFormInResult extends Component {
     constructor(props){
         super(props);
 
+
         // todo init from props
         this.state = {
             startPointListShow: false,
@@ -29,11 +30,41 @@ class SearchFormInResult extends Component {
         this.onFormSubmit = this.onFormSubmit.bind(this);
     }
 
+    chkForm(){
+
+
+        let errors = {};
+
+        if(!this.props.selectedStartPoint.id){
+            errors['notSelectedStartPoint'] = true;
+        }
+
+        if(!this.props.selectedCountry.id){
+            errors['notSelectedCountry'] = true;
+        }
+
+        this.props.setFormErrors(errors);
+
+        return !Object.keys(errors).length;
+
+    }
+
     onFormSubmit(e){
         e.preventDefault();
 
+        console.log(' onFormSubmit ');
 
-        //this.chkForm();
+        if(this.chkForm()){
+
+            console.log('YES chkForm');
+            prepareUrl(this.props);
+            document.location.href = `/tour-search/?${prepareUrl(this.props)}`;
+
+        }else{
+            console.log('NO chkForm');
+        }
+        
+
     }
 
     render() {
