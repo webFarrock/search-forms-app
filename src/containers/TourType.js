@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {fetchAllowedDates, setTourType} from '../actions/index';
-import tourTypesList from '../data/tourTypesList.json';
 
 class TourType extends Component{
     constructor(props){
@@ -11,6 +10,8 @@ class TourType extends Component{
         this.state = {
             acShow: false,
         }
+        
+        this.tourTypesList = RuInturistStore.tourTypesList || [];
 
         this.onFocusInput = this.onFocusInput.bind(this);
     }
@@ -32,6 +33,7 @@ class TourType extends Component{
     }
 
     initData(){
+
         if(RuInturistStore && RuInturistStore.initForm && RuInturistStore.initForm.pack_type){
 
             let pack_type = RuInturistStore.initForm.pack_type
@@ -39,7 +41,7 @@ class TourType extends Component{
             if(pack_type instanceof Array){
 
                 pack_type.forEach((pack_id) => {
-                    this.props.setTourType(tourTypesList.filter((i) => i.id == pack_id)[0]);
+                    this.props.setTourType(this.tourTypesList.filter((i) => i.id == pack_id)[0]);
                 });
             }
         }
@@ -63,8 +65,6 @@ class TourType extends Component{
 
     render(){
         
-        console.log('render TourType.js');
-        
         let arFormItemClass = ['form-item', 'form-type-type', 'with-autocomplete'];
 
         if(this.state.acShow){
@@ -84,7 +84,7 @@ class TourType extends Component{
         let placeholder = null;
 
 
-        if(Object.keys(this.props.tourTypes).length == Object.keys(tourTypesList).length){
+        if(Object.keys(this.props.tourTypes).length == Object.keys(this.tourTypesList).length){
             placeholder = 'все';
         }else{
 
@@ -123,7 +123,7 @@ class TourType extends Component{
                                 <li key="all"
                                     onClick={() => this.setTourType({})}
                                     className={selectAllCls.join(' ')}>все <i></i></li>
-                                {tourTypesList.map(tourType => {
+                                {this.tourTypesList.map(tourType => {
 
                                     let cls = 'list__item';
 

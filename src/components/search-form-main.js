@@ -4,7 +4,6 @@ import {bindActionCreators} from 'redux';
 import {setFormErrors} from '../actions/index';
 import {prepareUrl} from '../tools/index';
 
-
 import FormSubmitBtn from './FormSubmitBtn';
 import FromBlock from '../containers/FromBlock';
 import ToBlock from '../containers/ToBlock';
@@ -13,7 +12,6 @@ import Kids from '../containers/Kids';
 import Duration from '../containers/Duration';
 import TourType from '../containers/TourType';
 import TourDate from '../containers/TourDate';
-
 
 class SearchFormMain extends Component {
 
@@ -29,7 +27,7 @@ class SearchFormMain extends Component {
 
         this.onFormSubmit = this.onFormSubmit.bind(this);
     }
-
+ 
     componentDidMount(){
         // old events
         $('#search-form-top').off('submit');
@@ -38,16 +36,14 @@ class SearchFormMain extends Component {
     onFormSubmit(e){
         e.preventDefault();
 
-        console.log(' onFormSubmit ');
-
         if(this.chkForm()){
 
-            console.log('YES chkForm');
+            //console.log('YES chkForm');
             prepareUrl(this.props);
             document.location.href = `/tour-search/?${prepareUrl(this.props)}`;
 
-        }else{
-            console.log('NO chkForm');
+        //}else{
+            //console.log('NO chkForm');
         }
 
     }
@@ -72,25 +68,30 @@ class SearchFormMain extends Component {
 
     render() {
         return (
-            <form action="/tour-search/" id="search-form-top" onSubmit={this.onFormSubmit}>
+            <div className="main-filter header-position">
 
-                <div className="form-wrapper">
+                <h3>Попробуй мир на вкус</h3>
 
-                    <FromBlock />
-                    <ToBlock />
-                    <TourType />
-                    <TourDate />
-                    <Duration />
+                <form action="/tour-search/" id="search-form-top" onSubmit={this.onFormSubmit}>
 
-                    <div className="col__2-wrapper">
-                        <Adults />
-                        <Kids />
+                    <div className="form-wrapper">
+
+                        <FromBlock />
+                        <ToBlock />
+                        <TourType />
+                        <TourDate />
+                        <Duration />
+
+                        <div className="col__2-wrapper">
+                            <Adults />
+                            <Kids />
+                        </div>
+
                     </div>
 
-                </div>
-
-                <FormSubmitBtn />
-            </form>
+                    <FormSubmitBtn />
+                </form>
+            </div>
         );
     }
 }
