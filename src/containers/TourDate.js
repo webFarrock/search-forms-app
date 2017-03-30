@@ -24,6 +24,7 @@ class TourDate extends Component{
             this.state.tourDate = this.tomorrow;
         }
 
+
         this.onFocusInput = this.onFocusInput.bind(this);
     }
 

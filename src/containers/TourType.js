@@ -55,12 +55,16 @@ class TourType extends Component{
 
     setTourType(tourType){
         this.props.setTourType(tourType);
+    }
+
+    componentWillReceiveProps(nextProps){
 
         this.props.fetchAllowedDates({
-            selectedCity: this.props.selectedStartPoint.id,
-            selectedCountry: this.props.selectedCountry.id,
-            packType: this.props.tourTypes,
+            selectedCity: nextProps.selectedStartPoint.id,
+            selectedCountry: nextProps.selectedCountry.id,
+            packType: nextProps.tourTypes,
         });
+
     }
 
     render(){

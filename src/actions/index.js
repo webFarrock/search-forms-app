@@ -22,35 +22,44 @@ export const SET_TOUR_DATE = 'SET_TOUR_DATE';
 export const SET_FORM_ERRORS = 'SET_FORM_ERRORS';
 
 export function fetchAllowedDates(opt){
+    if(opt.selectedCity && opt.selectedCountry){
+        return (dispatch) => {
+            dispatch({
+                type: FETCH_ALLOWED_DATES
+            });
 
-    console.log('fetchAllowedDates in');
+            $.ajax({
+                url: '/local/ajax/get-allowed-dates.php',
+                data: {
+                    selectedCity: opt.selectedCity,
+                    selectedCountry: opt.selectedCountry,
+                    packType: opt.packType,
+                    WhatGet: 'getAllowedDates',
+                },
+                method: 'POST',
+                dataType: 'json',
+                cache: false,
+            }).success(
+                (response) => {
+                    dispatch({
+                        type: FETCH_ALLOWED_DATES,
+                        payload: response
+                    });
+                }
+            ).error((response) => {
+                dispatch({
+                    type: FETCH_ALLOWED_DATES,
+                    payload: [],
 
-    // todo - подготовить pack type
-    if(0 && opt.selectedCity && opt.inputCountry && Object.keys(packType).length){
-        const request = axios({
-            method: 'post',
-            url: '/local/ajax/get-allowed-dates.php',
-            responseType: 'json',
-            data: {
-                selectedCity: opt.selectedCity,
-                inputCountry: opt.inputCountry,
-                packType: [], // todo!!!
-                WhatGet: 'getAllowedDates',
-            }
-        });
-
-        return {
-            type: FETCH_ALLOWED_DATES,
-            payload: request
-        }
-
-    }else{
-        return {
-            type: FETCH_ALLOWED_DATES,
-            payload: ["2017-03-15","2017-03-16","2017-03-17","2017-03-22"],
+                });
+            });
         }
     }
 
+    return {
+        type: FETCH_ALLOWED_DATES,
+        payload: [],
+    }
 }
 
 export function setFormErrors(errors){
