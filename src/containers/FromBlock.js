@@ -142,6 +142,8 @@ class FromBlock extends Component{
         
         console.log('render FromBlock.js');
 
+        const {selectedStartPoint} = this.props;
+
         let arFormItemClass = ['form-item', 'form-type-from', 'with-autocomplete'];
 
         if(this.state.acShow){
@@ -160,11 +162,14 @@ class FromBlock extends Component{
             arFormItemClass.push('error');
         }
 
-
         let startPoints = this.startPoints;
 
         if(this.state.term && this.state.userInputStarted){
             startPoints = startPoints.filter(city => isMatchUserInput(this.state.term, city));
+        }
+
+        if(selectedStartPoint.id){
+            startPoints = startPoints.filter(city => +city.id !== +selectedStartPoint.id);
         }
 
         startPoints = _.sortBy(startPoints, (city) => [city.popular_weight, city.value ]);
@@ -177,8 +182,6 @@ class FromBlock extends Component{
 
         return (
             <div className={arFormItemClass.join(' ')} title={inputValue || this.placeholder}>
-
-                {/*<input type="hidden" name="selected-city" value="" />*/}
 
                 <span
                     className="icon-font icon-arrow-right"
@@ -208,16 +211,19 @@ class FromBlock extends Component{
                             <div className="header-dropdown">Города</div>
 
                             <ul className="list quick-dropdown__list">
+                                {selectedStartPoint.id ?
+                                    <li key={selectedStartPoint.id}
+                                        className="list__item -active"
+                                        onClick={() => this.onStartPointItemClick(selectedStartPoint)}
+                                    >
+                                        {selectedStartPoint.value}
+                                    </li>
+                                    : ''
+                                }
                                 {startPoints.map(item => {
-                                    let liClass = 'list__item';
-
-                                    if(item.id === this.props.selectedStartPoint.id){
-                                        liClass += ' -active';
-                                    }
-
                                     return (
                                         <li key={item.id}
-                                            className={liClass}
+                                            className="list__item"
                                             onClick={() => this.onStartPointItemClick(item)}
                                         >
                                             {item.value}

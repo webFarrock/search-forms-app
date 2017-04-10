@@ -223,9 +223,15 @@ class ToBlock extends Component {
     renderCountries(props) {
         let {classTopWrap} = props;
         let countries = _.sortBy(this.countryList, (o) => o.value);
+        let {selectedCountry} = this.props;
+
 
         if (this.state.term && this.state.userInputStarted) {
             countries = countries.filter(country => isMatchUserInput(this.state.term, country));
+        }
+
+        if(selectedCountry.id){
+            countries.filter(country => +country.id !== selectedCountry.id)
         }
 
 
@@ -234,17 +240,20 @@ class ToBlock extends Component {
                 <div className="header-dropdown">Все страны</div>
 
                 <ul className="list quick-dropdown__list list-2-col">
-
+                    {selectedCountry.id ?
+                        <li key={selectedCountry.id}
+                            className="list__item -active"
+                            onClick={() => this.setCountry(selectedCountry)}
+                        >
+                            {selectedCountry.value}
+                        </li>
+                    : ''}
                     {!countries.length ? <li key="none" className="list__item">Ничего не найдено</li>
                         :
                         countries.map(country => {
-                            let classLi = ' list__item ';
-                            if (+country.id === +this.props.selectedCountry.id) {
-                                classLi += ' -active ';
-                            }
                             return (
                                 <li key={country.id}
-                                    className={classLi}
+                                    className="list__item"
                                     onClick={() => this.setCountry(country)}
                                 >
                                     {country.value}
@@ -287,13 +296,32 @@ class ToBlock extends Component {
             </li>);
         }
 
+        let arSelectedRegions = Object.values(this.props.selectedRegions);
+
+        arSelectedRegions = _.sortBy(arSelectedRegions, (o) => o.value);
+
+
+        cities = cities.filter(city => !this.props.selectedRegions[city.id]);
+
+
         return (
             <div className={classTopWrap}>
                 <div className="header-dropdown">Курорты</div>
 
                 <ul className="list quick-dropdown__list">
                     { !cities.length ? <li key="none" className="list__item">Ничего не найдено</li> :
-                        [...optionAllCities,
+                        [
+                            ...optionAllCities,
+                            ...arSelectedRegions.map(city => {
+                                return (
+                                    <li key={`sel${city.id}`}
+                                        className="list__item -active"
+                                        onClick={() => this.setRegion(city, clearTerm)}
+                                    >
+                                        {city.value} <i></i>
+                                    </li>
+                                );
+                            }),
                             ...cities.map(city => {
 
                                 let cls = 'list__item';
@@ -350,6 +378,7 @@ class ToBlock extends Component {
 
         }
 
+        
         if (this.state.term /*&& this.state.term.length > 2*/ && this.state.userInputStarted) {
             hotels = hotels.filter(hotel => isMatchUserInput4Hotel(this.state.term, hotel));
         }
@@ -371,13 +400,39 @@ class ToBlock extends Component {
             optionAllHotels.push(<li className={selectAllCls.join(' ')} key="all" onClick={() => this.setHotel({})}>все
                 <i></i></li>)
         }
+        
+        let arSelectedHotels = Object.values(this.props.selectedHotels);
+        arSelectedHotels = _.sortBy(arSelectedHotels, (o) => o.value);
+
         return (
             <div className={classTopWrap}>
                 <div className="header-dropdown">Отели</div>
 
                 <ul className="list quick-dropdown__list">
                     {!hotels.length ? <li key="none" className="list__item">Ничего не найдено</li> :
-                        [...optionAllHotels,
+                        [
+                            ...optionAllHotels,
+                            ...arSelectedHotels.map(hotel => {
+                                let hotelLocation = [];
+                                const hotelCountry = obCountriesById[hotel.countryId];
+                                const hotelRegion = obRegionsById[hotel.parent || hotel.parent2]
+
+                                if (hotelCountry) hotelLocation.push(hotelCountry.value);
+                                if (hotelRegion) hotelLocation.push(hotelRegion.value);
+
+                                hotelLocation = hotelLocation.join('/');
+
+                                return (
+                                    <li key={`sel${hotel.id}`}
+                                        onClick={() => this.setHotel(hotel, clearTerm)}
+                                        className="list__item -active"
+                                    >
+                                        <span className="col__left">{hotel.value}</span>
+                                        <span className="col__right">{hotelLocation}</span>
+                                        <i></i>
+                                    </li>
+                                );
+                            }),
                             ...hotels.map(hotel => {
                                 let hotelLocation = [];
                                 const hotelCountry = obCountriesById[hotel.countryId];
@@ -458,7 +513,6 @@ class ToBlock extends Component {
         } else {
             title = '(страна/город/курорт или отель)';
         }
-
 
         return (
             <div className={arFormItemClass.join(' ')} title={title}>
