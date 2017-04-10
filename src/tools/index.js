@@ -12,7 +12,14 @@ export function isMatchUserInput(term = '', obj){
         (value_en  && value_en.toLowerCase().indexOf(term) !== -1) ||
         (value_wr  && value_wr.toLowerCase().indexOf(term) !== -1)
     );
+}
 
+export function isMatchUserInput4Hotel(term = '', obj){
+    term = term.toLowerCase();
+
+    const value = obj.value ? obj.value.toLowerCase() : '';
+
+    return (value && value.toLowerCase().indexOf(term) !== -1);
 }
 
 export function naturalSort(array, extractor) {
