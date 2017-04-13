@@ -21,6 +21,8 @@ export const SET_TOUR_DATE = 'SET_TOUR_DATE';
 
 export const SET_FORM_ERRORS = 'SET_FORM_ERRORS';
 
+export const SET_CALENDAR_LOADING = 'SET_CALENDAR_LOADING';
+
 export function fetchAllowedDates(opt){
     if(opt.selectedCity && opt.selectedCountry){
         return (dispatch) => {
@@ -36,6 +38,13 @@ export function fetchAllowedDates(opt){
                     packType: opt.packType,
                     WhatGet: 'getAllowedDates',
                 },
+                beforeSend: () => {
+                    dispatch({
+                        type: SET_CALENDAR_LOADING,
+                        payload: true
+                    });
+
+                },
                 method: 'POST',
                 dataType: 'json',
                 cache: false,
@@ -50,7 +59,12 @@ export function fetchAllowedDates(opt){
                 dispatch({
                     type: FETCH_ALLOWED_DATES,
                     payload: [],
+                });
 
+            }).always((response) => {
+                dispatch({
+                    type: SET_CALENDAR_LOADING,
+                    payload: false
                 });
             });
         }

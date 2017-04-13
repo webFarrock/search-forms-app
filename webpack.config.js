@@ -6,12 +6,26 @@ var plugins = [];
 
 if(NODE_ENV != 'development'){
     plugins.push(new webpack.optimize.UglifyJsPlugin({
+        beautify: false,
+        comments: false,
         compress: {
-            warnings: false
+            sequences     : true,
+            booleans      : true,
+            loops         : true,
+            unused      : true,
+            warnings    : false,
+            drop_console: true,
+            unsafe      : true
         },
         sourceMap: false,
     }));
+
+    plugins.push(new webpack.optimize.DedupePlugin());
+    plugins.push(new webpack.NoErrorsPlugin());
 }
+
+console.log('plugins: ', plugins);
+
 
 module.exports = {
     entry: {
@@ -29,8 +43,18 @@ module.exports = {
         loaders: [{
             exclude: /node_modules/,
             loader: 'babel',
+            /*
             query: {
-                presets: ["react", "es2015", "stage-1"]
+                presets: ["react", "es2015", "stage-1"],
+            },*/
+            query: {
+                plugins: [
+                    'transform-runtime',
+                    'transform-react-remove-prop-types',
+                    'transform-react-constant-elements',
+                    'transform-react-inline-elements'
+                ],
+                presets: ['es2015', 'stage-0', 'react'],
             }
         },{
             test: /\.svg$/,
