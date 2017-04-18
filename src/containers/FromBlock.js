@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { fetchAllowedDates, setStartPoint } from '../actions/index';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {fetchAllowedDates, setStartPoint} from '../actions/index';
 import {isMatchUserInput} from '../tools/index';
 
-class FromBlock extends Component{
+class FromBlock extends Component {
 
-    constructor(props){
+    constructor(props) {
 
         super(props);
 
@@ -30,21 +30,22 @@ class FromBlock extends Component{
     }
 
 
-    componentDidMount(){
+    componentDidMount() {
 
         $('body').on('click', (e) => {
-            if(!$(e.target).parents('.form-type-from').length){
+            if (!$(e.target).parents('.form-type-from').length) {
 
-                if(this.state.acShow){
+                if (this.state.acShow) {
                     this.setState({
                         acShow: false,
                         userInputStarted: false,
                     });
+                    $('body').removeClass('opened-filter');
 
-                    if(this.props.selectedStartPoint.value){
-                       this.setState({
-                           term: this.props.selectedStartPoint.value,
-                       });
+                    if (this.props.selectedStartPoint.value) {
+                        this.setState({
+                            term: this.props.selectedStartPoint.value,
+                        });
                     }
                 }
 
@@ -55,12 +56,12 @@ class FromBlock extends Component{
 
     }
 
-    initData(){
-        if(RuInturistStore && RuInturistStore.initForm && RuInturistStore.initForm.city){
+    initData() {
+        if (RuInturistStore && RuInturistStore.initForm && RuInturistStore.initForm.city) {
 
             let cityId = +RuInturistStore.initForm.city
 
-            if(cityId){
+            if (cityId) {
                 let obCity = this.startPoints.filter(i => i.id == cityId)[0] || {};
                 this.props.setStartPoint(obCity);
                 this.setState({term: obCity.value});
@@ -69,28 +70,31 @@ class FromBlock extends Component{
         }
     }
 
-    onFocusInput(){
+    onFocusInput() {
         this.setState({
             acShow: true,
         });
+
+        $('body').addClass('opened-filter');
     }
 
 
-    onStartPointItemClick(startPoint){
+    onStartPointItemClick(startPoint) {
 
         this.setState({
             term: startPoint.value,
             userInputStarted: false,
             acShow: false,
         });
+        $('body').removeClass('opened-filter');
 
-        if(this.props.selectedStartPoint.id !== startPoint.id){
+        if (this.props.selectedStartPoint.id !== startPoint.id) {
             this.props.setStartPoint(startPoint)
         }
 
     }
 
-    setStartPoint(startPoint){
+    setStartPoint(startPoint) {
         this.props.setStartPoint(startPoint);
 
         this.props.fetchAllowedDates({
@@ -100,83 +104,84 @@ class FromBlock extends Component{
         });
     }
 
-    onKeyUpInput(){
+    onKeyUpInput() {
         this.setState({
             userInputStarted: true,
         });
     }
 
-    onChangeInput(e){
+    onChangeInput(e) {
 
         const term = e.target.value;
         let startPoints = this.startPoints;
 
         this.setState({term});
 
-        if(term){
+        if (term) {
             startPoints = startPoints.filter(city => isMatchUserInput(term, city));
         }
 
-        if(startPoints.length === 1){
+        if (startPoints.length === 1) {
             this.props.setStartPoint(startPoints[0]);
-        }else{
+        } else {
             this.props.setStartPoint({});
         }
 
     }
 
-    clearField(){
+    clearField() {
         this.setState({term: ''});
         this.props.setStartPoint({});
     }
 
-    onFieldIconClick(){
-        if(this.props.selectedStartPoint.id){
+    onFieldIconClick() {
+        if (this.props.selectedStartPoint.id) {
             this.clearField();
-        }else{
+        } else {
             this.refs.input.focus();
         }
     }
 
-    render(){
-        
+    render() {
+
+
         console.log('render FromBlock.js');
 
         const {selectedStartPoint} = this.props;
 
         let arFormItemClass = ['form-item', 'form-type-from', 'with-autocomplete'];
 
-        if(this.state.acShow){
-            arFormItemClass.push('autocomplete-open')
+        if (this.state.acShow) {
+            arFormItemClass.push('autocomplete-open');
         }
 
-        if(this.props.selectedStartPoint.id){
+        if (this.props.selectedStartPoint.id) {
             arFormItemClass.push('filled');
         }
 
-        if(this.props.wpCls){
+        if (this.props.wpCls) {
             arFormItemClass.push(this.props.wpCls);
         }
 
-        if(this.props.formErrors.notSelectedStartPoint){
+        if (this.props.formErrors.notSelectedStartPoint) {
             arFormItemClass.push('error');
         }
 
         let startPoints = this.startPoints;
 
-        if(this.state.term && this.state.userInputStarted){
+        if (this.state.term && this.state.userInputStarted) {
             startPoints = startPoints.filter(city => isMatchUserInput(this.state.term, city));
         }
 
-        if(selectedStartPoint.id){
+        if (selectedStartPoint.id) {
             startPoints = startPoints.filter(city => +city.id !== +selectedStartPoint.id);
         }
 
-        startPoints = _.sortBy(startPoints, (city) => [city.popular_weight, city.value ]);
+        startPoints = _.sortBy(startPoints, (city) => [city.popular_weight, city.value]);
 
         let inputValue = this.state.term;
-        
-        if(!inputValue && !this.state.acShow){
+
+        if (!inputValue && !this.state.acShow) {
             inputValue = this.placeholder
         }
 
@@ -201,38 +206,42 @@ class FromBlock extends Component{
                     value={inputValue}
                     onFocus={this.onFocusInput}
                     onKeyUp={this.onKeyUpInput}
-                    onChange={(e) => {this.onChangeInput(e)}}
+                    onChange={(e) => {
+                        this.onChangeInput(e)
+                    }}
                     className="form-text"
                 />
 
-                <div className="autocomplete">
-                    <div className="quick-dropdown">
-                        <div className="wrapper-data col__left filter__row__100">
-                            <div className="header-dropdown">Города</div>
+                <div className="filter-popup">
+                    <div className="autocomplete">
+                        <div className="quick-dropdown">
+                            <div className="wrapper-data col__left filter__row__100">
+                                <div className="header-dropdown">Города</div>
 
-                            <ul className="list quick-dropdown__list">
-                                {selectedStartPoint.id ?
-                                    <li key={selectedStartPoint.id}
-                                        className="list__item -active"
-                                        onClick={() => this.onStartPointItemClick(selectedStartPoint)}
-                                    >
-                                        {selectedStartPoint.value}
-                                    </li>
-                                    : ''
-                                }
-                                {startPoints.map(item => {
-                                    return (
-                                        <li key={item.id}
-                                            className="list__item"
-                                            onClick={() => this.onStartPointItemClick(item)}
+                                <ul className="list quick-dropdown__list">
+                                    {selectedStartPoint.id ?
+                                        <li key={selectedStartPoint.id}
+                                            className="list__item -active"
+                                            onClick={() => this.onStartPointItemClick(selectedStartPoint)}
                                         >
-                                            {item.value}
+                                            {selectedStartPoint.value}
                                         </li>
-                                    );
-                                })}
-                                {!startPoints.length ? <li className="list__item">Ничего не найдено</li>: ''}
-                            </ul>
+                                        : ''
+                                    }
+                                    {startPoints.map(item => {
+                                        return (
+                                            <li key={item.id}
+                                                className="list__item"
+                                                onClick={() => this.onStartPointItemClick(item)}
+                                            >
+                                                {item.value}
+                                            </li>
+                                        );
+                                    })}
+                                    {!startPoints.length ? <li className="list__item">Ничего не найдено</li> : ''}
+                                </ul>
 
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -242,7 +251,7 @@ class FromBlock extends Component{
 }
 
 
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
     return bindActionCreators({fetchAllowedDates, setStartPoint}, dispatch);
 }
 

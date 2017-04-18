@@ -20,6 +20,8 @@ class ToBlock extends Component {
         super(props);
 
         this.state = {
+            pageHotels: false,
+            isMobile: $(window).width() < 768 ? true : false ,
             acShow: false,
             term: '',
             userInputStarted: false,
@@ -81,6 +83,20 @@ class ToBlock extends Component {
 
     componentDidMount() {
 
+        $w = $(window);
+
+        $w.on('resize', (e) => {
+            if($w.width() < 768){
+                if(!this.state.isMobile) {
+                    this.setState({isMobile: true});
+                }
+            }else{
+                if(this.state.isMobile) {
+                    this.setState({isMobile: false});
+                }
+            }
+        });
+
         $('body').on('click', (e) => {
             if (!$(e.target).parents('.form-type-to').length) {
                 if (this.state.acShow) {
@@ -89,12 +105,76 @@ class ToBlock extends Component {
                         term: '',
                         userInputStarted: false,
                     });
+                    $('body').removeClass('opened-filter');
                 }
             }
         });
 
         this.initData();
     }
+  
+    componentDidUpdate(){
+        //console.log('componentDidUpdate');
+        //console.log('isMobile', this.state.isMobile);
+        /*
+        if ($(window).width() < 768) {
+            console.log('< 768 ');
+            $('.all-countries li').click(function() {
+                console.log('click 1');
+                $('div.wrapper-data.all-countries').addClass('hiden');
+                $('div.wrapper-data.all-countries').removeClass('active');
+                $('div.filter-popup').removeClass('all-countries');
+                $('div.filter-popup').addClass('resorts');
+                $('div.wrapper-data.resorts').removeClass('hiden');
+                $('div.wrapper-data.resorts').addClass('active');
+                $('.select-city').show();
+
+            });
+
+            $('.filter-popup__buttons .next ').click(function() {
+                console.log('click 2');
+                $('div.wrapper-data.resorts').removeClass('active');
+                $('div.wrapper-data.resorts').addClass('hiden');
+                $('div.filter-popup').removeClass('resorts');
+                $('div.filter-popup').addClass('hotels');
+                $('div.wrapper-data.hotels').removeClass('hiden');
+                $('div.wrapper-data.hotels').addClass('active');
+            });
+
+            $('.filter-popup__buttons .cancel').click(function() {
+                
+                console.log('click 3');
+                
+                if ($('div.wrapper-data.resorts').hasClass('active')) {
+                    $('div.wrapper-data.resorts').removeClass('active');
+                } else if (!$('div.wrapper-data.resorts').hasClass('hiden')) {
+                    $('div.wrapper-data.resorts').addClass('hiden');
+                }
+
+                if ($('div.wrapper-data.hotels').hasClass('active')) {
+                    $('div.wrapper-data.hotels').removeClass('active');
+                } else if (!$('div.wrapper-data.hotels').hasClass('hiden')) {
+                    $('div.wrapper-data.hotels').addClass('hiden');
+                }
+
+                if ($('div.wrapper-data.all-countries').hasClass('active')) {
+                    $('div.wrapper-data.all-countries').removeClass('active');
+                } else if (!$('div.wrapper-data.all-countries').hasClass('hiden')) {
+                    $('div.wrapper-data.all-countries').addClass('hiden');
+                }
+
+                $('div.filter-popup').removeClass('resorts');
+                $('div.filter-popup').removeClass('hotels');
+                $('div.filter-popup').removeClass('all-countries');
+                var to_choosen = $('#to-autocomplete');
+                var to_data_select = to_choosen.find('.autocomplete');
+                //to_choosen.removeClass('autocomplete-open');
+                to_data_select.addClass('autocomplete-open');
+
+            });
+        }*/
+    }
+
 
     setCountry(country) {
         this.setState({term: ''});
@@ -175,6 +255,8 @@ class ToBlock extends Component {
         this.setState({
             acShow: true,
         });
+
+        $('body').addClass('opened-filter');
     }
 
     onKeyUpInput() {
@@ -200,7 +282,7 @@ class ToBlock extends Component {
         popularCountries = _.sortBy(popularCountries, (o) => [o.popular_weight, o.value]);
 
         return (
-            <div className="wrapper-data col__left filter__row__30">
+            <div className="wrapper-data col__left filter__row__30 popular-countries hiden">
                 <div className="header-dropdown">Популярные</div>
 
                 <ul className="list quick-dropdown__list">
@@ -300,13 +382,16 @@ class ToBlock extends Component {
 
         arSelectedRegions = _.sortBy(arSelectedRegions, (o) => o.value);
 
-
         cities = cities.filter(city => !this.props.selectedRegions[city.id]);
-
 
         return (
             <div className={classTopWrap}>
-                <div className="header-dropdown">Курорты</div>
+                <div className="header-dropdown with-left-button">
+                    Курорты
+                    <div className="quick-dropdown__arrow" onClick={() => this.setCountry({})}>
+                        <span className="icon-font icon-arrow-left"></span>
+                    </div>
+                </div>
 
                 <ul className="list quick-dropdown__list">
                     { !cities.length ? <li key="none" className="list__item">Ничего не найдено</li> :
@@ -393,7 +478,7 @@ class ToBlock extends Component {
             selectAllCls.push('-active');
         }
 
-        hotels = hotels.slice(0, 1000);
+
 
         let optionAllHotels = [];
         if (showOptionAll) {
@@ -403,6 +488,10 @@ class ToBlock extends Component {
         
         let arSelectedHotels = Object.values(this.props.selectedHotels);
         arSelectedHotels = _.sortBy(arSelectedHotels, (o) => o.value);
+
+        hotels = hotels.filter(hotel => !this.props.selectedHotels[hotel.id]);
+
+        hotels = hotels.slice(0, 1000);
 
         return (
             <div className={classTopWrap}>
@@ -444,16 +533,10 @@ class ToBlock extends Component {
                                 hotelLocation = hotelLocation.join('/');
 
 
-                                let hotelCls = ['list__item'];
-
-                                if (this.props.selectedHotels[hotel.id]) {
-                                    hotelCls.push('-active');
-                                }
-
                                 return (
                                     <li key={hotel.id}
                                         onClick={() => this.setHotel(hotel, clearTerm)}
-                                        className={hotelCls.join(' ')}
+                                        className="list__item"
                                     >
                                         <span className="col__left">{hotel.value}</span>
                                         <span className="col__right">{hotelLocation}</span>
@@ -537,7 +620,9 @@ class ToBlock extends Component {
                        className="form-text"
                 />
 
-                {this.renderPopUp()}
+                <div className="filter-popup all-countries">
+                    {this.renderPopUp()}
+                </div>
             </div>
         );
     }
@@ -554,7 +639,7 @@ class ToBlock extends Component {
                     <div className="quick-dropdown">
                         <div className="wrapper-col-30-70">
                             {this.renderPopular()}
-                            {this.renderCountries({classTopWrap: 'wrapper-data col__left filter__row__70'})}
+                            {this.renderCountries({classTopWrap: 'wrapper-data col__left filter__row__70 all-countries active'})}
                         </div>
                     </div>
                 </div>
@@ -563,20 +648,53 @@ class ToBlock extends Component {
 
         if (isSelectedCountryId) {
             return (
-                <div className="autocomplete select-city">
-                    <div className="quick-dropdown">
-                        <div className="wrapper-col-30-70">
-                            {this.renderCities({
-                                classTopWrap: 'wrapper-data col__left filter__row__30',
-                                showOptionAll: true
-                            })}
-                            {this.renderHotels({
-                                classTopWrap: 'wrapper-data col__left filter__row__70',
-                                showOptionAll: true
-                            })}
+                [
+                    <div className="autocomplete select-city">
+                        <div className="quick-dropdown">
+                            <div className="wrapper-col-30-70">
+                                {(!this.state.isMobile || (this.state.isMobile && !this.state.pageHotels))  ? this.renderCities({
+                                    classTopWrap: 'wrapper-data col__left filter__row__30 resorts',
+                                    showOptionAll: true
+                                }) : ''}
+                                {(!this.state.isMobile || (this.state.isMobile && this.state.pageHotels)) ? this.renderHotels({
+                                    classTopWrap: 'wrapper-data col__left filter__row__70 hotels',
+                                    showOptionAll: true
+                                }) : ''}
+                            </div>
+                        </div>
+                    </div>,
+                    <div className="filter-popup__buttons row column" style={{display: this.state.isMobile ? 'block' : 'none'}}>
+                        <div className="column__item col__left">
+                            <button type="button" className="cancel" onClick={() => {
+                                if(this.state.pageHotels){
+                                    this.setHotel({});
+                                }else{
+                                    this.setRegion({})
+                                }
+                                this.setState({pageHotels: false, userInputStarted: false, acShow: false, term: ''});
+                            }}>
+                                <span className="icon-font icon-close"></span>Отмена
+                            </button>
+                        </div>
+                        <div className="column__item col__left">
+                            <button type="button" className="apply" onClick={() => this.setState({pageHotels: false, userInputStarted: false})}>
+                                <span className="icon-icon-login"><span className="path1"></span><span className="path2"></span></span>Далее 1
+                            </button>
+                        </div>
+                        <div className="column__item col__left">
+                            <button type="button" className="next" onClick={() => {
+                                if(!this.state.pageHotels){
+                                    this.setState({pageHotels: true})
+                                }else{
+                                    this.setState({pageHotels: false, userInputStarted: false, acShow: false, term: ''})
+                                }
+                            }}>
+                                <span className="icon-icon-login"><span className="path1"></span><span className="path2"></span></span>Далее 2
+                            </button>
                         </div>
                     </div>
-                </div>
+                ]
+
             );
         } else if (!isSelectedCountryId && userInputStarted && term.length > 2) {
             return (
@@ -584,8 +702,8 @@ class ToBlock extends Component {
                     <div className="header-dropdown">Интеллектуальный выбор</div>
                     <div className="quick-dropdown">
                         {this.renderCountries({classTopWrap: 'wrapper-data col__left all-countries active'})}
-                        {this.renderCities({classTopWrap: 'wrapper-data col__left resorts', showOptionAll: false, clearTerm: true})}
-                        {this.renderHotels({classTopWrap: 'wrapper-data col__left hotels', showOptionAll: false, clearTerm: true})}
+                        {this.renderCities({classTopWrap: 'wrapper-data col__left resorts ', showOptionAll: false, clearTerm: true})}
+                        {this.renderHotels({classTopWrap: 'wrapper-data col__left hotels ', showOptionAll: false, clearTerm: true})}
                     </div>
                 </div>
             );

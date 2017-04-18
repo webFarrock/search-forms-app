@@ -24,8 +24,6 @@ if(NODE_ENV != 'development'){
     plugins.push(new webpack.NoErrorsPlugin());
 }
 
-console.log('plugins: ', plugins);
-
 
 module.exports = {
     entry: {

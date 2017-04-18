@@ -155,9 +155,6 @@ class SearchFormMain extends Component {
             }
         });
 
-
-
-
     }
 
     onFormSubmit(e){
