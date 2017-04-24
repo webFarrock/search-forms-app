@@ -10,8 +10,6 @@ import thunk from 'redux-thunk';
 
 const createStoreWithMiddleware = applyMiddleware(thunk/*, ReduxPromise*/)(createStore);
 
-console.log('!!!');
-
 ReactDOM.render(
     <Provider store={createStoreWithMiddleware(reducers)}>
         <SearchFormInResult />

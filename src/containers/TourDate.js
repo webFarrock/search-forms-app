@@ -11,7 +11,6 @@ class TourDate extends Component{
         this.tomorrow = moment().add(1, 'day').format('DD.MM.YYYY');
 
         this.state = {
-            acShow: false,
             minDate: this.tomorrow,
             tourDate: this.tomorrow,
             allowedDates: [],
@@ -24,18 +23,31 @@ class TourDate extends Component{
         }
 
 
-        this.onFocusInput = this.onFocusInput.bind(this);
     }
 
 
     initCalendar(){}
 
+    componentDidUpdate(){
+        $('.form-type-out').on('click', function(){
+            $('body').find('.form-type-out input').focus();
+        });
+    }
 
     componentDidMount(){
+
 
         this.props.setTourDate(this.state.tourDate);
 
         this.dp = $('.js-datepicker-from');
+
+        $('body').on('click', (e) => {
+            if(!$(e.target).parents('.datepick').length && !$(e.target).parents('.form-type-out').length){
+                $('.datepick-popup').hide();
+            }
+
+        });
+
 
         window.__set_threedays_in_calendar = function() {
             if ($('a.datepick-selected').length > 0 && $('input#three-days').prop("checked")) {
@@ -114,10 +126,6 @@ class TourDate extends Component{
             onSelect:  (date) => {
                 $(this.refs.input).blur();
 
-                console.log('======================');
-                console.log('$(this.refs.input): ', $(this.refs.input));
-                console.log('======================');
-
                 this.props.setTourDate(moment(date.toString()).format('DD.MM.YYYY'));
             },
 
@@ -126,11 +134,6 @@ class TourDate extends Component{
 
     }
 
-    onFocusInput(){
-        this.setState({
-            acShow: true,
-        });
-    }
 
     componentWillReceiveProps(nextProps){
         this.dp.datepick('option', 'allowedDatesInited', nextProps.allowedDates.inited);
@@ -166,6 +169,7 @@ class TourDate extends Component{
                 <input type="text"
                        ref="input"
                        name="dateFrom"
+                       onClick={() => {$('.datepick-popup').show();}}
                        placeholder="17 декабря 2017"
                        value={this.props.tourDate}
                        className="js-datepicker-from input__date form-text hidden" readOnly

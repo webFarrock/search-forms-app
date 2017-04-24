@@ -111,68 +111,59 @@ class ToBlock extends Component {
         });
 
         this.initData();
+
+        $.fn.hasScrollBar = function() {
+            return this.get(0).scrollHeight > this.height();
+        }
     }
   
     componentDidUpdate(){
-        //console.log('componentDidUpdate');
-        //console.log('isMobile', this.state.isMobile);
-        /*
-        if ($(window).width() < 768) {
-            console.log('< 768 ');
-            $('.all-countries li').click(function() {
-                console.log('click 1');
-                $('div.wrapper-data.all-countries').addClass('hiden');
-                $('div.wrapper-data.all-countries').removeClass('active');
-                $('div.filter-popup').removeClass('all-countries');
-                $('div.filter-popup').addClass('resorts');
-                $('div.wrapper-data.resorts').removeClass('hiden');
-                $('div.wrapper-data.resorts').addClass('active');
-                $('.select-city').show();
+
+
+        if ($(window).width() > 768) {
+
+
+            $('.quick-dropdown').each( function(i) {
+                if ($(this).height() > 0) {
+                    var max_height = 0;
+                    $(this).find('.quick-dropdown__list').each( function(i) {
+                        if ($(this).height() > 0 && $(this).height() > max_height) {
+                            max_height = $(this).height();
+                        }
+                    });
+                    $(this).find('.quick-dropdown__list').each( function(i) {
+                        $(this).height(max_height);
+                    });
+                }
+            });
+            
+            $('.form-type-to .wrapper-data:not(.popular-countries) .quick-dropdown__list').each((index, el) => {
+                let $el = $(el);
+
+                if($el.hasScrollBar() && !$el.hasClass('scrolled')){
+
+                    $('<i class="icon-icon-show-more"></i>')
+                        .appendTo($el.parent())
+                        .click(() => {
+                            $el.scrollTop($el.scrollTop() + 20);
+                    });
+
+                    $el.parent().addClass('scrolled');
+                }
 
             });
 
-            $('.filter-popup__buttons .next ').click(function() {
-                console.log('click 2');
-                $('div.wrapper-data.resorts').removeClass('active');
-                $('div.wrapper-data.resorts').addClass('hiden');
-                $('div.filter-popup').removeClass('resorts');
-                $('div.filter-popup').addClass('hotels');
-                $('div.wrapper-data.hotels').removeClass('hiden');
-                $('div.wrapper-data.hotels').addClass('active');
-            });
 
-            $('.filter-popup__buttons .cancel').click(function() {
-                
-                console.log('click 3');
-                
-                if ($('div.wrapper-data.resorts').hasClass('active')) {
-                    $('div.wrapper-data.resorts').removeClass('active');
-                } else if (!$('div.wrapper-data.resorts').hasClass('hiden')) {
-                    $('div.wrapper-data.resorts').addClass('hiden');
+
+            $.fn.hasScrollBar = function() {
+                if(this.get(0)){
+                    return this.get(0).scrollHeight > this.height();
                 }
 
-                if ($('div.wrapper-data.hotels').hasClass('active')) {
-                    $('div.wrapper-data.hotels').removeClass('active');
-                } else if (!$('div.wrapper-data.hotels').hasClass('hiden')) {
-                    $('div.wrapper-data.hotels').addClass('hiden');
-                }
+                return false;
+            }
+        }
 
-                if ($('div.wrapper-data.all-countries').hasClass('active')) {
-                    $('div.wrapper-data.all-countries').removeClass('active');
-                } else if (!$('div.wrapper-data.all-countries').hasClass('hiden')) {
-                    $('div.wrapper-data.all-countries').addClass('hiden');
-                }
-
-                $('div.filter-popup').removeClass('resorts');
-                $('div.filter-popup').removeClass('hotels');
-                $('div.filter-popup').removeClass('all-countries');
-                var to_choosen = $('#to-autocomplete');
-                var to_data_select = to_choosen.find('.autocomplete');
-                //to_choosen.removeClass('autocomplete-open');
-                to_data_select.addClass('autocomplete-open');
-
-            });
-        }*/
     }
 
 
@@ -343,14 +334,15 @@ class ToBlock extends Component {
                             );
                         })
                     }
-
-
                 </ul>
             </div>
         );
     }
 
     renderCities(props) {
+
+        const isSelectedAll = !Object.keys(this.props.selectedRegions).length
+
         let {classTopWrap, showOptionAll, clearTerm} = props;
         let cities = this.regionList;
 
@@ -367,9 +359,11 @@ class ToBlock extends Component {
         cities = _.sortBy(cities, (o) => o.value);
 
         let selectAllCls = "list__item select-all";
+        let ulListClass = 'list quick-dropdown__list ';
 
-        if (!Object.keys(this.props.selectedRegions).length) {
+        if (isSelectedAll) {
             selectAllCls += ' -active';
+            ulListClass += ' selected-all ';
         }
 
         let optionAllCities = [];
@@ -384,16 +378,23 @@ class ToBlock extends Component {
 
         cities = cities.filter(city => !this.props.selectedRegions[city.id]);
 
+        let headerDropdownCls = 'header-dropdown ';
+        if(!props.hideArrow){
+            headerDropdownCls += ' with-left-button ';
+        }
+        
         return (
             <div className={classTopWrap}>
-                <div className="header-dropdown with-left-button">
+                <div className={headerDropdownCls}>
                     Курорты
-                    <div className="quick-dropdown__arrow" onClick={() => this.setCountry({})}>
-                        <span className="icon-font icon-arrow-left"></span>
-                    </div>
+                    {!props.hideArrow ?
+                        <div className="quick-dropdown__arrow" onClick={() => this.setCountry({})}>
+                            <span className="icon-font icon-arrow-left"></span>
+                        </div>
+                    : ''}
                 </div>
 
-                <ul className="list quick-dropdown__list">
+                <ul className={ulListClass}>
                     { !cities.length ? <li key="none" className="list__item">Ничего не найдено</li> :
                         [
                             ...optionAllCities,
@@ -403,14 +404,14 @@ class ToBlock extends Component {
                                         className="list__item -active"
                                         onClick={() => this.setRegion(city, clearTerm)}
                                     >
-                                        {city.value} <i></i>
+                                       {city.value} <i></i>
                                     </li>
                                 );
                             }),
                             ...cities.map(city => {
 
                                 let cls = 'list__item';
-                                if (this.props.selectedRegions[city.id]) {
+                                if (isSelectedAll || this.props.selectedRegions[city.id]) {
                                     cls += '  -active';
                                 }
 
@@ -445,6 +446,10 @@ class ToBlock extends Component {
     }
 
     renderHotels(props) {
+
+
+        const isSelectedAll = !Object.keys(this.props.selectedHotels).length;
+
         let {classTopWrap, showOptionAll, clearTerm} = props;
         let hotels = this.hotelList;
 
@@ -463,6 +468,7 @@ class ToBlock extends Component {
 
         }
 
+
         
         if (this.state.term /*&& this.state.term.length > 2*/ && this.state.userInputStarted) {
             hotels = hotels.filter(hotel => isMatchUserInput4Hotel(this.state.term, hotel));
@@ -473,12 +479,12 @@ class ToBlock extends Component {
 
 
         let selectAllCls = ['list__item', 'select-all'];
+        let ulListClass = 'list quick-dropdown__list ';
 
-        if (!Object.keys(this.props.selectedHotels).length) {
+        if (isSelectedAll) {
             selectAllCls.push('-active');
+            ulListClass += ' selected-all ';
         }
-
-
 
         let optionAllHotels = [];
         if (showOptionAll) {
@@ -493,11 +499,12 @@ class ToBlock extends Component {
 
         hotels = hotels.slice(0, 1000);
 
+
         return (
             <div className={classTopWrap}>
                 <div className="header-dropdown">Отели</div>
 
-                <ul className="list quick-dropdown__list">
+                <ul className={ulListClass}>
                     {!hotels.length ? <li key="none" className="list__item">Ничего не найдено</li> :
                         [
                             ...optionAllHotels,
@@ -532,11 +539,15 @@ class ToBlock extends Component {
 
                                 hotelLocation = hotelLocation.join('/');
 
+                                let cls = 'list__item ';
+                                if(isSelectedAll){
+                                    cls += ' -active'; 
+                                }
 
                                 return (
                                     <li key={hotel.id}
                                         onClick={() => this.setHotel(hotel, clearTerm)}
-                                        className="list__item"
+                                        className={cls}
                                     >
                                         <span className="col__left">{hotel.value}</span>
                                         <span className="col__right">{hotelLocation}</span>
@@ -596,6 +607,14 @@ class ToBlock extends Component {
         } else {
             title = '(страна/город/курорт или отель)';
         }
+        
+        let filterPopUpCls = ' filter-popup ';
+        if(!this.props.selectedCountry.id){
+            filterPopUpCls += ' all-countries ';
+        }else{
+            filterPopUpCls += ' resorts ';
+        }
+
 
         return (
             <div className={arFormItemClass.join(' ')} title={title}>
@@ -620,7 +639,7 @@ class ToBlock extends Component {
                        className="form-text"
                 />
 
-                <div className="filter-popup all-countries">
+                <div className={filterPopUpCls}>
                     {this.renderPopUp()}
                 </div>
             </div>
@@ -678,7 +697,7 @@ class ToBlock extends Component {
                         </div>
                         <div className="column__item col__left">
                             <button type="button" className="apply" onClick={() => this.setState({pageHotels: false, userInputStarted: false})}>
-                                <span className="icon-icon-login"><span className="path1"></span><span className="path2"></span></span>Далее 1
+                                <span className="icon-icon-login"><span className="path1"></span><span className="path2"></span></span>Далее
                             </button>
                         </div>
                         <div className="column__item col__left">
@@ -689,7 +708,7 @@ class ToBlock extends Component {
                                     this.setState({pageHotels: false, userInputStarted: false, acShow: false, term: ''})
                                 }
                             }}>
-                                <span className="icon-icon-login"><span className="path1"></span><span className="path2"></span></span>Далее 2
+                                <span className="icon-icon-login"><span className="path1"></span><span className="path2"></span></span>Далее
                             </button>
                         </div>
                     </div>
@@ -702,8 +721,8 @@ class ToBlock extends Component {
                     <div className="header-dropdown">Интеллектуальный выбор</div>
                     <div className="quick-dropdown">
                         {this.renderCountries({classTopWrap: 'wrapper-data col__left all-countries active'})}
-                        {this.renderCities({classTopWrap: 'wrapper-data col__left resorts ', showOptionAll: false, clearTerm: true})}
-                        {this.renderHotels({classTopWrap: 'wrapper-data col__left hotels ', showOptionAll: false, clearTerm: true})}
+                        {this.renderCities({classTopWrap: 'wrapper-data col__left ', showOptionAll: false, clearTerm: true, hideArrow: true})}
+                        {this.renderHotels({classTopWrap: 'wrapper-data col__left ', showOptionAll: false, clearTerm: true})}
                     </div>
                 </div>
             );

@@ -71,6 +71,8 @@ class TourType extends Component {
 
     render() {
 
+        const isSelectedAll =  !Object.keys(this.props.tourTypes).length;
+
         let arFormItemClass = ['form-item', 'form-type-type', 'with-autocomplete'];
 
         if (this.state.acShow) {
@@ -82,9 +84,11 @@ class TourType extends Component {
         }
 
         let selectAllCls = ['list__item', 'select-all'];
+        let ulListClass = 'list quick-dropdown__list ';
 
-        if (!Object.keys(this.props.tourTypes).length) {
+        if (isSelectedAll) {
             selectAllCls.push('-active');
+            ulListClass += ' selected-all ';
         }
 
         let placeholder = null;
@@ -102,6 +106,9 @@ class TourType extends Component {
 
             placeholder = placeholder.join(', ') || 'все';
         }
+
+
+
 
         return (
             <div className={arFormItemClass.join(' ')} title={placeholder}>
@@ -126,7 +133,7 @@ class TourType extends Component {
                             <div className="wrapper-data col__left filter__row__100">
                                 <div className="header-dropdown">Выберите тип тура</div>
 
-                                <ul className="list quick-dropdown__list">
+                                <ul className={ulListClass}>
                                     <li key="all"
                                         onClick={() => this.setTourType({})}
                                         className={selectAllCls.join(' ')}>все <i></i></li>
@@ -134,7 +141,7 @@ class TourType extends Component {
 
                                         let cls = 'list__item';
 
-                                        if (this.props.tourTypes[tourType.id]) {
+                                        if (isSelectedAll || this.props.tourTypes[tourType.id]) {
                                             cls += ' -active';
                                         }
 
@@ -153,11 +160,11 @@ class TourType extends Component {
                         </div>
                     </div>
                     <div className="filter-popup__buttons row column">
-                        <div className="column__item col__left">
-                            <button type="button" className="cancel"><span className="icon-font icon-close"></span>Отмена</button>
+                        <div className="column__item col__left"> 
+                            <button onClick={() => {$('body').click()}} type="button" className="cancel"><span className="icon-font icon-close"></span>Отмена</button>
                         </div>
                         <div className="column__item col__left">
-                            <button type="button" className="apply"><span className="icon-icon-login"><span className="path1"></span><span className="path2"></span></span>Далее</button>
+                            <button onClick={() => {$('body').click()}} type="button" className="apply"><span className="icon-icon-login"><span className="path1"></span><span className="path2"></span></span>Далее</button>
                         </div>
                     </div>
                 </div>
