@@ -63,25 +63,26 @@ class SearchFormInResult extends Component {
         }else{
             console.log('NO chkForm');
         }
-        
 
     }
 
     render() {
+
         return (
             <form action="/tour-search/"  onSubmit={this.onFormSubmit}>
 
                 <div className="inner">
+
                     <div className="tour-filter__top">
                         <div className="tour-filter__top__inner">
-                            <div className="row col__left -col-50 tour-filter__left">
+                            <div className="row col__left -col-45 tour-filter__left">
 
                                 <FromBlock wpCls="transparent -col-40" />
                                 <ToBlock wpCls="transparent -col-35" />
                                 <TourType wpCls="transparent -col-25"/>
 
                             </div>
-                            <div className="row col__left -col-50 tour-filter__right">
+                            <div className="row col__left -col-55 tour-filter__right">
 
                                 <TourDate wpCls="-col-30" />
                                 <Duration wpCls="-col-30" />
@@ -92,11 +93,10 @@ class SearchFormInResult extends Component {
                             </div>
                         </div>
                         <div className="col__left tour-filter__button">
-                            <FormSubmitBtn />
+                            <FormSubmitBtn inner={true} />
                         </div>
                     </div>
                 </div>
-
             </form>
         );
     }

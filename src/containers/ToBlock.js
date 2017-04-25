@@ -105,6 +105,7 @@ class ToBlock extends Component {
                         term: '',
                         userInputStarted: false,
                     });
+
                     $('body').removeClass('opened-filter');
                 }
             }
@@ -382,7 +383,11 @@ class ToBlock extends Component {
         if(!props.hideArrow){
             headerDropdownCls += ' with-left-button ';
         }
-        
+
+        if(this.state.isMobile){
+            headerDropdownCls += ' with-right-button ';
+        }
+
         return (
             <div className={classTopWrap}>
                 <div className={headerDropdownCls}>
@@ -392,6 +397,13 @@ class ToBlock extends Component {
                             <span className="icon-font icon-arrow-left"></span>
                         </div>
                     : ''}
+
+                    {this.state.isMobile ?
+                        <div className="quick-dropdown__arrow -right" onClick={() => console.log('next')}>
+                            <span className="icon-font icon-arrow-right"></span>
+                        </div>
+                    : ''}
+
                 </div>
 
                 <ul className={ulListClass}>
@@ -450,7 +462,7 @@ class ToBlock extends Component {
 
         const isSelectedAll = !Object.keys(this.props.selectedHotels).length;
 
-        let {classTopWrap, showOptionAll, clearTerm} = props;
+        let {classTopWrap, showOptionAll, clearTerm, showCloseBtn} = props;
         let hotels = this.hotelList;
 
         if (this.props.selectedCountry.id) {
@@ -502,7 +514,16 @@ class ToBlock extends Component {
 
         return (
             <div className={classTopWrap}>
-                <div className="header-dropdown">Отели</div>
+                {showCloseBtn ?
+                    <div className="header-dropdown with-right-button">
+                        Отели
+                        <div className="quick-dropdown__arrow" onClick={() => this.setState({userInputStarted: false, acShow: false, term: ''})}>
+                            <span className="icon-font icon-arrow-left"></span>
+                        </div>
+                    </div>
+                    :
+                    <div className="header-dropdown">Отели</div>
+                }
 
                 <ul className={ulListClass}>
                     {!hotels.length ? <li key="none" className="list__item">Ничего не найдено</li> :
@@ -648,6 +669,7 @@ class ToBlock extends Component {
 
 
     renderPopUp() {
+        console.log('renderPopUp');
 
         const {userInputStarted, term} = this.state;
         const isSelectedCountryId = !!this.props.selectedCountry.id;
@@ -670,19 +692,20 @@ class ToBlock extends Component {
                 [
                     <div className="autocomplete select-city">
                         <div className="quick-dropdown">
-                            <div className="wrapper-col-30-70">
+                             <div className="wrapper-col-30-70">
                                 {(!this.state.isMobile || (this.state.isMobile && !this.state.pageHotels))  ? this.renderCities({
                                     classTopWrap: 'wrapper-data col__left filter__row__30 resorts',
                                     showOptionAll: true
                                 }) : ''}
                                 {(!this.state.isMobile || (this.state.isMobile && this.state.pageHotels)) ? this.renderHotels({
                                     classTopWrap: 'wrapper-data col__left filter__row__70 hotels',
-                                    showOptionAll: true
+                                    showOptionAll: true,
+                                    showCloseBtn: true,
                                 }) : ''}
                             </div>
                         </div>
                     </div>,
-                    <div className="filter-popup__buttons row column" style={{display: this.state.isMobile ? 'block' : 'none'}}>
+                    <div className="filter-popup__buttons row column" style={{display: this.state.acShow && this.state.isMobile ? 'block' : 'none'}}>
                         <div className="column__item col__left">
                             <button type="button" className="cancel" onClick={() => {
                                 if(this.state.pageHotels){
