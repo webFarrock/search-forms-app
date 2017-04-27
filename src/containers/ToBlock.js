@@ -138,10 +138,12 @@ class ToBlock extends Component {
                 }
             });
             
-            $('.form-type-to .wrapper-data:not(.popular-countries) .quick-dropdown__list').each((index, el) => {
+            $('.form-type-to .quick-dropdown__list').each((index, el) => {
                 let $el = $(el);
 
-                if($el.hasScrollBar() && !$el.hasClass('scrolled')){
+                if($el.parents('.popular-countries').length || $el.hasClass('popular-countries')) return;
+
+                if(/*$el.hasScrollBar() &&*/ /*!$el.hasClass('scrolled') && */!$el.parent().find('.icon-icon-show-more').length){
 
                     $('<i class="icon-icon-show-more"></i>')
                         .appendTo($el.parent())
@@ -274,7 +276,7 @@ class ToBlock extends Component {
         popularCountries = _.sortBy(popularCountries, (o) => [o.popular_weight, o.value]);
 
         return (
-            <div className="wrapper-data col__left filter__row__30 popular-countries hiden">
+            <div className="wrapper-data col__left filter__row__30 popular-countries scrolled hiden">
                 <div className="header-dropdown">Популярные</div>
 
                 <ul className="list quick-dropdown__list">
@@ -377,6 +379,13 @@ class ToBlock extends Component {
 
         arSelectedRegions = _.sortBy(arSelectedRegions, (o) => o.value);
 
+        if(arSelectedRegions.length){
+            arSelectedRegions.push({
+                separator: true,
+            });
+        }
+
+
         cities = cities.filter(city => !this.props.selectedRegions[city.id]);
 
         let headerDropdownCls = 'header-dropdown ';
@@ -411,6 +420,9 @@ class ToBlock extends Component {
                         [
                             ...optionAllCities,
                             ...arSelectedRegions.map(city => {
+
+                                if(city.separator) return <li className="separator"></li>
+
                                 return (
                                     <li key={`sel${city.id}`}
                                         className="list__item -active"
@@ -506,6 +518,12 @@ class ToBlock extends Component {
         
         let arSelectedHotels = Object.values(this.props.selectedHotels);
         arSelectedHotels = _.sortBy(arSelectedHotels, (o) => o.value);
+        if(arSelectedHotels.length){
+            arSelectedHotels.push({
+                separator: true,
+            });
+        }
+
 
         hotels = hotels.filter(hotel => !this.props.selectedHotels[hotel.id]);
 
@@ -530,6 +548,9 @@ class ToBlock extends Component {
                         [
                             ...optionAllHotels,
                             ...arSelectedHotels.map(hotel => {
+
+                                if(hotel.separator) return <li className="separator"></li>
+
                                 let hotelLocation = [];
                                 const hotelCountry = obCountriesById[hotel.countryId];
                                 const hotelRegion = obRegionsById[hotel.parent || hotel.parent2]
@@ -680,7 +701,7 @@ class ToBlock extends Component {
                     <div className="quick-dropdown">
                         <div className="wrapper-col-30-70">
                             {this.renderPopular()}
-                            {this.renderCountries({classTopWrap: 'wrapper-data col__left filter__row__70 all-countries active'})}
+                            {this.renderCountries({classTopWrap: 'wrapper-data scrolled col__left filter__row__70 scrolled all-countries active'})}
                         </div>
                     </div>
                 </div>
@@ -694,11 +715,11 @@ class ToBlock extends Component {
                         <div className="quick-dropdown">
                              <div className="wrapper-col-30-70">
                                 {(!this.state.isMobile || (this.state.isMobile && !this.state.pageHotels))  ? this.renderCities({
-                                    classTopWrap: 'wrapper-data col__left filter__row__30 resorts',
+                                    classTopWrap: 'wrapper-data scrolled col__left scrolled filter__row__30 resorts',
                                     showOptionAll: true
                                 }) : ''}
                                 {(!this.state.isMobile || (this.state.isMobile && this.state.pageHotels)) ? this.renderHotels({
-                                    classTopWrap: 'wrapper-data col__left filter__row__70 hotels',
+                                    classTopWrap: 'wrapper-data scrolled col__left scrolled filter__row__70 hotels',
                                     showOptionAll: true,
                                     showCloseBtn: true,
                                 }) : ''}
@@ -715,12 +736,12 @@ class ToBlock extends Component {
                                 }
                                 this.setState({pageHotels: false, userInputStarted: false, acShow: false, term: ''});
                             }}>
-                                <span className="icon-font icon-close"></span>Отмена
+                                <span className="icon-font icon-arrow-left"></span>{/*Отмена*/}
                             </button>
                         </div>
                         <div className="column__item col__left">
                             <button type="button" className="apply" onClick={() => this.setState({pageHotels: false, userInputStarted: false})}>
-                                <span className="icon-icon-login"><span className="path1"></span><span className="path2"></span></span>Далее
+                                <span className="icon-arrow-right"><span className="path1"></span><span className="path2"></span></span>{/*Далее*/}
                             </button>
                         </div>
                         <div className="column__item col__left">
@@ -731,7 +752,7 @@ class ToBlock extends Component {
                                     this.setState({pageHotels: false, userInputStarted: false, acShow: false, term: ''})
                                 }
                             }}>
-                                <span className="icon-icon-login"><span className="path1"></span><span className="path2"></span></span>Далее
+                                <span className="icon-arrow-right"><span className="path1"></span><span className="path2"></span></span>{/*Далее*/}
                             </button>
                         </div>
                     </div>
@@ -743,9 +764,9 @@ class ToBlock extends Component {
                 <div className="autocomplete select-wrapper">
                     <div className="header-dropdown">Интеллектуальный выбор</div>
                     <div className="quick-dropdown">
-                        {this.renderCountries({classTopWrap: 'wrapper-data col__left all-countries active'})}
-                        {this.renderCities({classTopWrap: 'wrapper-data col__left ', showOptionAll: false, clearTerm: true, hideArrow: true})}
-                        {this.renderHotels({classTopWrap: 'wrapper-data col__left ', showOptionAll: false, clearTerm: true})}
+                        {this.renderCountries({classTopWrap: 'wrapper-data scrolled col__left all-countries active'})}
+                        {this.renderCities({classTopWrap: 'wrapper-data scrolled col__left ', showOptionAll: false, clearTerm: true, hideArrow: true})}
+                        {this.renderHotels({classTopWrap: 'wrapper-data scrolled col__left ', showOptionAll: false, clearTerm: true})}
                     </div>
                 </div>
             );

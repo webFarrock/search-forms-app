@@ -183,10 +183,10 @@ class Kids extends Component {
                                 </div>
                                 <div className="filter-popup__buttons row column">
                                     <div className="column__item col__left">
-                                        <button onClick={(e) => {this.closePopUp(e)}} type="button" className="cancel"><span className="icon-font icon-close"></span>Отмена</button>
+                                        <button onClick={(e) => {this.closePopUp(e)}} type="button" className="cancel"><span className="icon-font icon-arrow-left"></span>{/*Отмена*/}</button>
                                     </div>
                                     <div className="column__item col__left">
-                                        <button onClick={(e) => {this.closePopUp(e)}} type="button" className="apply"><span className="icon-icon-login"><span className="path1"></span><span className="path2"></span></span>Далее</button>
+                                        <button onClick={(e) => {this.closePopUp(e)}} type="button" className="apply"><span className="icon-arrow-right"><span className="path1"></span><span className="path2"></span></span>{/*Далее*/}</button>
                                     </div>
                                 </div>
                             </div>
