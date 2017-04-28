@@ -29,7 +29,8 @@ class SearchFormMain extends Component {
     }
  
     componentDidMount(){
-        // old events
+
+                // old events
         $('#search-form-top').off('submit');
 
 
@@ -162,12 +163,9 @@ class SearchFormMain extends Component {
 
         if(this.chkForm()){
 
-            //console.log('YES chkForm');
             prepareUrl(this.props);
             document.location.href = `/tour-search/?${prepareUrl(this.props)}`;
 
-        //}else{
-            //console.log('NO chkForm');
         }
 
     }

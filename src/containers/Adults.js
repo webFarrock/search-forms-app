@@ -70,6 +70,9 @@ class Adults extends Component {
                     <div className="input__min" onClick={this.dec}>
                         <span className="icon-reduce"></span>
                     </div>
+                    <div className="input__max" onClick={this.inc}>
+                        <span className="icon-add"></span>
+                    </div>
 
                     <div className="input__label">
                         {!this.props.hideLabel ? 'Взрослые' : ''}
@@ -80,9 +83,7 @@ class Adults extends Component {
                         <input ref="adults" type="text" name="Adults" value={this.props.adults} min="1" max="4" readOnly/>
                     </div>
 
-                    <div className="input__max" onClick={this.inc}>
-                        <span className="icon-add"></span>
-                    </div>
+
                 </div>
             </div>
         );

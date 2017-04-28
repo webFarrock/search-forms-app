@@ -25,6 +25,7 @@ class Kids extends Component {
 
 
     onClickInputKids() {
+
         this.setState({
             acShow: true,
         });
@@ -33,8 +34,7 @@ class Kids extends Component {
 
     componentDidMount() {
         $('body').on('click', (e) => {
-            const $target = $(e.target);
-            if (!$target.parents('.input-kids').length && !$target.hasClass('.input-kids')) {
+            if (!$(e.target).parents('.form-add-children').length) {
                 this.closePopUp();
             }
         });
@@ -46,13 +46,12 @@ class Kids extends Component {
     
 
     closePopUp(e){
-        if(!e) return;
-        e.stopPropagation();
+        //if(!e) return;
+        //e.stopPropagation();
         this.setState({
             acShow: false,
         });
         $('body').removeClass('opened-filter');
-
     }
 
     initData() {
@@ -151,9 +150,10 @@ class Kids extends Component {
             >
                 <div className="form-item form-type-kids with-autocomplete">
                     <span className="icon-font icon-arrow-right"></span>
-                    <label><span>
+                    <div className="input__label">
                         {!this.props.hideLabel ? 'Дети' : ''}
-                        <span className="icon-font icon-children"></span></span></label>
+                        <span className="icon-font icon-children"></span>
+                    </div>
                     <div className="input__field">
                         <input type="text" placeholder="2" value={kidsNum} className="form-text" readOnly/>
                     </div>
