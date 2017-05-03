@@ -33,24 +33,28 @@ class Kids extends Component {
 
     componentDidMount() {
         $('body').on('click', (e) => {
-            const $target = $(e.target);
-            if (!$target.parents('.input-kids').length && !$target.hasClass('.input-kids')) {
-                this.closePopUp();
+            if (this.state.acShow) {
+                const $target = $(e.target);
+                if (!$target.parents('.input-kids').length && !$target.hasClass('.input-kids')) {
+                    this.closePopUp(e);
+                }
             }
         });
 
         this.initData();
 
     }
-    
-    
 
-    closePopUp(e){
-        if(!e) return;
+
+    closePopUp(e) {
+
+        if (!e) return;
         e.stopPropagation();
+
         this.setState({
             acShow: false,
         });
+
         $('body').removeClass('opened-filter');
 
     }
@@ -144,7 +148,7 @@ class Kids extends Component {
             arInputKidsClass.push('autocomplete-open');
         }
 
-        
+
         return (
             <div className={arInputKidsClass.join(' ')}
                  onClick={this.onClickInputKids}
@@ -184,15 +188,22 @@ class Kids extends Component {
                                 </div>
                                 <div className="filter-popup__buttons row column">
                                     <div className="column__item col__left">
-                                        <button onClick={(e) => {this.closePopUp(e)}} type="button" className="cancel"><span className="icon-font icon-arrow-left"></span>{/*Отмена*/}</button>
+                                        <button onClick={(e) => {
+                                            this.closePopUp(e)
+                                        }} type="button" className="cancel"><span
+                                            className="icon-font icon-arrow-left"></span>{/*Отмена*/}</button>
                                     </div>
                                     <div className="column__item col__left">
-                                        <button onClick={(e) => {this.closePopUp(e)}} type="button" className="apply"><span className="icon-arrow-right"><span className="path1"></span><span className="path2"></span></span>{/*Далее*/}</button>
+                                        <button onClick={(e) => {
+                                            this.closePopUp(e)
+                                        }} type="button" className="apply"><span className="icon-arrow-right"><span
+                                            className="path1"></span><span className="path2"></span></span>{/*Далее*/}
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    : ''}
+                        : ''}
                 </div>
             </div>
         );
