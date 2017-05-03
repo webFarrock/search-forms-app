@@ -25,7 +25,6 @@ class Kids extends Component {
 
 
     onClickInputKids() {
-
         this.setState({
             acShow: true,
         });
@@ -34,7 +33,8 @@ class Kids extends Component {
 
     componentDidMount() {
         $('body').on('click', (e) => {
-            if (!$(e.target).parents('.form-add-children').length) {
+            const $target = $(e.target);
+            if (!$target.parents('.input-kids').length && !$target.hasClass('.input-kids')) {
                 this.closePopUp();
             }
         });
@@ -46,12 +46,13 @@ class Kids extends Component {
     
 
     closePopUp(e){
-        //if(!e) return;
-        //e.stopPropagation();
+        if(!e) return;
+        e.stopPropagation();
         this.setState({
             acShow: false,
         });
         $('body').removeClass('opened-filter');
+
     }
 
     initData() {

@@ -1,6 +1,7 @@
 import queryString from 'query-string';
+import moment from 'moment';
 
-export function isMatchUserInput(term = '', obj){
+export function isMatchUserInput(term = '', obj) {
     term = term.toLowerCase();
 
     const value = obj.value ? obj.value.toLowerCase() : '';
@@ -8,13 +9,13 @@ export function isMatchUserInput(term = '', obj){
     const value_wr = obj.value_wr ? obj.value_wr.toLowerCase() : '';
 
     return (
-        (value     && value.toLowerCase().indexOf(term) !== -1) ||
-        (value_en  && value_en.toLowerCase().indexOf(term) !== -1) ||
-        (value_wr  && value_wr.toLowerCase().indexOf(term) !== -1)
+        (value && value.toLowerCase().indexOf(term) !== -1) ||
+        (value_en && value_en.toLowerCase().indexOf(term) !== -1) ||
+        (value_wr && value_wr.toLowerCase().indexOf(term) !== -1)
     );
 }
 
-export function isMatchUserInput4Hotel(term = '', obj){
+export function isMatchUserInput4Hotel(term = '', obj) {
     term = term.toLowerCase();
 
     const value = obj.value ? obj.value.toLowerCase() : '';
@@ -36,6 +37,7 @@ export function naturalSort(array, extractor) {
     function makeSplitter(item) {
         return new Splitter(item);
     }
+
     // конструктор сплиттера
     //    сплиттер разделяет строку на фрагменты "ленивым" способом
     function Splitter(item) {
@@ -93,6 +95,7 @@ export function naturalSort(array, extractor) {
             this.value = isNumber ? Number(text) : text;
         }
     }
+
     // сравнение сплиттеров
     function compareSplitters(sp1, sp2) {
         var i = 0;
@@ -136,7 +139,7 @@ export function naturalSort(array, extractor) {
     };
 }
 
-export function prepareUrl(opt){
+export function prepareUrl(opt) {
 
     let obUrl = {
         'city': opt.selectedStartPoint.id,
@@ -151,13 +154,81 @@ export function prepareUrl(opt){
         'pack_type': Object.keys(opt.tourTypes).join(','),
     }
 
-    for(let key  in obUrl ){
-        if(!obUrl[key]) delete obUrl[key];
-    } 
+    for (let key  in obUrl) {
+        if (!obUrl[key]) delete obUrl[key];
+    }
 
 
     return queryString.stringify(obUrl, {encode: false});
 }
 
+
+export function initCalendar(reactApp) {
+
+    $.extend($.datepick, {
+        highlightThreeDays: function (picker, inst) {
+            /*
+            if ($('input.js-datepicker-from').parents('.form-type-out').hasClass('three-days-active')) {
+                $('input#three-days').prop("checked", true);
+            } else {
+                $('input#three-days').prop("checked", false);
+            }
+            */
+
+            __set_threedays_in_calendar();
+
+            if ($(window).height() > 750) {
+                $('.datepick-popup').css("margin-top", -($('.js-datepicker-from').parent().height() + 13) + 'px');
+            } else {
+                $('.datepick-popup').css("margin-top", ($('.js-datepicker-from').parent().offset().top) + 'px');
+            }
+        },
+    });
+
+
+    $('.js-datepicker-from').datepick({
+        showAnim: 'fade',
+        dateFormat: "dd.mm.yyyy",
+        renderer: datepickerTemplate,
+        changeMonth: false,
+        monthsToShow: datepickerMonthToShow(),
+        minDate: reactApp.state.minDate,
+        onShow: $.datepick.highlightThreeDays,
+        onSelect: (date) => {
+            $(reactApp.refs.input).blur();
+            reactApp.props.setTourDate(moment(date.toString()).format('DD.MM.YYYY'));
+        },
+    });
+
+    window.__set_threedays_in_calendar = function () {
+        if ($('a.datepick-selected').length > 0 && $('input#three-days').prop("checked")) {
+            var selected_date = $('a.datepick-selected').attr('class').split('dp')[1].split(' ')[0];
+            var inc = 86400000;
+            var date_num1 = selected_date * 1 + inc * 1;
+            var date_num2 = selected_date * 1 + inc * 2;
+            var date_num3 = selected_date * 1 + inc * 3;
+            $('.dp' + date_num1).addClass('three-days-date');
+            $('.dp' + date_num2).addClass('three-days-date');
+            $('.dp' + date_num3).addClass('three-days-date').addClass('tdd-last');
+            var pdate_num1 = selected_date * 1 - inc * 1;
+            var pdate_num2 = selected_date * 1 - inc * 2;
+            var pdate_num3 = selected_date * 1 - inc * 3;
+            $('.dp' + pdate_num1).addClass('three-days-date');
+            $('.dp' + pdate_num2).addClass('three-days-date');
+            $('.dp' + pdate_num3).addClass('three-days-date').addClass('tdd-first');
+        } else {
+            $('a.three-days-date').removeClass('three-days-date');
+        }
+
+        if ($('#three-days:checked').length > 0) {
+            $('input.js-datepicker-from').parents('.form-type-out').addClass('three-days-active');
+        } else {
+            $('input.js-datepicker-from').parents('.form-type-out').removeClass('three-days-active');
+        }
+
+    }
+
+    window.set_threedays_in_calendar = window.__set_threedays_in_calendar;
+}
 
 
