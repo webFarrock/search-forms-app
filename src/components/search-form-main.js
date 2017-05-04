@@ -67,9 +67,6 @@ class SearchFormMain extends Component {
                     $( '.tour-filter.main-filter' ).insertBefore('.main .inner');
                 }
             }
-
-
-
         });
 
     }

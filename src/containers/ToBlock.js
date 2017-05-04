@@ -762,7 +762,7 @@ class ToBlock extends Component {
         } else if (!isSelectedCountryId && userInputStarted && term.length > 2) {
             return (
                 <div className="autocomplete select-wrapper">
-                    <div className="header-dropdown">Интеллектуальный выбор</div>
+                    <div className="header-dropdown">Интеллектуальный подбор</div>
                     <div className="quick-dropdown">
                         {this.renderCountries({classTopWrap: 'wrapper-data scrolled col__left all-countries active'})}
                         {this.renderCities({classTopWrap: 'wrapper-data scrolled col__left ', showOptionAll: false, clearTerm: true, hideArrow: true})}
