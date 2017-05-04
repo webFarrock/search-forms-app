@@ -29,7 +29,8 @@ class SearchFormMain extends Component {
     }
  
     componentDidMount(){
-        // old events
+
+                // old events
         $('#search-form-top').off('submit');
 
 
