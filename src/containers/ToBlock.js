@@ -120,6 +120,10 @@ class ToBlock extends Component {
   
     componentDidUpdate(){
 
+        if(!this.state.acShow){
+            $('body').removeClass('opened-filter');
+        }
+
 
         if ($(window).width() > 768) {
 

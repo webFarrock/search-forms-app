@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import {setTourDate} from '../actions/index';
 import {initCalendar} from '../tools/index';
 import moment from 'moment';
 
-class TourDate extends Component{
-    constructor(props){
+class TourDate extends Component {
+    constructor(props) {
         super(props);
 
         this.tomorrow = moment().add(1, 'day').format('DD.MM.YYYY');
@@ -17,22 +17,22 @@ class TourDate extends Component{
             allowedDates: [],
         }
 
-        if(RuInturistStore && RuInturistStore.initForm && RuInturistStore.initForm.dateFrom){
+        if (RuInturistStore && RuInturistStore.initForm && RuInturistStore.initForm.dateFrom) {
             this.state.tourDate = RuInturistStore.initForm.dateFrom;
-        }else{
+        } else {
             this.state.tourDate = this.tomorrow;
         }
 
 
     }
 
-    componentDidUpdate(){
-        $('.form-type-out').on('click', function(){
+    componentDidUpdate() {
+        $('.form-type-out').on('click', function () {
             $('body').find('.form-type-out input').focus();
         });
-            }
+    }
 
-    componentDidMount(){
+    componentDidMount() {
 
         initCalendar(this);
 
@@ -41,40 +41,40 @@ class TourDate extends Component{
         this.dp = $('.js-datepicker-from');
 
         $('body').on('click', (e) => {
-            if(!$(e.target).parents('.datepick').length && !$(e.target).parents('.form-type-out').length){
+            if (!$(e.target).parents('.datepick').length && !$(e.target).parents('.form-type-out').length) {
                 $('.datepick-popup').hide();
             }
         });
     }
 
 
-    componentWillReceiveProps(nextProps){
+    componentWillReceiveProps(nextProps) {
         this.dp.datepick('option', 'allowedDatesInited', nextProps.allowedDates.inited);
         this.dp.datepick('option', 'allowedDates', nextProps.allowedDates.dates);
     }
 
-    onInputClick(){
+    onInputClick() {
         $('body').addClass('opened-filter');
         $('.datepick-popup').show();
     }
 
-    render(){
-        
+    render() {
+
         const {loading} = this.props.allowedDates;
 
         let arDateClass = ['form-item', 'form-type-out'];
 
-        if(this.props.wpCls){
+        if (this.props.wpCls) {
             arDateClass.push(this.props.wpCls);
         }
 
-        
-        if(loading){
+
+        if (loading) {
             arDateClass.push('loading');
         }
 
 
-        return(
+        return (
             <div className={arDateClass.join(' ')}>
                 <span className="icon-font icon-calendar">
                     <span className="path1"></span><span className="path2"></span>
@@ -99,12 +99,11 @@ class TourDate extends Component{
 }
 
 
-
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
     return bindActionCreators({setTourDate}, dispatch);
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
     return {
         tourDate: state.tourDate,
         allowedDates: state.allowedDates,

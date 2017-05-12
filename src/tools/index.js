@@ -198,6 +198,9 @@ export function initCalendar(reactApp) {
             $(reactApp.refs.input).blur();
             reactApp.props.setTourDate(moment(date.toString()).format('DD.MM.YYYY'));
         },
+        onClose: ()  => {
+            $('body').removeClass('opened-filter');
+        },
     });
 
     window.__set_threedays_in_calendar = function () {
