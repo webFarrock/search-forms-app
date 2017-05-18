@@ -389,6 +389,7 @@ class ToBlock extends Component {
             });
         }
 
+        let isCitiesExicts = !!cities.length;
 
         cities = cities.filter(city => !this.props.selectedRegions[city.id]);
 
@@ -420,7 +421,7 @@ class ToBlock extends Component {
                 </div>
 
                 <ul className={ulListClass}>
-                    { !cities.length ? <li key="none" className="list__item">Ничего не найдено</li> :
+                    { !isCitiesExicts ? <li key="none" className="list__item">Ничего не найдено</li> :
                         [
                             ...optionAllCities,
                             ...arSelectedRegions.map(city => {
