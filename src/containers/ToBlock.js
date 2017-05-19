@@ -530,6 +530,8 @@ class ToBlock extends Component {
         }
 
 
+        let isHotelsExists = !!hotels.length;
+
         hotels = hotels.filter(hotel => !this.props.selectedHotels[hotel.id]);
 
         hotels = hotels.slice(0, 1000);
@@ -549,7 +551,7 @@ class ToBlock extends Component {
                 }
 
                 <ul className={ulListClass}>
-                    {!hotels.length ? <li key="none" className="list__item">Ничего не найдено</li> :
+                    {!isHotelsExists ? <li key="none" className="list__item">Ничего не найдено</li> :
                         [
                             ...optionAllHotels,
                             ...arSelectedHotels.map(hotel => {
