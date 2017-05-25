@@ -30,13 +30,15 @@ export function fetchAllowedDates(opt){
                 type: FETCH_ALLOWED_DATES
             });
 
-            $.ajax({
+
+            let xhr = $.ajax({
                 url: '/local/ajax/get-allowed-dates.php',
                 data: {
                     selectedCity: opt.selectedCity,
                     selectedCountry: opt.selectedCountry,
                     packType: opt.packType,
                     WhatGet: 'getAllowedDates',
+                    timeout: 10000,
                 },
                 beforeSend: () => {
                     dispatch({
@@ -67,6 +69,13 @@ export function fetchAllowedDates(opt){
                     payload: false
                 });
             });
+
+
+            if(!window.getAllowedDatesXHR){
+                window.getAllowedDatesXHR = [];
+            }
+
+            window.getAllowedDatesXHR.push(xhr);
         }
     }
 

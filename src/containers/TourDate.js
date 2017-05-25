@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import {setTourDate} from '../actions/index';
 import {initCalendar} from '../tools/index';
 import moment from 'moment';
+import LoaderMini from '../components/loader-mini';
 
 class TourDate extends Component {
     constructor(props) {
@@ -68,14 +69,13 @@ class TourDate extends Component {
             arDateClass.push(this.props.wpCls);
         }
 
-
         if (loading) {
             arDateClass.push('loading');
         }
 
-
         return (
-            <div className={arDateClass.join(' ')}>
+            <div className={arDateClass.join(' ')} onClick={this.onInputClick}>
+                {loading ? <LoaderMini/> : ''}
                 <span className="icon-font icon-calendar">
                     <span className="path1"></span><span className="path2"></span>
                 </span>
@@ -87,7 +87,6 @@ class TourDate extends Component {
                 <input type="text"
                        ref="input"
                        name="dateFrom"
-                       onClick={this.onInputClick}
                        placeholder="17 декабря 2017"
                        value={this.props.tourDate}
                        className="js-datepicker-from input__date form-text hidden" readOnly

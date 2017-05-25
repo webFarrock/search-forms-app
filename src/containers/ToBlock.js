@@ -440,6 +440,7 @@ class ToBlock extends Component {
                             ...cities.map(city => {
 
                                 let cls = 'list__item';
+
                                 if (isSelectedAll || this.props.selectedRegions[city.id]) {
                                     cls += '  -active';
                                 }
@@ -587,6 +588,7 @@ class ToBlock extends Component {
                                 if (hotelRegion) hotelLocation.push(hotelRegion.value);
 
                                 hotelLocation = hotelLocation.join('/');
+
 
                                 let cls = 'list__item ';
                                 if(isSelectedAll){
