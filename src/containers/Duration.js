@@ -50,6 +50,24 @@ class Duration extends Component {
         }
     }
 
+    componentDidMount() {
+        this.initData();
+    }
+
+    initData() {
+        if (RuInturistStore && RuInturistStore.initForm && RuInturistStore.initForm.duration) {
+
+            let duration = RuInturistStore.initForm.duration
+
+            if(duration < this.max && duration > this.min){
+                this.props.setDuration(duration);
+            }else{
+                this.props.setDuration(8);
+            }
+
+        }
+    }
+
     render() {
 
         const {duration} = this.props;
