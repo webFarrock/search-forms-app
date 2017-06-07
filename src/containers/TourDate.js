@@ -35,10 +35,6 @@ class TourDate extends Component {
         $( window ).resize(() => {
             $('.js-datepicker-from').datepick("destroy");
             initCalendar(this);
-            let $b = $(body);
-            if($b.hasClass('opened-filter')){
-                $b.click();
-            }
         });
 
     }
