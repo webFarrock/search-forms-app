@@ -29,20 +29,27 @@ class SearchFormMain extends Component {
     }
  
     componentDidMount(){
-
-                // old events
         $('#search-form-top').off('submit');
-
-
         initWaypoints();
-
     }
 
     componentDidUpdate(){
 
-        initWaypoints();
 
-        $(window).scroll(function () {
+
+        let $w = $(window);
+        $w.resize(function() {
+            try{
+
+                $('main.main, .footer').each(function (i) {
+                    $(this).waypoint('destroy');
+                });
+
+                initWaypoints();
+            }catch(e){}
+        });
+
+        $w.scroll(function () {
             var scrolled = $(this).scrollTop();
             var $head = $('header.header');
             var $nav = $('nav.nav');

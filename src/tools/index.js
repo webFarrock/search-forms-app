@@ -167,13 +167,6 @@ export function initCalendar(reactApp) {
 
     $.extend($.datepick, {
         highlightThreeDays: function (picker, inst) {
-            /*
-            if ($('input.js-datepicker-from').parents('.form-type-out').hasClass('three-days-active')) {
-                $('input#three-days').prop("checked", true);
-            } else {
-                $('input#three-days').prop("checked", false);
-            }
-            */
 
             __set_threedays_in_calendar();
 
@@ -185,13 +178,12 @@ export function initCalendar(reactApp) {
         },
     });
 
-
     $('.js-datepicker-from').datepick({
         showAnim: 'fade',
         dateFormat: "dd.mm.yyyy",
         renderer: datepickerTemplate,
         changeMonth: false,
-        monthsToShow: datepickerMonthToShow(),
+        monthsToShow: $(window).width() < 915 ? 1 : 2,
         minDate: reactApp.state.minDate,
         onShow: $.datepick.highlightThreeDays,
         onSelect: (date) => {
@@ -273,12 +265,6 @@ export function initWaypoints(){
         }, { offset: '5%' } );
     });
 
-    if ($(window).width() <= 768) {
-        $('.tour-filter__toggle__mobile').click(function() {
-            $(this).toggleClass('open');
-            $('.left-sidebar').toggleClass('active');
-        });
-    }
 
     if (($(window).width() > 1900) && ($(window).height() > 750)) {
         $('.footer').waypoint( function( direction ) {
@@ -340,6 +326,16 @@ export function initWaypoints(){
             height = Math.max( B.scrollHeight, B.offsetHeight,H.clientHeight, H.scrollHeight, H.offsetHeight );
         }
         return height;
+    }
+
+    if ($(window).width() != 1024) { //кроме планшетов
+        if ($(window).height() < 750) { //($(window).width() > 1100 || $(window).width() < 1000)
+            $('body').addClass('low-screen');
+        } else {
+            $('body').removeClass('low-screen');
+        }
+    } else {
+        $('body').removeClass('low-screen');
     }
 }
 

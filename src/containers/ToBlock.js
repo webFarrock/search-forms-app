@@ -33,6 +33,7 @@ class ToBlock extends Component {
         this.countryList = RuInturistStore.destination.COUNTRY || [];
         this.regionList = RuInturistStore.destination.REGION || [];
         this.hotelList = RuInturistStore.destination.HOTEL || [];
+        this.isMobileDetect = RuInturistStore.IS_MOBILE;
 
 
         this.onKeyUpInput = this.onKeyUpInput.bind(this);
@@ -727,7 +728,7 @@ class ToBlock extends Component {
                                     classTopWrap: 'wrapper-data scrolled col__left scrolled filter__row__30 resorts',
                                     showOptionAll: true
                                 }) : ''}
-                                {(!this.state.isMobile || (this.state.isMobile && this.state.pageHotels)) ? this.renderHotels({
+                                {(this.isRenderHotels() && (!this.state.isMobile || (this.state.isMobile && this.state.pageHotels))) ? this.renderHotels({
                                     classTopWrap: 'wrapper-data scrolled col__left scrolled filter__row__70 hotels',
                                     showOptionAll: true,
                                     showCloseBtn: true,
@@ -755,7 +756,7 @@ class ToBlock extends Component {
                         </div>
                         <div className="column__item col__left">
                             <button type="button" className="next" onClick={() => {
-                                if(!this.state.pageHotels){
+                                if(this.isRenderHotels() && !this.state.pageHotels){
                                     this.setState({pageHotels: true})
                                 }else{
                                     this.setState({pageHotels: false, userInputStarted: false, acShow: false, term: ''})
@@ -782,6 +783,11 @@ class ToBlock extends Component {
         }
 
 
+    }
+
+
+    isRenderHotels(){
+        return !this.state.isMobile  && !this.isMobileDetect;
     }
 
 }

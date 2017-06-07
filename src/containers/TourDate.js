@@ -31,6 +31,16 @@ class TourDate extends Component {
         $('.form-type-out').on('click', function () {
             $('body').find('.form-type-out input').focus();
         });
+
+        $( window ).resize(() => {
+            $('.js-datepicker-from').datepick("destroy");
+            initCalendar(this);
+            let $b = $(body);
+            if($b.hasClass('opened-filter')){
+                $b.click();
+            }
+        });
+
     }
 
     componentDidMount() {
