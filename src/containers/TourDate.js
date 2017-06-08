@@ -60,10 +60,14 @@ class TourDate extends Component {
         this.dp.datepick('option', 'allowedDates', nextProps.allowedDates.dates);
     }
 
-    onInputClick() {
-        $('body').addClass('opened-filter');
-        $('.datepick-popup').show();
+    onInputClick(e) {
+        const {loading} = this.props.allowedDates;
+        if(!loading){
+            $('body').addClass('opened-filter');
+            $('.datepick-popup').show();
+        }
     }
+
 
     render() {
 
@@ -80,7 +84,7 @@ class TourDate extends Component {
         }
 
         return (
-            <div className={arDateClass.join(' ')} onClick={this.onInputClick}>
+            <div className={arDateClass.join(' ')} onClick={(e) => this.onInputClick(e)}>
                 {loading ? <LoaderMini/> : ''}
                 <span className="icon-font icon-calendar">
                     <span className="path1"></span><span className="path2"></span>
@@ -93,6 +97,7 @@ class TourDate extends Component {
                 <input type="text"
                        ref="input"
                        name="dateFrom"
+                       disabled={loading}
                        placeholder="17 декабря 2017"
                        value={this.props.tourDate}
                        className="js-datepicker-from input__date form-text hidden" readOnly

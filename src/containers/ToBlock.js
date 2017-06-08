@@ -574,7 +574,7 @@ class ToBlock extends Component {
                                         onClick={() => this.setHotel(hotel, clearTerm)}
                                         className="list__item -active"
                                     >
-                                        <span className="col__left">{hotel.value}</span>
+                                        <span title={hotel.value} className="col__left">{hotel.value}</span>
                                         <span className="col__right">{hotelLocation}</span>
                                         <i></i>
                                     </li>
@@ -601,7 +601,7 @@ class ToBlock extends Component {
                                         onClick={() => this.setHotel(hotel, clearTerm)}
                                         className={cls}
                                     >
-                                        <span className="col__left">{hotel.value}</span>
+                                        <span title={hotel.value} className="col__left">{hotel.value}</span>
                                         <span className="col__right">{hotelLocation}</span>
                                         <i></i>
                                     </li>

@@ -169,7 +169,7 @@ class Kids extends Component {
                             <div className="autocomplete">
                                 <div className="quick-dropdown">
                                     <div className="wrapper-data col__left filter__row__100">
-                                        <div className="header-dropdown">Укажите количество и возраст детей</div>
+                                        <div className="header-dropdown">Возраст детей</div>
 
                                         <div className="form-add-children">
 
