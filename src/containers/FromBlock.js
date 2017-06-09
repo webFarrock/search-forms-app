@@ -223,6 +223,7 @@ class FromBlock extends Component {
                                         <li key={selectedStartPoint.id}
                                             className="list__item -active"
                                             onClick={() => this.onStartPointItemClick(selectedStartPoint)}
+                                            title={selectedStartPoint.value}
                                         >
                                             {selectedStartPoint.value}
                                         </li>
@@ -233,6 +234,7 @@ class FromBlock extends Component {
                                             <li key={item.id}
                                                 className="list__item"
                                                 onClick={() => this.onStartPointItemClick(item)}
+                                                title={item.value}
                                             >
                                                 {item.value}
                                             </li>

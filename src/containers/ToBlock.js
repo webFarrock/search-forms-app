@@ -325,6 +325,7 @@ class ToBlock extends Component {
                         <li key={selectedCountry.id}
                             className="list__item -active"
                             onClick={() => this.setCountry(selectedCountry)}
+                            title={selectedCountry.value}
                         >
                             {selectedCountry.value}
                         </li>
@@ -336,6 +337,7 @@ class ToBlock extends Component {
                                 <li key={country.id}
                                     className="list__item"
                                     onClick={() => this.setCountry(country)}
+                                    title={country.value}
                                 >
                                     {country.value}
                                 </li>
@@ -433,6 +435,7 @@ class ToBlock extends Component {
                                     <li key={`sel${city.id}`}
                                         className="list__item -active"
                                         onClick={() => this.setRegion(city, clearTerm)}
+                                        title={city.value}
                                     >
                                        {city.value} <i></i>
                                     </li>
@@ -450,6 +453,7 @@ class ToBlock extends Component {
                                     <li key={city.id}
                                         className={cls}
                                         onClick={() => this.setRegion(city, clearTerm)}
+                                        title={city.value}
                                     >
                                         {city.value} <i></i>
                                     </li>
