@@ -415,21 +415,25 @@ class ToBlock extends Component {
                         </div>
                     : ''}
 
+
+
                     {this.state.isMobile ?
                         <div className="quick-dropdown__arrow -right" onClick={() => console.log('next')}>
                             <span className="icon-font icon-arrow-right"></span>
                         </div>
                     : ''}
 
+					{!this.isRenderHotels() ?
+                        <div className="quick-dropdown__arrow arrow-next"
+                             onClick={() => this.setState({pageHotels: false, userInputStarted: false, acShow: false, term: ''})}
+                        >
+                            <span className="icon-font icon-arrow-right"></span>
+                        </div>
+						: ''}
+
                 </div>
 
-                {!this.isRenderHotels() ?
-                    <div className="quick-dropdown__arrow arrow-next"
-                        onClick={() => this.setState({pageHotels: false, userInputStarted: false, acShow: false, term: ''})}
-                    >
-                        <span className="icon-font icon-arrow-right"></span>
-                    </div>
-                    : ''}
+
 
                 <ul className={ulListClass}>
                     { !isCitiesExicts ? <li key="none" className="list__item">Ничего не найдено</li> :
