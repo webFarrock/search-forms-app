@@ -146,7 +146,7 @@ class ToBlock extends Component {
             $('.form-type-to .quick-dropdown__list').each((index, el) => {
                 let $el = $(el);
 
-                if($el.parents('.popular-countries').length || $el.hasClass('popular-countries')) return;
+                //if($el.parents('.popular-countries').length || $el.hasClass('popular-countries')) return;
 
                 if(/*$el.hasScrollBar() &&*/ /*!$el.hasClass('scrolled') && */!$el.parent().find('.icon-icon-show-more').length){
 
